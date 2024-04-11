@@ -63,9 +63,13 @@
 
                                                 <?php
 
+                                                $array = array();
+
                                                 for ($i = 0; $i < $getCart->num_rows; $i++) {
 
                                                     $row  = $getCart->fetch_assoc();
+
+                                                    array_push($array, $row);
 
                                                 ?>
 
@@ -98,7 +102,7 @@
                                                             <s class="small text-muted">$230,00</s>
                                                         </td>
                                                         <td width="100px">
-                                                            <input type="number" class="form-control" min="1" max="10" value="1" disabled/>
+                                                            <input type="number" class="form-control" min="1" max="10" value="1" disabled />
                                                         </td>
                                                         <td>
                                                             <h4>
@@ -165,6 +169,9 @@
 
         <?php
         }
+
+        $_SESSION["cart"] = $array;
+        
         ?>
 
         <?php
