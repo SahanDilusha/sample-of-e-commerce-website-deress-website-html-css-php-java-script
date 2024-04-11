@@ -41,11 +41,14 @@
 
         <?php
         } else {
-
             $subtotal = 0;
             $deliveryCharge = 0;
             $grandTotal = 0;
             $discount = 0;
+
+            if (isset($_SESSION["discount"])) {
+                $discount += $_SESSION["discount"];
+            }
 
         ?>
 
@@ -138,7 +141,10 @@
                                                     </tr>
 
                                                 <?php  }
-                                                $grandTotal = ($subtotal + $deliveryCharge) - $discount;
+                                                $grandTotal = (($subtotal + $deliveryCharge) - $discount) - $_SESSION["discount"];
+                                                if (isset($_SESSION["discount"])) {
+                                                    $grandTotal -= $_SESSION["discount"];
+                                                }
                                                 $_SESSION["grandTotal"] = $grandTotal;
                                                 $_SESSION["cart"] = $array;
                                                 ?>
@@ -158,7 +164,11 @@
                             <div class="p-1 w-100 mt-3">
                                 <small>Enter Discount Code</small>
                                 <div class="d-flex">
-                                    <input type="text" class="form-control border border-black border-2 ms-1 mx-1" id="DiscountCode"/>
+                                    <input type="text" class="form-control border border-black border-2 ms-1 mx-1" id="DiscountCode" value="<?php
+                                                                                                                                            if (isset($_SESSION["code"])) {
+                                                                                                                                                echo ($_SESSION["code"]);
+                                                                                                                                            }
+                                                                                                                                            ?>" />
                                     <button class="btn btn-dark " onclick="DiscountCodeCheck();">Apply</button>
                                 </div>
                                 <div class="w-100 mt-4 d-flex justify-content-between align-items-center border-bottom border-1">
