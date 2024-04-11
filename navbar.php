@@ -45,7 +45,7 @@ session_start();
                         <a class=" nav-link jost-bold" href="#">Blog</a>
                     </li>
                     <li class="nav-item">
-                        <a class=" nav-link jost-bold" href="#">Contact Us</a>
+                        <a class=" nav-link jost-bold" href="contact_us.php">Contact Us</a>
                     </li>
                 </ul>
                 <span class="navbar-text">

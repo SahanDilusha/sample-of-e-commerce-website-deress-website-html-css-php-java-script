@@ -247,117 +247,63 @@
 
     <!-- What our Customer say's start -->
 
-    <div class="container-fluid  mb-5 py-2" style="background-color: rgb(247, 247, 248);">
+    <?php
 
-        <div class="col-12">
-            <h3 class="jost-bold mt-5 mb-4 text-center mt-5">What our Customer say's</h3>
-        </div>
+    $getReviews = Database::search("SELECT * FROM `reviews_site` INNER JOIN `users` ON `reviews_site`.`users_username` = `users`.`username` LIMIT 10;");
 
-        <div class="row g-2">
-            <div class="col-md-4">
-                <div class="card p-3 text-center px-4">
+    if ($getReviews->num_rows !== 0) {
 
-                    <div class="user-image">
 
-                        <img src="profile_images/download.jpeg" class="rounded-circle" width="80">
 
-                    </div>
+    ?>
 
-                    <div class="user-content">
+        <div class="container-fluid  mb-5 py-2" style="background-color: rgb(247, 247, 248);">
 
-                        <h5 class="mb-0">Bruce Hardy</h5>
-                        <span>Software Developer</span>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
-                            ut
-                            labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                            ullamco
-                            laboris nisi ut aliquip ex ea commodo consequat.</p>
-
-                    </div>
-
-                    <div class="ratings">
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-
-                    </div>
-
-                </div>
+            <div class="col-12">
+                <h3 class="jost-bold mt-5 mb-4 text-center mt-5">What our Customer say's</h3>
             </div>
 
-            <div class="col-md-4">
+            <div class="row g-2">
+                <?php
 
-                <div class="card p-3 text-center px-4">
+                for ($i = 0; $i < $getReviews->num_rows; $i++) {
 
-                    <div class="user-image">
+                    $row = $getReviews->fetch_assoc();
 
-                        <img src="profile_images/download.jpeg" class="rounded-circle" width="80">
+                ?>
+                    <div class="col-md-4">
 
-                    </div>
+                        <div class="card p-3 text-center px-4">
 
-                    <div class="user-content">
+                            <div class="user-image">
 
-                        <h5 class="mb-0">Mark Smith</h5>
-                        <span>Web Developer</span>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
-                            ut
-                            labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                            ullamco
-                            laboris nisi ut aliquip ex ea commodo consequat.</p>
+                            <img src="<?php if ($row["stetus_dp"] == "2") {
+                                    echo("resources/image/default_profile.png");
+                                }else {
+                                    # code...
+                                 echo('profile_images/'.$row["username"].'.png');}?>" width="70px"  class="rounded-5" />
+                            </a>
+                       
+                            </div>
 
-                    </div>
+                            <div class="user-content">
 
-                    <div class="ratings">
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
+                                <h5 class="mb-0"><?= $row["first_name"]." ".$row["last_name"] ?></h5>
 
-                    </div>
+                                <p><?=$row["text"]?></p>
 
-                </div>
+                            </div>
 
-            </div>
-
-            <div class="col-md-4">
-
-                <div class="card p-3 text-center px-4">
-
-                    <div class="user-image">
-
-                        <img src="profile_images/download.jpeg" class="rounded-circle" width="80">
+                        </div>
 
                     </div>
-
-                    <div class="user-content">
-
-                        <h5 class="mb-0">Veera Duncan</h5>
-                        <span>Software Architect</span>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
-                            ut
-                            labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                            ullamco
-                            laboris nisi ut aliquip ex ea commodo consequat.</p>
-
-                    </div>
-
-                    <div class="ratings">
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-
-                    </div>
-
-                </div>
+                <?php  } ?>
 
             </div>
 
         </div>
 
-    </div>
+    <?php   } ?>
     <!-- What our Customer say's end -->
 
     <!-- Instagram Stories start -->
