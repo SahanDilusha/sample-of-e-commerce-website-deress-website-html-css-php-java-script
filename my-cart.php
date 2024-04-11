@@ -189,7 +189,7 @@
                                 <button class="btn btn-dark w-100 p-2">Proceed Checout</button>
                                 <button class="btn btn-outline-dark w-100 p-2">Continue shopping</button>
                             </div>
-
+       
                         </div>
                     </div>
                 </div>
