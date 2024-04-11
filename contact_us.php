@@ -1,5 +1,5 @@
 <?php
-
+include "connecton.php";
 
 ?>
 
@@ -37,30 +37,44 @@
                     <div class="mb-3 row">
                         <div class="col">
                             <label>First Name</label>
-                            <input type="text" required maxlength="50" class="form-control" id="first_name" name="first_name">
+                            <input type="text" required maxlength="30" class="form-control" id="first_name" name="first_name">
                         </div>
                         <div class="col">
                             <label>Last Name</label>
-                            <input type="text" required maxlength="50" class="form-control" id="last_name" name="last_name">
+                            <input type="text" required maxlength="30" class="form-control" id="last_name" name="last_name">
                         </div>
                     </div>
                     <div class="mb-3 row">
                         <div class="col">
                             <label for="email_addr">Email address</label>
-                            <input type="email" required maxlength="50" class="form-control" id="email_addr" name="email" placeholder="name@example.com">
+                            <input type="email" required maxlength="50" class="form-control" id="email_addr" name="email" />
                         </div>
                         <div class="col">
                             <label for="phone_input">Phone</label>
-                            <input type="tel" required maxlength="50" class="form-control" id="phone_input" name="Phone" placeholder="Phone">
+                            <input type="tel" required maxlength="50" class="form-control" id="phone_input" name="Phone" />
                         </div>
                     </div>
                     <div class="mb-3">
-                        <label for="message">Message</label>
-                        <select class="form-select" aria-label="Default select example">
-                            <option selected>Open this select menu</option>
-                            <option value="1">One</option>
-                            <option value="2">Two</option>
-                            <option value="3">Three</option>
+                        <label for="message">Option</label>
+                        <select class="form-select" aria-label="Select">
+                            <option selected value="0">Select</option>
+                            <?php
+
+                            $getOption = Database::search("SELECT * FROM `request_type` WHERE `types_types_id` = '2';");
+
+                            if ($getOption->num_rows !== 0) {
+
+                                for ($i = 0; $i < $getOption->num_rows; $i++) {
+                                    $row = $getOption->fetch_assoc();
+
+                            ?>
+                                    <option value="<?=$row["request_type_id"]?>"><?=$row["request_type_name"]?></option>
+                            <?php
+
+                                }
+                            }
+
+                            ?>
                         </select>
                     </div>
                     <div class="mb-3">
@@ -71,7 +85,7 @@
                 </form>
             </div>
 
-        
+
 
         </div>
 
