@@ -251,14 +251,14 @@ if (!isset($_GET["id"]) || !isset($_GET["name"])) {
                             } else {
                                 if (!isset($_SESSION["user"])) {
                                 ?>
-                                    <button class="btn btn-dark w-50">Add to cart</button>
+                                    <button class="btn btn-dark w-50" onclick="addToCart(<?= $getId ?>)">Add to cart</button>
                                     <?php
                                 } else {
                                     $checkCart = Database::search("SELECT `product_id` FROM `cart` WHERE  `cart`.`product_id` = '" . $getId . "' AND `cart`.`users_username` = '" . $_SESSION["user"]["username"] . "';");
 
                                     if ($checkCart->num_rows == 0) {
                                     ?>
-                                        <button class="btn btn-dark w-50">Add to cart</button>
+                                        <button class="btn btn-dark w-50" onclick="addToCart(<?= $getId ?>)">Add to cart</button>
                                     <?php
                                     } else {
 

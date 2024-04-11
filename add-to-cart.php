@@ -23,7 +23,7 @@ if (isset($_SESSION["user"])) {
             $qty = $getQTY->fetch_assoc()['product_qty'];
 
             if ($qty >= 2) {
-                Database::iud("INSERT INTO `cart`(`cart`.`users_username`,`cart`.`product_id`)VALUES('".$_SESSION["user"]["username"]."','".$_POST["id"]."');");
+                Database::iud("INSERT INTO `cart`(`cart`.`users_username`,`cart`.`product_id`,`cart`.`qty`)VALUES('".$_SESSION["user"]["username"]."','".$_POST["id"]."','1');");
                 echo("item add to  cart successfully!");
             }else {
                 echo("there is no item in stock");

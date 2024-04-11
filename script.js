@@ -705,13 +705,20 @@ function Subscribe() {
 
 }
 
-function addToCard(i) {
+function addToCart(i) {
+
+    const quantity = document.getElementById("quantity").value;
 
     const request = new XMLHttpRequest();
     const from = new FormData();
+
+    from.append("qty", quantity);
     from.append("id", i);
 
+    
+
     request.onreadystatechange = function () {
+        alert(request.responseText);
 
         if (request.readyState == "4" && request.status == "200") {
 
