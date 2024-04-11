@@ -807,7 +807,7 @@ function saveRequest(i) {
         if (request.readyState == "4" && request.status == "200") {
 
             if (request.responseText == "Request saved!") {
-                msg.value="";
+                msg.value = "";
             }
 
             document.getElementById("msg_l").innerHTML = request.responseText;
@@ -829,11 +829,11 @@ function saveRequest(i) {
 }
 
 function ContactUsSend() {
-    
+
     const fname = document.getElementById("fname").value;
     const lname = document.getElementById("lname").value;
-    const mobile = document.getElementById("rid").value;
-    const email = document.getElementById("rid").value;
+    const mobile = document.getElementById("mobile").value;
+    const email = document.getElementById("email").value;
     const msg = document.getElementById("msg").value;
     const rid = document.getElementById("rid").value;
 
@@ -850,18 +850,14 @@ function ContactUsSend() {
 
         if (request.readyState == "4" && request.status == "200") {
 
-            if (request.responseText == "Request saved!") {
-                msg.value="";
+            alert(request.responseText);
+
+            if (request.responseText == "ok") {
+                document.getElementById("msg").value = "";
             }
 
-            document.getElementById("msg_l").innerHTML = request.responseText;
-
-            const myToast = new bootstrap.Toast(document.getElementById('myToast'));
-            myToast.show();
-
-            setTimeout(function () {
-                myToast.hide();
-            }, 5000);
+            document.getElementById("error-text").innerHTML = request.responseText;
+            new bootstrap.Modal(document.getElementById("error")).show();
 
         }
 
@@ -870,5 +866,5 @@ function ContactUsSend() {
     request.open('POST', 'contact-us-procces.php', true);
     request.send(from);
 
-    
+
 }

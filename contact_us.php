@@ -37,21 +37,21 @@ include "connecton.php";
                     <div class="mb-3 row">
                         <div class="col">
                             <label>First Name</label>
-                            <input type="text" required maxlength="30" class="form-control" id="first_name" name="first_name">
+                            <input type="text" required maxlength="30" class="form-control" id="fname" name="first_name">
                         </div>
                         <div class="col">
                             <label>Last Name</label>
-                            <input type="text" required maxlength="30" class="form-control" id="last_name" name="last_name">
+                            <input type="text" required maxlength="30" class="form-control" id="lname" name="last_name">
                         </div>
                     </div>
                     <div class="mb-3 row">
                         <div class="col">
                             <label for="email_addr">Email address</label>
-                            <input type="email" required maxlength="50" class="form-control" id="email_addr" name="email" />
+                            <input type="email" required maxlength="50" class="form-control" id="email" name="email" />
                         </div>
                         <div class="col">
                             <label for="phone_input">Phone</label>
-                            <input type="tel" required maxlength="50" class="form-control" id="phone_input" name="Phone" />
+                            <input type="tel" required maxlength="50" class="form-control" id="mobile" name="Phone" />
                         </div>
                     </div>
                     <div class="mb-3">
@@ -79,7 +79,7 @@ include "connecton.php";
                     </div>
                     <div class="mb-3">
                         <label for="message">Message</label>
-                        <textarea class="form-control" id="message" name="message" rows="5"></textarea>
+                        <textarea class="form-control" id="msg" name="message" rows="5"></textarea>
                     </div>
                     <button type="submit" class="btn btn-dark py-1 px-4 btn-lg" onclick="ContactUsSend();">Post</button>
                 </form>
