@@ -715,7 +715,7 @@ function addToCart(i) {
     from.append("qty", quantity);
     from.append("id", i);
 
-    
+
 
     request.onreadystatechange = function () {
         alert(request.responseText);
@@ -731,7 +731,7 @@ function addToCart(i) {
                 myToast.hide();
             }, 5000);
 
-            if (request.responseText=="item add to  cart successfully!") {
+            if (request.responseText == "item add to  cart successfully!") {
                 window.location.reload();
             }
 
@@ -878,5 +878,34 @@ function ContactUsSend() {
     request.open('POST', 'contact-us-procces.php', true);
     request.send(from);
 
+}
+
+
+function DiscountCodeCheck() {
+
+    const DiscountCode = document.getElementById("DiscountCode").value;
+    const request = new XMLHttpRequest();
+    const from = new FormData();
+    from.append("code", DiscountCode);
+
+    request.onreadystatechange = function () {
+
+        if (request.readyState == "4" && request.status == "200") {
+
+            document.getElementById("msg_l").innerHTML = request.responseText;
+
+            const myToast = new bootstrap.Toast(document.getElementById('myToast'));
+            myToast.show();
+
+            setTimeout(function () {
+                myToast.hide();
+            }, 5000);
+
+        }
+
+    }
+
+    request.open('POST', 'discount-code-check.php', true);
+    request.send(from);
 
 }

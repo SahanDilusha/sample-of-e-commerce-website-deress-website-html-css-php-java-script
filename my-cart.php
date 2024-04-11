@@ -158,8 +158,8 @@
                             <div class="p-1 w-100 mt-3">
                                 <small>Enter Discount Code</small>
                                 <div class="d-flex">
-                                    <input type="text" class="form-control border border-black border-2 ms-1 mx-1" />
-                                    <button class="btn btn-dark ">Apply</button>
+                                    <input type="text" class="form-control border border-black border-2 ms-1 mx-1" id="DiscountCode"/>
+                                    <button class="btn btn-dark " onclick="DiscountCodeCheck();">Apply</button>
                                 </div>
                                 <div class="w-100 mt-4 d-flex justify-content-between align-items-center border-bottom border-1">
                                     <p class="fs-6">Delivery Charge</p>
