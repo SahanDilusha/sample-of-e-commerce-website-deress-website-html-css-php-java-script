@@ -730,6 +730,11 @@ function addToCart(i) {
             setTimeout(function () {
                 myToast.hide();
             }, 5000);
+
+            if (request.responseText=="item add to  cart successfully!") {
+                window.location.reload();
+            }
+
         }
     }
     request.open('POST', 'add-to-cart.php', true);
