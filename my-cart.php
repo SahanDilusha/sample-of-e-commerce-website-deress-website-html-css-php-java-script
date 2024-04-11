@@ -78,6 +78,14 @@
 
                                                     $subtotal += $row['product_price'] * $row['qty'];
 
+                                                    if ($row["product_discount"] != 0) {
+                                                        $discount += $row["product_price"] * ($row["product_discount"] / 100);
+                                                    }
+
+                                                    if ($row["delivery"] != 0) {
+                                                        $deliveryCharge += $row["delivery"];
+                                                    }
+
                                                 ?>
 
                                                     <tr>
@@ -129,7 +137,11 @@
                                                         </td>
                                                     </tr>
 
-                                                <?php  } ?>
+                                                <?php  }
+                                                $grandTotal = ($subtotal + $deliveryCharge) - $discount;
+                                                $_SESSION["grandTotal"] = $grandTotal;
+                                                $_SESSION["cart"] = $array;
+                                                ?>
                                             </tbody>
                                         </table>
                                     </div>
@@ -160,7 +172,7 @@
                             </div>
                             <div class="w-100 d-flex justify-content-between align-items-center border-bottom border-1">
                                 <p class="fw-bold fs-5">Grand Total</p>
-                                <p class="fw-bold fs-5">Rs. <?= $grandTotal; ?></p>
+                                <p class="fw-bold fs-5">Rs. <?= $_SESSION["grandTotal"]; ?></p>
                             </div>
 
                             <div class="d-flex justify-content-center flex-column gap-2 align-items-center w-100 mt-2 mb-2">
@@ -192,7 +204,6 @@
         <?php
         }
 
-        $_SESSION["cart"] = $array;
 
         ?>
 
