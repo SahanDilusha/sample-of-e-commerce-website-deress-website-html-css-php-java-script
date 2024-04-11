@@ -97,7 +97,7 @@
                                                         </td>
                                                         <td class="desc">
                                                             <h4>
-                                                                <a href="product-ditels.php?id=<?php echo ($row["id"]); ?>" class="text-dark fw-bold text-decoration-none">
+                                                                <a href="product-ditels.php?id=<?php echo ($row["id"]); ?>" class="text-dark fw-bold text-decoration-none fs-6">
                                                                     <?php echo ($row["product_name"]); ?>
                                                                 </a>
                                                             </h4>
@@ -187,7 +187,7 @@
 
                             <div class="d-flex justify-content-center flex-column gap-2 align-items-center w-100 mt-2 mb-2">
                                 <button class="btn btn-dark w-100 p-2">Proceed Checout</button>
-                                <button class="btn btn-outline-dark w-100 p-2">Continue shopping</button>
+                                <a href="index.php" class="btn btn-outline-dark w-100 p-2">Continue shopping</a>
                             </div>
        
                         </div>
