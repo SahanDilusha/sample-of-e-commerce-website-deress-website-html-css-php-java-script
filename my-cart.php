@@ -42,6 +42,11 @@
         <?php
         } else {
 
+            $subtotal = 0;
+            $deliveryCharge = 0;
+            $grandTotal = 0;
+            $discount = 0;
+
         ?>
 
             <div class="container min-vh-100">
@@ -71,6 +76,8 @@
 
                                                     array_push($array, $row);
 
+                                                    $subtotal += $row['product_price'] * $row['qty'];
+
                                                 ?>
 
                                                     <tr>
@@ -98,15 +105,26 @@
                                                             </div>
                                                         </td>
                                                         <td>
-                                                            $180,00
-                                                            <s class="small text-muted">$230,00</s>
+                                                            <?php
+
+                                                            if ($row["product_discount"] != 0) {
+                                                            ?>
+                                                                Rs.<?= $row["product_price"] - ($row["product_price"] * ($row["product_discount"] / 100)) ?>
+                                                                <s class="small text-muted">Rs. <?= $row['product_price'] ?></s>
+                                                            <?php
+                                                            } else {
+                                                                echo ("Rs. " . $row["product_price"]);
+                                                            }
+
+                                                            ?>
+
                                                         </td>
                                                         <td width="100px">
-                                                            <input type="number" class="form-control" min="1" max="10" value="1" disabled />
+                                                            <input type="number" class="form-control" min="1" max="10" value="<?= $row['qty'] ?>" disabled />
                                                         </td>
                                                         <td>
                                                             <h4>
-                                                                $180,00
+                                                                <?= ($row["product_price"] - ($row["product_price"] * ($row["product_discount"] / 100))) * $row['qty'] ?>
                                                             </h4>
                                                         </td>
                                                     </tr>
@@ -122,7 +140,7 @@
                         <div class="col-md-3">
                             <div class="w-100 d-flex justify-content-between align-items-center border-bottom border-1">
                                 <p class="fw-bold fs-5">Subtotal</p>
-                                <p class="fw-bold fs-5">$200</p>
+                                <p class="fw-bold fs-5">Rs. <?= $subtotal; ?></p>
                             </div>
 
                             <div class="p-1 w-100 mt-3">
@@ -133,12 +151,16 @@
                                 </div>
                                 <div class="w-100 mt-4 d-flex justify-content-between align-items-center border-bottom border-1">
                                     <p class="fs-6">Delivery Charge</p>
-                                    <p class="fs-6">$5</p>
+                                    <p class="fs-6">Rs. <?= $deliveryCharge; ?></p>
+                                </div>
+                                <div class="w-100 mt-4 d-flex justify-content-between align-items-center border-bottom border-1">
+                                    <p class="fs-6">Discount</p>
+                                    <p class="fs-6">Rs. <?= $discount; ?></p>
                                 </div>
                             </div>
                             <div class="w-100 d-flex justify-content-between align-items-center border-bottom border-1">
                                 <p class="fw-bold fs-5">Grand Total</p>
-                                <p class="fw-bold fs-5">$205</p>
+                                <p class="fw-bold fs-5">Rs. <?= $grandTotal; ?></p>
                             </div>
 
                             <div class="d-flex justify-content-center flex-column gap-2 align-items-center w-100 mt-2 mb-2">
@@ -171,7 +193,7 @@
         }
 
         $_SESSION["cart"] = $array;
-        
+
         ?>
 
         <?php
