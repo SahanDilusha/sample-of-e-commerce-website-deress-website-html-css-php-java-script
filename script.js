@@ -827,3 +827,48 @@ function saveRequest(i) {
     request.send(from);
 
 }
+
+function ContactUsSend() {
+    
+    const fname = document.getElementById("fname").value;
+    const lname = document.getElementById("lname").value;
+    const mobile = document.getElementById("rid").value;
+    const email = document.getElementById("rid").value;
+    const msg = document.getElementById("msg").value;
+    const rid = document.getElementById("rid").value;
+
+    const request = new XMLHttpRequest();
+    const from = new FormData();
+    from.append("msg", msg);
+    from.append("rid", rid);
+    from.append("fname", fname);
+    from.append("lname", lname);
+    from.append("mobile", mobile);
+    from.append("email", email);
+
+    request.onreadystatechange = function () {
+
+        if (request.readyState == "4" && request.status == "200") {
+
+            if (request.responseText == "Request saved!") {
+                msg.value="";
+            }
+
+            document.getElementById("msg_l").innerHTML = request.responseText;
+
+            const myToast = new bootstrap.Toast(document.getElementById('myToast'));
+            myToast.show();
+
+            setTimeout(function () {
+                myToast.hide();
+            }, 5000);
+
+        }
+
+    }
+
+    request.open('POST', 'contact-us-procces.php', true);
+    request.send(from);
+
+    
+}

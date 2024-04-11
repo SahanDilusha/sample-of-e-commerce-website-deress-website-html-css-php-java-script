@@ -56,7 +56,7 @@ include "connecton.php";
                     </div>
                     <div class="mb-3">
                         <label for="message">Option</label>
-                        <select class="form-select" aria-label="Select">
+                        <select class="form-select" id="rid" aria-label="Select">
                             <option selected value="0">Select</option>
                             <?php
 
@@ -81,7 +81,7 @@ include "connecton.php";
                         <label for="message">Message</label>
                         <textarea class="form-control" id="message" name="message" rows="5"></textarea>
                     </div>
-                    <button type="submit" class="btn btn-dark py-1 px-4 btn-lg">Post</button>
+                    <button type="submit" class="btn btn-dark py-1 px-4 btn-lg" onclick="ContactUsSend();">Post</button>
                 </form>
             </div>
 
