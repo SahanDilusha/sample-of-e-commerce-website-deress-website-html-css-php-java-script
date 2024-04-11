@@ -190,11 +190,6 @@
                                 <button class="btn btn-outline-dark w-100 p-2">Continue shopping</button>
                             </div>
 
-                            <h5 class="text-secondary py-2">Recommend products for you</h5>
-                            <div class="w-100 py-2 mt-4 d-flex justify-content-between align-items-center border-bottom border-1">
-                                <img src="product_image/img-2.jpg" alt="" width="70px">
-                                <small class="fw-bold">Desktop publishing software</small>
-                            </div>
                         </div>
                     </div>
                 </div>

@@ -892,8 +892,6 @@ function DiscountCodeCheck() {
 
         if (request.readyState == "4" && request.status == "200") {
 
-            alert(request.responseText);
-
             document.getElementById("msg_l").innerHTML = request.responseText;
 
             const myToast = new bootstrap.Toast(document.getElementById('myToast'));
