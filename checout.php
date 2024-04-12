@@ -68,7 +68,7 @@
                                     <label>Payment Method</label>
                                 </div>
                                 <div class="d-flex gap-2 flex-column justify-content-center align-items-center">
-                                    <i class="bi bi-house py-1 px-2 bg-secondary text-white rounded-3"></i>
+                                    <i class="bi bi-file-earmark-text py-1 px-2 bg-secondary text-white rounded-3"></i>
                                     <label>Review</label>
                                 </div>
                             </div>
@@ -88,14 +88,12 @@
                                         <label>scsacsdcc</label>
                                     </div>
                                     <div class="d-flex mt-2 mb-2 justify-content-between align-items-center">
+                                        <label class="fw-bold text-bg-success px-1">default</label>
                                         <button class="btn bg-danger-subtle border-danger bi bi-trash3"> Delete</button>
                                     </div>
                                 </div>
 
-
-
                             </div>
-                            
 
                         </div>
 
@@ -150,6 +148,9 @@
         ?>
 
         <?php
+
+
+        include "add-new-address-modle.php";
 
         include "footer.php";
 
