@@ -15,8 +15,6 @@
 
     <?php
 
-
-
     include "navbar.php";
 
     if (!isset($_SESSION["user"])) {
@@ -58,41 +56,33 @@
                 <div class="wrapper wrapper-content animated fadeInRight">
                     <div class="row">
                         <div class="col-md-9">
-                            
+
                         </div>
 
                         <div class="col-md-3">
                             <div class="w-100 d-flex justify-content-between align-items-center border-bottom border-1">
                                 <p class="fw-bold fs-5">Subtotal</p>
-                                <p class="fw-bold fs-5">Rs. <?= $subtotal; ?></p>
+                                <p class="fw-bold fs-5">Rs. <?= $_SESSION["total"]["subtotal"]; ?></p>
                             </div>
 
                             <div class="p-1 w-100 mt-3">
-                                <small>Enter Discount Code</small>
-                                <div class="d-flex">
-                                    <input type="text" class="form-control border border-black border-2 ms-1 mx-1" id="DiscountCode" value="<?php
-                                                                                                                                            if (isset($_SESSION["code"])) {
-                                                                                                                                                echo ($_SESSION["code"]);
-                                                                                                                                            }
-                                                                                                                                            ?>" />
-                                    <button class="btn btn-dark " onclick="DiscountCodeCheck();">Apply</button>
-                                </div>
+                               
                                 <div class="w-100 mt-4 d-flex justify-content-between align-items-center border-bottom border-1">
                                     <p class="fs-6">Delivery Charge</p>
-                                    <p class="fs-6">Rs. <?= $deliveryCharge; ?></p>
+                                    <p class="fs-6">Rs. <?= $_SESSION["total"]["deliveryCharge"]; ?></p>
                                 </div>
                                 <div class="w-100 mt-4 d-flex justify-content-between align-items-center border-bottom border-1">
                                     <p class="fs-6">Discount</p>
-                                    <p class="fs-6">Rs. <?= $discount; ?></p>
+                                    <p class="fs-6">Rs. <?= $_SESSION["total"]["discount"]; ?></p>
                                 </div>
                             </div>
                             <div class="w-100 d-flex justify-content-between align-items-center border-bottom border-1">
                                 <p class="fw-bold fs-5">Grand Total</p>
-                                <p class="fw-bold fs-5">Rs. <?= $_SESSION["grandTotal"]; ?></p>
+                                <p class="fw-bold fs-5">Rs. <?= $_SESSION["total"]["grandTotal"]; ?></p>
                             </div>
 
                             <div class="d-flex justify-content-center flex-column gap-2 align-items-center w-100 mt-2 mb-2">
-                                <button class="btn btn-dark w-100 p-2">Proceed Checout</button>
+                                <button class="btn btn-dark w-100 p-2">Pay Now</button>
                                 <a href="index.php" class="btn btn-outline-dark w-100 p-2">Continue shopping</a>
                             </div>
 

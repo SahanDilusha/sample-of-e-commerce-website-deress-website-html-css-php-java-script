@@ -147,8 +147,15 @@
                                                 if (isset($_SESSION["discount"])) {
                                                     $grandTotal -= $_SESSION["discount"];
                                                 }
-                                                $_SESSION["grandTotal"] = $grandTotal;
+                                                
                                                 $_SESSION["cart"] = $array;
+                                               
+                                                $_SESSION["total"] = [
+                                                    "grandTotal"=> $grandTotal,
+                                                    "subtotal"=>$subtotal,
+                                                    "deliveryCharge"=>$deliveryCharge,
+                                                    "discount"=>$discount,
+                                                ];
                                                 ?>
                                             </tbody>
                                         </table>
@@ -160,7 +167,7 @@
                         <div class="col-md-3">
                             <div class="w-100 d-flex justify-content-between align-items-center border-bottom border-1">
                                 <p class="fw-bold fs-5">Subtotal</p>
-                                <p class="fw-bold fs-5">Rs. <?= $subtotal; ?></p>
+                                <p class="fw-bold fs-5">Rs. <?= $_SESSION["total"]["subtotal"]; ?></p>
                             </div>
 
                             <div class="p-1 w-100 mt-3">
@@ -175,16 +182,16 @@
                                 </div>
                                 <div class="w-100 mt-4 d-flex justify-content-between align-items-center border-bottom border-1">
                                     <p class="fs-6">Delivery Charge</p>
-                                    <p class="fs-6">Rs. <?= $deliveryCharge; ?></p>
+                                    <p class="fs-6">Rs. <?= $_SESSION["total"]["deliveryCharge"]; ?></p>
                                 </div>
                                 <div class="w-100 mt-4 d-flex justify-content-between align-items-center border-bottom border-1">
                                     <p class="fs-6">Discount</p>
-                                    <p class="fs-6">Rs. <?= $discount; ?></p>
+                                    <p class="fs-6">Rs. <?= $_SESSION["total"]["discount"]; ?></p>
                                 </div>
                             </div>
                             <div class="w-100 d-flex justify-content-between align-items-center border-bottom border-1">
                                 <p class="fw-bold fs-5">Grand Total</p>
-                                <p class="fw-bold fs-5">Rs. <?= $_SESSION["grandTotal"]; ?></p>
+                                <p class="fw-bold fs-5">Rs. <?=  $_SESSION["total"]["grandTotal"]; ?></p>
                             </div>
 
                             <div class="d-flex justify-content-center flex-column gap-2 align-items-center w-100 mt-2 mb-2">
