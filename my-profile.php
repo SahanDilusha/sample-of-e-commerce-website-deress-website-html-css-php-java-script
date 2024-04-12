@@ -185,7 +185,6 @@
                                         <label class="fs-5 fw-bold"><?php echo ($row["address_name"]); ?></label>
                                         <small><i class="bi bi-geo-alt"></i> <?php echo ($row["line_1"] . ", " . $row["line_2"] . ", " . $row["city_name"]); ?></small>
                                         <label><i class="bi bi-telephone"></i> <?php echo ($row["address_mobile"]) ?></label>
-
                                         <?php
 
                                         if ($row["stetus_stetus_id"] == "2") {
