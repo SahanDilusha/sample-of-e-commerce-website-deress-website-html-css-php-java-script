@@ -105,9 +105,13 @@
 
                         <?php
                         if ($getAddress->num_rows !== 0) {
+
+                            if (isset($_SESSION["address_id"])) {
+
                         ?>
-                            <button class="fs-6 btn btn-dark mt-3 p-2" onclick="addNewAddressModel();"><i class="bi bi-truck"></i> Deliver Here</button>
+                                <button class="fs-6 btn btn-dark mt-3 p-2" onclick="addNewAddressModel();"><i class="bi bi-truck"></i> Deliver Here</button>
                         <?php
+                            }
                         }
                         ?>
                     </div>
