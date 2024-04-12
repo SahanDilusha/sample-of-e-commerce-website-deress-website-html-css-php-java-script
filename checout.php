@@ -35,21 +35,7 @@
                 <div class="row">
 
                     <div class="col-md-9">
-                        <h3 class="mb-3">Shopping Address</h3>
-                        <div class="w-100 px-2 mb-3 d-flex justify-content-between align-items-center">
-                            <div class="d-flex gap-2 flex-column justify-content-center align-items-center">
-                                <i class="bi bi-house py-1 px-2 bg-black text-white rounded-3"></i>
-                                <label>Address</label>
-                            </div>
-                            <div class="d-flex gap-2 flex-column justify-content-center align-items-center">
-                                <i class="bi bi-credit-card-fill py-1 px-2 bg-secondary text-white rounded-3"></i>
-                                <label>Payment Method</label>
-                            </div>
-                            <div class="d-flex gap-2 flex-column justify-content-center align-items-center">
-                                <i class="bi bi-file-earmark-text py-1 px-2 bg-secondary text-white rounded-3"></i>
-                                <label>Review</label>
-                            </div>
-                        </div>
+                        <h3 class="mb-3">Place Order</h3>
 
                         <h5 class="mt-2 mb-2">Select a delivery address</h5>
                         <small class="mb-2">Is the address you'd like to use displayed below? If so, click the corresponding "Deliver to this address" button. Or you can enter a new deliver address.</small>
@@ -103,17 +89,21 @@
 
                         <button class="fs-6 btn btn-dark mt-3  p-2" onclick="addNewAddressModel();"><i class="bi bi-plus"></i> Add New Address</button>
 
-                        <?php
-                        if ($getAddress->num_rows !== 0) {
+                        <h5 class="mt-4 mb-2">Select a payment method</h5>
 
-                            if (isset($_SESSION["address_id"])) {
+                        <div class="form-check w-100 mt-3 mb-3">
+                            <input class="form-check-input bg-black" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                            <label class="form-check-label fw-bold" for="flexRadioDefault1">
+                                Chash on delivery
+                            </label>
+                        </div>
+                        <div class="form-check mb-3 ">
+                            <input class="form-check-input bg-black" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
+                            <label class="form-check-label fw-bold" for="flexRadioDefault2">
+                                Default checked radio
+                            </label>
+                        </div>
 
-                        ?>
-                                <button class="fs-6 btn btn-dark mt-3 p-2" onclick="addNewAddressModel();"><i class="bi bi-truck"></i> Deliver Here</button>
-                        <?php
-                            }
-                        }
-                        ?>
                     </div>
 
                     <div class="col-md-3">
