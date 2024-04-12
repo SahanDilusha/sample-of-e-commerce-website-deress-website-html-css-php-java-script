@@ -93,57 +93,57 @@
 
 
 
-                        <div class="form-check mt-3 mb-3">
-                            <input class="form-check-input bg-black" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
-                            <label class="form-check-label fw-bold" for="flexRadioDefault1">
+                        <div class="form-check mt-3 mb-3" >
+                            <input class="form-check-input bg-black" type="radio" name="flexRadioDefault" id="flexRadioDefault1" checked onchange="methodHide();">
+                            <label class="form-check-label fw-bold" for="flexRadioDefault1" >
                                 Chash on delivery
                             </label>
                         </div>
-                        <div class="form-check mb-3 ">
-                            <input class="form-check-input bg-black" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
+                        <div class="form-check mb-3" >
+                            <input class="form-check-input bg-black" type="radio" name="flexRadioDefault" id="flexRadioDefault2" onclick="methodShow();">
                             <label class="form-check-label fw-bold" for="flexRadioDefault2">
                                 Debit/Credit Card
                             </label>
                         </div>
+                        <div class="d-none" id="card-from">
+                            <?php
+                            $getCard = Database::search("SELECT * FROM `user_card` INNER JOIN `card_type` ON `user_card`.`card_type_card_type_id` = `card_type`.`card_type_id` WHERE `user_card`.`users_username` = '" . $user["username"] . "'");
 
-                        <?php
-                        $getCard = Database::search("SELECT * FROM `user_card` INNER JOIN `card_type` ON `user_card`.`card_type_card_type_id` = `card_type`.`card_type_id` WHERE `user_card`.`users_username` = '" . $user["username"] . "'");
+                            if ($getCard->num_rows !== 0) {
 
-                        if ($getCard->num_rows !== 0) {
+                            ?>
 
-                        ?>
+                                <div class="w-100 d-flex gap-2">
 
-                            <div class="w-100 d-flex gap-2">
+                                    <?php
+                                    for ($i = 0; $i < $getCard->num_rows; $i++) {
 
-                                <?php
-                                for ($i = 0; $i < $getCard->num_rows; $i++) {
+                                        $row = $getCard->fetch_assoc();
+                                    ?>
+                                        <div class="col-md-3 gap-2 m-2 bg-secondary-subtle d-flex py-3 px-1 justify-content-center align-items-center" onclick="filCard('<?= $row['card_no'] ?>','<?= $row['h_name'] ?>','<?= $row['cvv'] ?>','<?= $row['ex_y'] ?>','<?= $row['ex_m'] ?>');">
 
-                                    $row = $getCard->fetch_assoc();
-                                ?>
-                                    <div class="col-md-3 gap-2 m-2 bg-secondary-subtle d-flex py-3 px-1 justify-content-center align-items-center">
+                                            <?php
 
-                                        <?php
-
-                                        if ($row["card_type_card_type_id"] == "1") {
+                                            if ($row["card_type_card_type_id"] == "1") {
 
 
-                                        ?> <img src="resources/image/vcard.png" />
-                                        <?php
-                                        } else {
-                                        ?>
-                                            <img src="resources/image/mCard.png" />
-                                        <?php
-                                        }
-                                        ?>
+                                            ?> <img src="resources/image/vcard.png" />
+                                            <?php
+                                            } else {
+                                            ?>
+                                                <img src="resources/image/mCard.png" />
+                                            <?php
+                                            }
+                                            ?>
 
-                                        <small class="fw-bold"><?php echo ($row["card_no"]); ?></small>
+                                            <small class="fw-bold"><?= $row["card_no"]; ?></small>
 
-                                    </div>
+                                        </div>
 
-                                <?php } ?>
-                            </div>
-                        <?php } ?>
-                        <div class="w-100 mb-3">
+                                    <?php } ?>
+                                </div>
+                            <?php } ?>
+
 
 
 

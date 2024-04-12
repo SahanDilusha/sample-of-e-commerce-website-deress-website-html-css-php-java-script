@@ -930,7 +930,7 @@ function SelectShoppingAddress(i) {
 
             if (request.responseText == "ok") {
                 window.location.reload();
-            }else{
+            } else {
                 alert("Can't find address!");
             }
 
@@ -943,7 +943,19 @@ function SelectShoppingAddress(i) {
 }
 
 function methodShow() {
-    
-    
+    document.getElementById("card-from").className ="w-100 mb-3";
+}
+
+function methodHide() {
+    document.getElementById("card-from").className ="d-none";
+}
+
+function filCard(no, name, cvv, year, month) {
+
+    document.getElementById("c_no").value = no;
+    document.getElementById("c_name").value = name;
+    document.getElementById("c_cvv").value = cvv;
+    document.getElementById("c_ed_y").value = year;
+    document.getElementById("c_ed_m").value = month;
 
 }
