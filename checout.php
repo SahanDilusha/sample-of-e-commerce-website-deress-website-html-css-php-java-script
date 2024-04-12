@@ -89,9 +89,11 @@
 
                         <button class="fs-6 btn btn-dark mt-3  p-2" onclick="addNewAddressModel();"><i class="bi bi-plus"></i> Add New Address</button>
 
-                        <h5 class="mt-4 mb-2">Select a payment method</h5>
+                        <h5 class="mt-4 mb-4">Select a payment method</h5>
 
-                        <div class="form-check  mt-3 mb-3">
+
+
+                        <div class="form-check mt-3 mb-3">
                             <input class="form-check-input bg-black" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
                             <label class="form-check-label fw-bold" for="flexRadioDefault1">
                                 Chash on delivery
@@ -102,6 +104,54 @@
                             <label class="form-check-label fw-bold" for="flexRadioDefault2">
                                 Debit/Credit Card
                             </label>
+                        </div>
+
+                        <?php
+                        $getCard = Database::search("SELECT * FROM `user_card` INNER JOIN `card_type` ON `user_card`.`card_type_card_type_id` = `card_type`.`card_type_id` WHERE `user_card`.`users_username` = '" . $user["username"] . "'");
+
+                        if ($getCard->num_rows == 0) {
+
+                        ?>
+
+                            <div class="w-100 d-flex gap-2">
+                                <div class="col-md-3 gap-2 m-2 bg-secondary-subtle d-flex py-3 px-1 justify-content-center align-items-center">
+
+                                    <img src="resources/image/vcard.png" />
+
+                                    <small class="fw-bold">772837e8e88e8</small>
+
+                                </div>
+                            </div>
+                        <?php } ?>
+                        <div class="w-100 mb-3">
+
+
+
+                            <div class="col-md-6 mt-2">
+                                <label for="c_no" class="form-label">Card Number <small class="text-danger">*</small></label>
+                                <input type="text" class="form-control" id="c_no" required />
+                            </div>
+
+                            <div class="col-md-6 mt-2">
+                                <label for="c_name" class="form-label">Name on the Card <small class="text-danger">*</small></label>
+                                <input type="text" class="form-control" id="c_name" required />
+                            </div>
+
+                            <div class="col-md-6 mt-2">
+                                <label for="c_cvv" class="form-label">CVV <small class="text-danger">*</small></label>
+                                <input type="text" class="form-control" id="c_cvv" required />
+                            </div>
+
+                            <div class="col-6 mt-2">
+                                <label for="c_ed" class="form-label">Expiry Date <small class="text-danger">*</small></label>
+                                <div class="d-flex justify-content-center align-items-center g-2">
+                                    <input type="text" class="form-control mx-1" id="c_ed_y" required placeholder="YY" />
+                                    -
+                                    <input type="text" class="form-control mx-1" id="c_ed_m" required placeholder="MM" />
+                                </div>
+
+                            </div>
+
                         </div>
 
                     </div>

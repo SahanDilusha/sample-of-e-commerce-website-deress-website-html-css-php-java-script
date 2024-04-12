@@ -941,3 +941,9 @@ function SelectShoppingAddress(i) {
     request.open('POST', 'save-shopping-address.php', true);
     request.send(from);
 }
+
+function methodShow() {
+    
+    
+
+}
