@@ -109,18 +109,38 @@
                         <?php
                         $getCard = Database::search("SELECT * FROM `user_card` INNER JOIN `card_type` ON `user_card`.`card_type_card_type_id` = `card_type`.`card_type_id` WHERE `user_card`.`users_username` = '" . $user["username"] . "'");
 
-                        if ($getCard->num_rows == 0) {
+                        if ($getCard->num_rows !== 0) {
 
                         ?>
 
                             <div class="w-100 d-flex gap-2">
-                                <div class="col-md-3 gap-2 m-2 bg-secondary-subtle d-flex py-3 px-1 justify-content-center align-items-center">
 
-                                    <img src="resources/image/vcard.png" />
+                                <?php
+                                for ($i = 0; $i < $getCard->num_rows; $i++) {
 
-                                    <small class="fw-bold">772837e8e88e8</small>
+                                    $row = $getCard->fetch_assoc();
+                                ?>
+                                    <div class="col-md-3 gap-2 m-2 bg-secondary-subtle d-flex py-3 px-1 justify-content-center align-items-center">
 
-                                </div>
+                                        <?php
+
+                                        if ($row["card_type_card_type_id"] == "1") {
+
+
+                                        ?> <img src="resources/image/vcard.png" />
+                                        <?php
+                                        } else {
+                                        ?>
+                                            <img src="resources/image/mCard.png" />
+                                        <?php
+                                        }
+                                        ?>
+
+                                        <small class="fw-bold"><?php echo ($row["card_no"]); ?></small>
+
+                                    </div>
+
+                                <?php } ?>
                             </div>
                         <?php } ?>
                         <div class="w-100 mb-3">

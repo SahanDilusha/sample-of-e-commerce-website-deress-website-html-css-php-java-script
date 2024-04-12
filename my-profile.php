@@ -329,7 +329,7 @@
                                             <?php
 
                                             if ($row["card_type_card_type_id"] == "1") {
-                                                # code...
+                                                
 
                                             ?>
                                                 <img src="resources/image/vcard.png" />
