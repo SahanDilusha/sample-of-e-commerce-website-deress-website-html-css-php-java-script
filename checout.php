@@ -66,11 +66,11 @@
                             ?>
 
 
-                                    <div class="col-md-3   px-2 py-1 <?php  if ( $_SESSION["address_id"] ==  $row["address_id"]) {
-                                        ?> 
+                                    <div class="col-md-3   px-2 py-1 <?php if ($_SESSION["address_id"] ==  $row["address_id"]) {
+                                                                        ?> 
                                         bg-danger-subtle 
                                         <?php
-                                    }else{?> bg-secondary-subtle <?php } ?> "  onclick="SelectShoppingAddress(<?= $row['address_id']; ?>);">
+                                                                        } else { ?> bg-secondary-subtle <?php } ?> " onclick="SelectShoppingAddress(<?= $row['address_id']; ?>);">
                                         <div class="w-100 m-2 p-1 d-flex justify-content-between align-items-center">
                                             <label class="fs-5 fw-bold"><?php echo ($row["address_name"]); ?></label>
 
@@ -101,6 +101,15 @@
 
                         </div>
 
+                        <button class="fs-6 btn btn-dark mt-3  p-2" onclick="addNewAddressModel();"><i class="bi bi-plus"></i> Add New Address</button>
+
+                        <?php
+                        if ($getAddress->num_rows !== 0) {
+                        ?>
+                            <button class="fs-6 btn btn-dark mt-3 p-2" onclick="addNewAddressModel();"><i class="bi bi-truck"></i> Deliver Here</button>
+                        <?php
+                        }
+                        ?>
                     </div>
 
                     <div class="col-md-3">
@@ -130,7 +139,6 @@
 
                         <div class="d-flex justify-content-center flex-column gap-2 align-items-center w-100 mt-2 mb-2">
                             <button class="btn btn-dark w-100 p-2">Pay Now</button>
-                            <a href="index.php" class="btn btn-outline-dark w-100 p-2">Continue shopping</a>
                         </div>
 
                     </div>
