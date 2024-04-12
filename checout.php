@@ -76,7 +76,29 @@
                             <h5 class="mt-2 mb-2">Select a delivery address</h5>
                             <small class="mb-2">Is the address you'd like to use displayed below? If so, click the corresponding "Deliver to this address" button. Or you can enter a new deliver address.</small>
 
+                            <div class="w-100 mt-4 mb-4">
+
+                                <div class="col-md-3 bg-secondary-subtle px-2 py-1">
+                                    <div class="w-100 m-2 p-1 d-flex justify-content-between align-items-center">
+                                        <label class="fs-5 fw-bold">Robat Fox</label>
+                                        <input class="form-check-input " type="checkbox" value="" id="flexCheckChecked" />
+                                    </div>
+                                    <div class="w-100 px-1 d-flex gap-2 flex-column">
+                                        <label>gvgegvegv</label>
+                                        <label>scsacsdcc</label>
+                                    </div>
+                                    <div class="d-flex mt-2 mb-2 justify-content-between align-items-center">
+                                        <button class="btn bg-danger-subtle border-danger bi bi-trash3"> Delete</button>
+                                    </div>
+                                </div>
+
+
+
+                            </div>
+                            
+
                         </div>
+
                         <div class="col-md-3">
                             <div class="w-100 d-flex justify-content-between align-items-center border-bottom border-1">
                                 <p class="fw-bold fs-5">Subtotal</p>
