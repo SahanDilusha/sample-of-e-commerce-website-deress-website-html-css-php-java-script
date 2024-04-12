@@ -91,7 +91,7 @@
 
                         <h5 class="mt-4 mb-2">Select a payment method</h5>
 
-                        <div class="form-check w-100 mt-3 mb-3">
+                        <div class="form-check  mt-3 mb-3">
                             <input class="form-check-input bg-black" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
                             <label class="form-check-label fw-bold" for="flexRadioDefault1">
                                 Chash on delivery
@@ -100,7 +100,7 @@
                         <div class="form-check mb-3 ">
                             <input class="form-check-input bg-black" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
                             <label class="form-check-label fw-bold" for="flexRadioDefault2">
-                                Default checked radio
+                                Debit/Credit Card
                             </label>
                         </div>
 
