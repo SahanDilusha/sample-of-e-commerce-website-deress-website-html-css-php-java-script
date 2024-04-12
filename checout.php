@@ -14,7 +14,7 @@
 <body>
 
     <?php
- 
+
     include "navbar.php";
 
     if (!isset($_SESSION["user"])) {
@@ -66,7 +66,7 @@
 
                                     $row = $getAddress->fetch_assoc();
 
-                                    
+
                                     if ($row["stetus_stetus_id"] == "2") {
                                         $_SESSION["address_id"] =  $row["address_id"];
                                     }
@@ -74,12 +74,14 @@
                             ?>
 
 
-                                    <div class="col-md-3 bg-secondary-subtle px-2 py-1">
+                                    <div class="col-md-3   px-2 py-1 <?php  if ( $_SESSION["address_id"] ==  $row["address_id"]) {
+                                        ?> 
+                                        bg-danger-subtle 
+                                        <?php
+                                    }else{?> bg-secondary-subtle <?php } ?> " id="<?= $row["address_id"]; ?>">
                                         <div class="w-100 m-2 p-1 d-flex justify-content-between align-items-center">
                                             <label class="fs-5 fw-bold"><?php echo ($row["address_name"]); ?></label>
-                                            <input class="form-check-input " type="checkbox" value="" id="flexCheckChecked" <?php if ($row["stetus_stetus_id"] == "2") {
-                                                                                                                            ?> checked <?php
-                                                                                                                                    } ?> />
+
                                         </div>
                                         <div class="w-100 px-1 d-flex gap-2 flex-column">
                                             <label><?php echo ($row["line_1"] . ", " . $row["line_2"] . ", " . $row["city_name"]); ?></label>
