@@ -14,7 +14,7 @@
 <body>
 
     <?php
-
+ 
     include "navbar.php";
 
     if (!isset($_SESSION["user"])) {
@@ -23,7 +23,10 @@
     } else {
         include "connecton.php";
 
+
         $user = $_SESSION["user"];
+
+        $_SESSION["address_id"] = '0';
 
         $getAddress = Database::search("SELECT * FROM `user_address` INNER JOIN `city` ON `user_address`.`city_city_id` = `city`.`city_id` 
                         WHERE `user_address`.`users_username` = '" . $user["username"] . "' AND  `user_address`.`stetus_stetus_id` != '4';");
@@ -58,17 +61,16 @@
                             <?php
                             if ($getAddress->num_rows !== 0) {
 
-                                $_COOKIE["address"];
 
                                 for ($i = 0; $i < $getAddress->num_rows; $i++) {
 
                                     $row = $getAddress->fetch_assoc();
 
+                                    
                                     if ($row["stetus_stetus_id"] == "2") {
-
-                                        
-
+                                        $_SESSION["address_id"] =  $row["address_id"];
                                     }
+
                             ?>
 
 
@@ -77,7 +79,7 @@
                                             <label class="fs-5 fw-bold"><?php echo ($row["address_name"]); ?></label>
                                             <input class="form-check-input " type="checkbox" value="" id="flexCheckChecked" <?php if ($row["stetus_stetus_id"] == "2") {
                                                                                                                             ?> checked <?php
-                                                                                                                            } ?> />
+                                                                                                                                    } ?> />
                                         </div>
                                         <div class="w-100 px-1 d-flex gap-2 flex-column">
                                             <label><?php echo ($row["line_1"] . ", " . $row["line_2"] . ", " . $row["city_name"]); ?></label>
