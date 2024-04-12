@@ -26,8 +26,6 @@
 
         $user = $_SESSION["user"];
 
-        $_SESSION["address_id"] = '0';
-
         $getAddress = Database::search("SELECT * FROM `user_address` INNER JOIN `city` ON `user_address`.`city_city_id` = `city`.`city_id` 
                         WHERE `user_address`.`users_username` = '" . $user["username"] . "' AND  `user_address`.`stetus_stetus_id` != '4';");
     ?>
@@ -61,15 +59,9 @@
                             <?php
                             if ($getAddress->num_rows !== 0) {
 
-
                                 for ($i = 0; $i < $getAddress->num_rows; $i++) {
 
                                     $row = $getAddress->fetch_assoc();
-
-
-                                    if ($row["stetus_stetus_id"] == "2") {
-                                        $_SESSION["address_id"] =  $row["address_id"];
-                                    }
 
                             ?>
 
@@ -78,7 +70,7 @@
                                         ?> 
                                         bg-danger-subtle 
                                         <?php
-                                    }else{?> bg-secondary-subtle <?php } ?> " id="<?= $row["address_id"]; ?>">
+                                    }else{?> bg-secondary-subtle <?php } ?> "  onclick="SelectShoppingAddress(<?= $row['address_id']; ?>);">
                                         <div class="w-100 m-2 p-1 d-flex justify-content-between align-items-center">
                                             <label class="fs-5 fw-bold"><?php echo ($row["address_name"]); ?></label>
 
@@ -100,7 +92,7 @@
                                                 <label class="p-1 text-success fw-bold">Default</label>
                                             <?php
                                             } ?>
-                                            <button class="btn bg-danger-subtle border-danger bi bi-trash3"> Delete</button>
+                                            <button class="btn bg-danger-subtle border-danger bi bi-trash3" onclick="deleteAddress(<?php echo ($row['address_id']); ?>)"> Delete</button>
                                         </div>
                                     </div>
 

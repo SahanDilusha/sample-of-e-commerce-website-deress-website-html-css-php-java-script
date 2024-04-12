@@ -917,3 +917,27 @@ function DiscountCodeCheck() {
 function GoToCheckOut() {
     window.location.replace("checout.php");
 }
+
+function SelectShoppingAddress(i) {
+    const request = new XMLHttpRequest();
+    const from = new FormData();
+    from.append("id", i);
+
+    request.onreadystatechange = function () {
+
+        if (request.readyState == "4" && request.status == "200") {
+
+
+            if (request.responseText == "ok") {
+                window.location.reload();
+            }else{
+                alert("Can't find address!");
+            }
+
+        }
+
+    }
+
+    request.open('POST', 'save-shopping-address.php', true);
+    request.send(from);
+}
