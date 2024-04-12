@@ -57,7 +57,8 @@
                     <div class="row">
 
                         <div class="col-md-9">
-                            <div class="w-100 px-2 d-flex justify-content-between align-items-center">
+                            <h3 class="mb-3">Shopping Address</h3>
+                            <div class="w-100 px-2 mb-3 d-flex justify-content-between align-items-center">
                                 <div class="d-flex gap-2 flex-column justify-content-center align-items-center">
                                     <i class="bi bi-house py-1 px-2 bg-black text-white rounded-3"></i>
                                     <label>Address</label>
@@ -71,6 +72,10 @@
                                     <label>Review</label>
                                 </div>
                             </div>
+
+                            <h5 class="mt-2 mb-2">Select a delivery address</h5>
+                            <small class="mb-2">Is the address you'd like to use displayed below? If so, click the corresponding "Deliver to this address" button. Or you can enter a new deliver address.</small>
+
                         </div>
                         <div class="col-md-3">
                             <div class="w-100 d-flex justify-content-between align-items-center border-bottom border-1">
