@@ -914,4 +914,6 @@ function DiscountCodeCheck() {
 
 }
 
-
+function GoToCheckOut() {
+    window.location.replace("checout.php");
+}

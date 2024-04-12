@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Cart</title>
+    <title>Pay Now</title>
     <link rel="icon" href="resources/image/Logo.png" />
     <link rel="stylesheet" href="bootstrap.min.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
@@ -55,10 +55,23 @@
             <div class="container min-vh-100">
                 <div class="wrapper wrapper-content animated fadeInRight">
                     <div class="row">
+
                         <div class="col-md-9">
-
+                            <div class="w-100 px-2 d-flex justify-content-between align-items-center">
+                                <div class="d-flex gap-2 flex-column justify-content-center align-items-center">
+                                    <i class="bi bi-house py-1 px-2 bg-black text-white rounded-3"></i>
+                                    <label>Address</label>
+                                </div>
+                                <div class="d-flex gap-2 flex-column justify-content-center align-items-center">
+                                    <i class="bi bi-credit-card-fill py-1 px-2 bg-secondary text-white rounded-3"></i>
+                                    <label>Payment Method</label>
+                                </div>
+                                <div class="d-flex gap-2 flex-column justify-content-center align-items-center">
+                                    <i class="bi bi-house py-1 px-2 bg-secondary text-white rounded-3"></i>
+                                    <label>Review</label>
+                                </div>
+                            </div>
                         </div>
-
                         <div class="col-md-3">
                             <div class="w-100 d-flex justify-content-between align-items-center border-bottom border-1">
                                 <p class="fw-bold fs-5">Subtotal</p>
@@ -66,7 +79,10 @@
                             </div>
 
                             <div class="p-1 w-100 mt-3">
-                               
+                                <div class="w-100 mt-4 d-flex justify-content-between align-items-center border-bottom border-1">
+                                    <p class="fs-6">Total Items</p>
+                                    <p class="fs-6"><?= $_SESSION["total"]["items"]; ?></p>
+                                </div>
                                 <div class="w-100 mt-4 d-flex justify-content-between align-items-center border-bottom border-1">
                                     <p class="fs-6">Delivery Charge</p>
                                     <p class="fs-6">Rs. <?= $_SESSION["total"]["deliveryCharge"]; ?></p>

@@ -155,6 +155,7 @@
                                                     "subtotal"=>$subtotal,
                                                     "deliveryCharge"=>$deliveryCharge,
                                                     "discount"=>$discount,
+                                                    "items"=>$getCart->num_rows,
                                                 ];
                                                 ?>
                                             </tbody>
@@ -195,7 +196,7 @@
                             </div>
 
                             <div class="d-flex justify-content-center flex-column gap-2 align-items-center w-100 mt-2 mb-2">
-                                <button class="btn btn-dark w-100 p-2">Proceed Checout</button>
+                                <button class="btn btn-dark w-100 p-2" onclick="GoToCheckOut();">Proceed Checout</button>
                                 <a href="index.php" class="btn btn-outline-dark w-100 p-2">Continue shopping</a>
                             </div>
 
