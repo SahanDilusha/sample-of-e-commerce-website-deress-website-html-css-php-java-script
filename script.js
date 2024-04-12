@@ -952,9 +952,7 @@ function methodHide() {
 
 function filCard(no, name, cvv, year, month) {
 
-    document.getElementById("c_no").value = no;
-    document.getElementById("c_name").value = name;
-    document.getElementById("c_cvv").value = cvv;
+   mentById("c_cvv").value = cvv;
     document.getElementById("c_ed_y").value = year;
     document.getElementById("c_ed_m").value = month;
 
