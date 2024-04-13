@@ -21,7 +21,40 @@ $apiContext->setConfig(
         'mode' => 'sandbox',
         'log.LogEnabled' => true,
         'log.FileName' => 'PayPal.log',
-        'log.LogLevel' => 'DEBUG', 
+        'log.LogLevel' => 'DEBUG',
         'cache.enabled' => true,
     )
 );
+
+$payer = new Payer();
+$payer->setPaymentMethod('paypal');
+
+$amount = new Amount();
+$amount->setTotal('10.00'); // Replace with your amount
+$amount->setCurrency('USD'); // Replace with your currency
+
+$transaction = new Transaction();
+$transaction->setAmount($amount);
+$transaction->setDescription('Test Payment Description');
+
+$redirectUrls = new RedirectUrls();
+$redirectUrls->setReturnUrl('http://yourdomain.com/execute_payment.php')
+    ->setCancelUrl('http://yourdomain.com/cancel_payment.php');
+
+$payment = new Payment();
+$payment->setIntent('sale')
+    ->setPayer($payer)
+    ->setTransactions([$transaction])
+    ->setRedirectUrls($redirectUrls);
+
+try {
+    $payment->create($apiContext);
+
+    $approvalUrl = $payment->getApprovalLink();
+    header("Location: {$approvalUrl}");
+    exit;
+} catch (Exception $e) {
+    echo "Error: " . $e->getMessage();
+}
+
+?>
