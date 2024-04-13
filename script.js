@@ -862,8 +862,6 @@ function ContactUsSend() {
 
         if (request.readyState == "4" && request.status == "200") {
 
-            alert(request.responseText);
-
             if (request.responseText == "ok") {
                 document.getElementById("msg").value = "";
             }
