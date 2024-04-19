@@ -51,7 +51,7 @@ session_start();
                 <span class="navbar-text">
                     <div class="d-flex justify-content-end align-items-center gap-4">
 
-                        <a href="" class="text-decoration-none"><i class="bi bi-search fs-4"></i></a>
+                        <a href="search-product.php" class="text-decoration-none"><i class="bi bi-search fs-4"></i></a>
 
                         <?php
                         if (!isset($_SESSION["user"])) {
