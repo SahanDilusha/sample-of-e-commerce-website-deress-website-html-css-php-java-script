@@ -52,11 +52,12 @@
                             ?>
 
 
-                                    <div class="col-md-3   px-2 py-1 <?php if ($_SESSION["address_id"] ==  $row["address_id"]) {
-                                                                        ?> 
-                                        bg-danger-subtle 
-                                        <?php
-                                                                        } else { ?> bg-secondary-subtle <?php } ?> " onclick="SelectShoppingAddress(<?= $row['address_id']; ?>);">
+                                    <div class="col-md-3 px-2 py-1 <?php if (isset($_SESSION["address_id"]) && $_SESSION["address_id"] ==  $row["address_id"]) { ?> 
+    bg-danger-subtle 
+<?php } else { ?> 
+    bg-secondary-subtle 
+<?php } ?> " onclick="SelectShoppingAddress(<?= $row['address_id']; ?>);">
+
                                         <div class="w-100 m-2 p-1 d-flex justify-content-between align-items-center">
                                             <label class="fs-5 fw-bold"><?php echo ($row["address_name"]); ?></label>
 
@@ -93,13 +94,13 @@
 
 
 
-                        <div class="form-check mt-3 mb-3" >
+                        <div class="form-check mt-3 mb-3">
                             <input class="form-check-input bg-black" type="radio" name="flexRadioDefault" id="flexRadioDefault1" checked onchange="methodHide();">
-                            <label class="form-check-label fw-bold" for="flexRadioDefault1" >
+                            <label class="form-check-label fw-bold" for="flexRadioDefault1">
                                 Chash on delivery
                             </label>
                         </div>
-                        <div class="form-check mb-3" >
+                        <div class="form-check mb-3">
                             <input class="form-check-input bg-black" type="radio" name="flexRadioDefault" id="flexRadioDefault2" onclick="methodShow();">
                             <label class="form-check-label fw-bold" for="flexRadioDefault2">
                                 Debit/Credit Card
