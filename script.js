@@ -44,6 +44,14 @@ function enableEdit(i) {
     }
 }
 
+function showSpinners() {
+    document.getElementById("loadingSpin").className = "d-flex justify-content-center align-items-center position-absolute w-100 h-100 spin";
+}
+
+function hideSpinners() {
+    document.getElementById("loadingSpin").className = "d-none";
+}
+
 function uplodeImgModel() {
 
     new bootstrap.Modal(document.getElementById("UpDateImg")).show();

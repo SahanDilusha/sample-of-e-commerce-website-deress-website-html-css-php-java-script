@@ -18,6 +18,7 @@
 
     include "connecton.php";
     include  'navbar.php';
+    include "spinners.php";
 
     ?>
 
@@ -39,25 +40,44 @@
 
                 <div class="col-md-3 mb-3">
 
-                    <div class="w-100 mb-4">
-                        <h5>Product Categories:</h5>
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
-                            <label class="form-check-label" for="flexRadioDefault1">
-                                Default radio
-                            </label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2">
-                            <label class="form-check-label" for="flexRadioDefault2">
-                                Default checked radio
-                            </label>
+                    <?php
+
+                    $getCategories = Database::search("SELECT * FROM `main_category` ;");
+
+                    if ($getCategories->num_rows != 0) {
+
+                    ?>
+
+                        <div class="w-100 mb-4">
+                            <h5>Product Categories:</h5>
+                            <div class="form-check mb-2">
+                                <input class="form-check-input" type="radio" name="categories" id="categories_all">
+                                <label class="form-check-label" for="categories_all">
+                                    All
+                                </label>
+                            </div>
+
+                            <?php
+                            for ($i = 0; $i < $getCategories->num_rows; $i++) {
+                                $row = $getCategories->fetch_assoc();
+
+                            ?>
+
+                                <div class="form-check mb-2">
+                                    <input class="form-check-input" type="radio" name="categories" id="<?=  "category".$row['main_category_name']; ?>">
+                                    <label class="form-check-label" for="<?=  "category".$row['main_category_name']; ?>">
+                                        <?=  $row['main_category_name']; ?>
+                                    </label>
+                                </div>
+
+                            <?php } ?>
+
                         </div>
 
-                    </div>
+                    <?php  } ?>
 
                     <div class="w-100 mb-4">
-                        <h5>Stay  by:</h5>
+                        <h5>Stay by:</h5>
                         <select class="form-select w-50" aria-label="Default select example">
                             <option selected>Open this select menu</option>
                             <option value="1">One</option>
@@ -75,46 +95,64 @@
                         <button class="btn btn-dark mt-2">Apply</button>
                     </div>
 
-                    <!-- Filter by color section -->
-                    <div class="w-100 mb-4">
-                        <!-- Heading for the filter by color section -->
-                        <h5>Filter by color:</h5>
-                        <div class="form-check mb-1">
-                            <input class="form-check-input p-3" type="radio" style="background-color: #4568;" name="flexRadioDefault" id="flexRadioDefault2">
-                            <label class="form-check-label mx-3 mt-2" for="flexRadioDefault2">
-                                Default checked radio
-                            </label>
-                        </div>
-                        <div class="form-check mb-1">
-                            <input class="form-check-input p-3" type="radio" style="background-color: #9568;" name="flexRadioDefault" id="flexRadioDefault2">
-                            <label class="form-check-label mx-3 mt-2" for="flexRadioDefault2">
-                                Default checked radio
-                            </label>
-                        </div>
-                    </div>
+                    <?php
 
-                    <div class="w-100 mb-4">
-                        <h5>Filter by Size:</h5>
+                    $getColor = Database::search("SELECT * FROM `product_colors`;");
 
-                        <?php 
-                        
-                        Database::search("SELECT * FROM `product_size`;");
-                        
-                        ?>
+                    if ($getColor->num_rows != 0) {
 
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
-                            <label class="form-check-label" for="flexRadioDefault1">
-                                Default radio
-                            </label>
+
+                    ?>
+
+                        <!-- Filter by color section -->
+                        <div class="w-100 mb-4">
+                            <!-- Heading for the filter by color section -->
+                            <h5>Filter by color:</h5>
+
+                            <?php
+                            for ($i = 0; $i < $getColor->num_rows; $i++) {
+                                $row = $getColor->fetch_assoc();
+                            ?>
+
+                                <div class="form-check mb-2">
+                                    <input class="form-check-input p-3" type="radio" style="background-color: <?= $row['color_code'] ?>;" name="color" id="<?= "color_" . $row["colors_name"] ?>">
+                                    <label class="form-check-label mx-3 mt-2" for="<?= "color_" . $row["colors_name"] ?>">
+                                        <?= $row["colors_name"] ?>
+                                    </label>
+                                </div>
+                            <?php  } ?>
                         </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2">
-                            <label class="form-check-label" for="flexRadioDefault2">
-                                Default checked radio
-                            </label>
+
+                    <?php
+                    }
+
+                    $getSpiner = Database::search("SELECT * FROM `product_size`;");
+
+                    if ($getSpiner->num_rows !== 0) {
+
+                    ?>
+
+                        <div class="w-100 mb-4">
+                            <h5>Filter by Size:</h5>
+
+                            <?php
+                            for ($i = 0; $i < $getSpiner->num_rows; $i++) {
+
+                                $row = $getSpiner->fetch_assoc();
+
+                            ?>
+
+                                <div class="form-check mb-0">
+                                    <input class="form-check-input" type="radio" name="size" id="<?= "size_" . $row['size_name']; ?>">
+                                    <label class="form-check-label" for="<?= "size_" . $row['size_name']; ?>">
+                                        <?= $row['size_name']; ?>
+                                    </label>
+                                </div>
+
                         </div>
-                    </div>
+
+                <?php    }
+                        } ?>
 
                 </div>
             </div>
