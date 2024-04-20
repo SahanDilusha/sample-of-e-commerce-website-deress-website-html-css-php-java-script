@@ -17,7 +17,6 @@
     <?php
 
     include "connecton.php";
-
     include  'navbar.php';
 
     ?>
@@ -96,6 +95,13 @@
 
                     <div class="w-100 mb-4">
                         <h5>Filter by Size:</h5>
+
+                        <?php 
+                        
+                        Database::search("SELECT * FROM `product_size`;");
+                        
+                        ?>
+
                         <div class="form-check">
                             <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
                             <label class="form-check-label" for="flexRadioDefault1">
