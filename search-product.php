@@ -147,7 +147,7 @@ include "spinners.php";
                         <?php for ($i = 1; $i <= $totalPages; $i++) :
 
  ?>
-                            <li class="page-item <?= $i == $page ? 'active' : '' ?>"><a class="page-link" href="?page=<?= $i ?>"><?= $i ?></a></li>
+                            <li class="page-item <?= $i == $page ? 'active' : '' ?>"><a class="page-link bg-black" href="?page=<?= $i ?>"><?= $i ?></a></li>
                         <?php endfor; ?>
                         <li class="page-item <?= $page >= $totalPages ? 'disabled' : '' ?>">
                             <a class="page-link" href="?page=<?= $page + 1 ?>">Next</a>

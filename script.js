@@ -976,7 +976,7 @@ function searchProduct() {
             alert(request.responseText);
             document.getElementById("list-view").innerHTML = "";
             document.getElementById("list-view").innerHTML = request.responseText;
-            hideSpinners("");
+            hideSpinners();
         }
     }
 
