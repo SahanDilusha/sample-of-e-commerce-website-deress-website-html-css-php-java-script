@@ -949,11 +949,11 @@ function SelectShoppingAddress(i) {
 }
 
 function methodShow() {
-    document.getElementById("card-from").className ="w-100 mb-3";
+    document.getElementById("card-from").className = "w-100 mb-3";
 }
 
 function methodHide() {
-    document.getElementById("card-from").className ="d-none";
+    document.getElementById("card-from").className = "d-none";
 }
 
 function filCard(no, name, cvv, year, month) {
@@ -963,5 +963,29 @@ function filCard(no, name, cvv, year, month) {
     document.getElementById("c_cvv").value = cvv;
     document.getElementById("c_ed_y").value = year;
     document.getElementById("c_ed_m").value = month;
+
+}
+
+function searchProduct() {
+
+    const request = new XMLHttpRequest();
+   
+    request.onreadystatechange = function () {
+
+        if (request.readyState == "4" && request.status == "200") {
+
+
+            if (request.responseText == "ok") {
+                window.location.reload();
+            } else {
+                alert("Can't find address!");
+            }
+
+        }
+
+    }
+
+    request.open('POST', 'save-shopping-address.php?text=', true);
+    request.send(from);
 
 }
