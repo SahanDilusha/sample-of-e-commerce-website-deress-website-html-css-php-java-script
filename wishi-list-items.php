@@ -109,11 +109,11 @@ if ($getWishiItems->num_rows ==  0) {
                 <a class="text-decoration-none text-dark px-2" href="product-ditels.php?id=<?=$row['product_id']?>&name=<?=$row["product_name"]?>">
                     <small class="fs-6 fw-bold"><?php echo ($row["product_name"]); ?></small>
                     <div class="price"><span><?php if ($row["product_discount"] !== "0") {
-                                                    echo ("$" . $row["product_price"]);
+                                                    echo ("LKR" . $row["product_price"]);
                                                 } ?></span><?php if ($row["product_discount"] !== "0") {
-                                                                echo ("$" . $row["product_price"] - ($row["product_price"] * ($row["product_discount"] / 100)));
+                                                                echo ("LKR" . $row["product_price"] - ($row["product_price"] * ($row["product_discount"] / 100)));
                                                             } else {
-                                                                echo ("$" . $row["product_price"]);
+                                                                echo ("LKR" . $row["product_price"]);
                                                             } ?> </div>
                 </a>
             </div>
