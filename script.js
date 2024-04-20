@@ -967,25 +967,20 @@ function filCard(no, name, cvv, year, month) {
 }
 
 function searchProduct() {
-
     const request = new XMLHttpRequest();
-   
+
+    showSpinners();
+
     request.onreadystatechange = function () {
-
         if (request.readyState == "4" && request.status == "200") {
-
-
-            if (request.responseText == "ok") {
-                window.location.reload();
-            } else {
-                alert("Can't find address!");
-            }
-
+            alert(request.responseText);
+            document.getElementById("list-view").innerHTML = "";
+            document.getElementById("list-view").innerHTML = request.responseText;
+            hideSpinners("");
         }
-
     }
 
-    request.open('POST', 'save-shopping-address.php?text=', true);
-    request.send(from);
-
+    request.open('GET', 'search_procces.php?text=' + document.getElementById("s_text").value, true);
+    request.send();
 }
+

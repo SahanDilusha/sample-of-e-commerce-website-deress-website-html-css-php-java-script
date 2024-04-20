@@ -1,3 +1,11 @@
+<?php
+
+include "connecton.php";
+include 'navbar.php';
+include "spinners.php";
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -13,12 +21,6 @@
 </head>
 
 <body>
-
-    <?php
-    include "connecton.php";
-    include 'navbar.php';
-    include "spinners.php";
-    ?>
 
     <div class="container-fluid min-vh-100 mt-5">
         <div class="row">
@@ -111,39 +113,40 @@
             </div>
 
             <!-- Product List -->
-            <div class="col-md-9">
+            <div class="col-md-9" id="list-view">
+
                 <div class="w-100 d-flex justify-content-between align-items-center">
                     <label for="">All</label>
                     <div class="d-flex gap-2">
-                        <input class="form-control" type="text" />
-                        <button class="btn btn-dark">Search</button>
+                        <input class="form-control" type="text" id="s_text">
+                        <button class="btn btn-dark" onclick="searchProduct()">Search</button>
                     </div>
                 </div>
+
                 <?php
-                // Pagination variables
                 $limit = 10; // Number of items per page
                 $page = isset($_GET['page']) ? $_GET['page'] : 1; // Current page number
                 $offset = ($page - 1) * $limit; // Offset for database query
 
-                // Get total number of products
                 $totalProducts = Database::search("SELECT COUNT(*) as count FROM `product` WHERE `product`.`stetus_stetus_id` != '6';")->fetch_assoc()['count'];
-
-                // Calculate total pages
                 $totalPages = ceil($totalProducts / $limit);
 
-                // Get products for current page
                 $getProduct = Database::search("SELECT * FROM `product` WHERE `product`.`stetus_stetus_id` != '6' LIMIT $limit OFFSET $offset;");
                 ?>
+
                 <div class="row">
                     <?php include "product-card.php"; ?>
                 </div>
+
                 <!-- Pagination -->
                 <nav aria-label="Page navigation example">
                     <ul class="pagination justify-content-center mt-4">
                         <li class="page-item <?= $page <= 1 ? 'disabled' : '' ?>">
                             <a class="page-link" href="?page=<?= $page - 1 ?>" tabindex="-1" aria-disabled="true">Previous</a>
                         </li>
-                        <?php for ($i = 1; $i <= $totalPages; $i++) : ?>
+                        <?php for ($i = 1; $i <= $totalPages; $i++) :
+
+ ?>
                             <li class="page-item <?= $i == $page ? 'active' : '' ?>"><a class="page-link" href="?page=<?= $i ?>"><?= $i ?></a></li>
                         <?php endfor; ?>
                         <li class="page-item <?= $page >= $totalPages ? 'disabled' : '' ?>">
@@ -155,13 +158,12 @@
         </div>
     </div>
 
-    <?php
-    include "footer.php";
-    ?>
+    <?php include "footer.php"; ?>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="script.js"></script>
+
 </body>
 
 </html>
