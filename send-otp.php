@@ -41,7 +41,7 @@ if ($email == "") {
         $mail->Port = 465;
 
         $mail->setFrom('sdilusha34@gmail.com');
-        $mail->addAddress('sahancodelygroup@gmail.com');
+        $mail->addAddress($_POST["email"]);
 
         $mail->isHTML(true);
 
