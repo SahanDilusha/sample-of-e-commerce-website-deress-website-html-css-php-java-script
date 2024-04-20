@@ -7,13 +7,10 @@ if (isset($_GET["text"])) {
     if (!empty(trim($_GET['text']))) {
        
         echo '
-                <div class="w-100 d-flex justify-content-between align-items-center">
-                    <label for="">All</label>
-                    <div class="d-flex gap-2">
-                        <input class="form-control" type="text" value="'.$_GET["text"].'" id="s_text"/>
-                        <button class="btn btn-dark" onclick="searchProduct();">Search</button>
-                    </div>
-                </div>';
+        <div class="w-100 d-flex gap-2 justify-content-end align-items-end">
+        <input class="form-control w-50" type="text" id="s_text">
+        <button class="btn btn-dark" onclick="searchProduct()">Search</button>
+    </div>';
 
         // Pagination variables
         $limit = 10; // Number of items per page
@@ -49,13 +46,10 @@ if (isset($_GET["text"])) {
               </ul>
               </nav>';
     } else {
-        echo '<div class="w-100 d-flex justify-content-between align-items-center">
-                <label for="">All</label>
-                <div class="d-flex gap-2">
-                    <input class="form-control" type="text" id="s_text"/>
-                    <button class="btn btn-dark" onclick="searchProduct();">Search</button>
-                </div>
-              </div>
+        echo '<div class="w-100 d-flex gap-2 justify-content-end align-items-end">
+        <input class="form-control w-50" type="text" id="s_text">
+        <button class="btn btn-dark" onclick="searchProduct()">Search</button>
+    </div>
               <div class="col-12 d-flex flex-column justify-content-center align-items-center mt-5">
                 <i class="bi bi-emoji-frown-fill text-danger fs-4"></i>
                 <h3>No items yet.</h3>
@@ -63,13 +57,10 @@ if (isset($_GET["text"])) {
               </div>';
     }
 } else {
-    echo '<div class="w-100 d-flex justify-content-between align-items-center">
-            <label for="">All</label>
-            <div class="d-flex gap-2">
-                <input class="form-control" type="text" id="s_text" />
-                <button class="btn btn-dark" onclick="searchProduct();">Search</button>
-            </div>
-          </div>
+    echo '<div class="w-100 d-flex gap-2 justify-content-end align-items-end">
+    <input class="form-control w-50" type="text" id="s_text">
+    <button class="btn btn-dark" onclick="searchProduct()">Search</button>
+</div>
           <div class="col-12 d-flex flex-column justify-content-center align-items-center mt-5">
             <i class="bi bi-emoji-frown-fill text-danger fs-4"></i>
             <h3>No items yet.</h3>

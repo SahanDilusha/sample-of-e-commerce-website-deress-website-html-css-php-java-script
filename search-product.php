@@ -115,12 +115,9 @@ include "spinners.php";
             <!-- Product List -->
             <div class="col-md-9" id="list-view">
 
-                <div class="w-100 d-flex justify-content-between align-items-center">
-                    <label for="">All</label>
-                    <div class="d-flex gap-2">
-                        <input class="form-control" type="text" id="s_text">
-                        <button class="btn btn-dark" onclick="searchProduct()">Search</button>
-                    </div>
+                <div class="w-100 d-flex gap-2 justify-content-end align-items-end">
+                    <input class="form-control w-50" type="text" id="s_text">
+                    <button class="btn btn-dark" onclick="searchProduct()">Search</button>
                 </div>
 
                 <?php
@@ -146,7 +143,7 @@ include "spinners.php";
                         </li>
                         <?php for ($i = 1; $i <= $totalPages; $i++) :
 
- ?>
+                        ?>
                             <li class="page-item <?= $i == $page ? 'active' : '' ?>"><a class="page-link bg-black" href="?page=<?= $i ?>"><?= $i ?></a></li>
                         <?php endfor; ?>
                         <li class="page-item <?= $page >= $totalPages ? 'disabled' : '' ?>">
