@@ -215,7 +215,7 @@
                             }
                         }
 
-                        $getInvoice = Database::search("SELECT * FROM `invoice` WHERE `invoice`.`users_username` = '" . $user["username"] . "';");
+                        $getInvoice = Database::search("SELECT * FROM `invoice` INNER JOIN `stetus` ON `invoice`.`invoice_stetus`=`stetus`.`stetus_id` WHERE `invoice`.`users_username` = '" . $user["username"] . "' ORDER BY `invoice`.`date` ASC;");
 
                         ?>
                     </div>
@@ -226,11 +226,11 @@
                 <div class="col d-none" id="mo">
                     <div class="row">
                         <div class="col-12">
-                            <label class="text-dark fs-3 jost-bold">My Orders <?php 
-                        if ($getInvoice->num_rows != 0) {
-                              echo("(".$getInvoice->num_rows.")");
-                            }
-                            ?></label>
+                            <label class="text-dark fs-3 jost-bold">My Orders <?php
+                                                                                if ($getInvoice->num_rows != 0) {
+                                                                                    echo ("(" . $getInvoice->num_rows . ")");
+                                                                                }
+                                                                                ?></label>
                         </div>
 
                         <?php
@@ -241,7 +241,7 @@
 
                                 $row = $getInvoice->fetch_assoc();
 
-                                $getItemCount = Database::search("SELECT COUNT(`invoice_items`.`invoice_items_id`) AS `count` FROM  `invoice_items` WHERE  `invoice_items`.`invoice_invoice_id` ='".$row["invoice_id"]."';");
+                                $getItemCount = Database::search("SELECT COUNT(`invoice_items`.`invoice_items_id`) AS `count` FROM  `invoice_items` WHERE  `invoice_items`.`invoice_invoice_id` ='" . $row["invoice_id"] . "';");
 
                         ?>
 
@@ -251,23 +251,45 @@
 
                                     <div class="d-flex gap-1 mt-2 justify-content-center align-items-center gap-2">
                                         <div class="d-flex flex-column">
-                                            <label class="fs-6 fw-bold"><?= $row["invoice_id"];?></label>
-                                            <small>All Items: <?php 
-                                            
-                                            if ( $getItemCount->num_rows !=1 ) {
-                                                echo("0");
-                                            }else{
-                                                echo( $getItemCount->fetch_assoc()["count"]);
-                                            }
+                                            <label class="fs-6 fw-bold"><?= $row["invoice_id"]; ?></label>
+                                            <small>All Items: <?php
 
-                                            ?></small>
-                                            <small class="fw-bold">LKR <?= $row["grand_total"];?></small>
+                                                                if ($getItemCount->num_rows != 1) {
+                                                                    echo ("0");
+                                                                } else {
+                                                                    echo ($getItemCount->fetch_assoc()["count"]);
+                                                                }
+
+                                                                ?></small>
+                                            <small class="fw-bold">LKR <?= $row["grand_total"]; ?></small>
                                         </div>
                                     </div>
 
                                     <div class="d-flex  justify-content-between  flex-column gap-3">
                                         <button class="btn btn-outline-dark bi bi-eye"> View Order</button>
-                                        <small class="bg-success text-center text-white rounded-3">Delivered</small>
+
+                                        <?php
+                                        if ($row["invoice_stetus"] == "11") {
+                                        ?>
+                                            <button class="btn btn-outline-danger bi bi-x-lg"> Cancel</button>
+                                        <?php
+                                        }
+                                        ?>
+
+                                        <?php
+                                        if ($row["invoice_stetus"] == "14") {
+
+                                        ?>
+                                            <small class="bg-success text-center text-white rounded-3"><?= $row["stetus_name"] ?></small>
+                                        <?php
+                                        } else {
+                                        ?>
+                                            <small class="bg-secondary text-center text-white rounded-3"><?= $row["stetus_name"] ?></small>
+                                        <?php
+                                        }
+                                        ?>
+
+
                                     </div>
                                 </div>
 
