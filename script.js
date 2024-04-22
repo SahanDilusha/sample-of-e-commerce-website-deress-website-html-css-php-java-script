@@ -984,3 +984,7 @@ function searchProduct() {
     request.send();
 }
 
+function ViewOrder() {
+    new bootstrap.Modal(document.getElementById("ViewOrderModle")).show();
+}
+
