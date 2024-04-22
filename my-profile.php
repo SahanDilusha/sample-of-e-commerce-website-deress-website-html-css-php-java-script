@@ -266,7 +266,7 @@
                                     </div>
 
                                     <div class="d-flex  justify-content-between  flex-column gap-3">
-                                        <button class="btn btn-outline-dark bi bi-eye" onclick="ViewOrder();"> View Order</button>
+                                        <button class="btn btn-outline-dark bi bi-eye" onclick="ViewOrder('<?= $row['invoice_id']; ?>');"> View Order</button>
 
                                         <?php
                                         if ($row["invoice_stetus"] == "11") {
@@ -426,20 +426,16 @@
 
         <!-- Modal View Order -->
         <div class="modal fade" id="ViewOrderModle" aria-hidden="true" tabindex="-1">
-            <div class="modal-dialog  modal-xl modal-dialog-centered">
+            <div class="modal-dialog modal-xl modal-dialog-scrollable modal-dialog-centered">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="exampleModalToggleLabel">Update Profile image</h1>
+                        <h1 class="modal-title fs-5" id="orderid"></h1>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <input type="file" class="form-control" accept=".png,.jpeg,.jpg" id="new_img" />
-                        <small>Accept : png or jpeg only</small>
+
                     </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-danger" onclick="updateProfileImg(2);">Remove</button>
-                        <button type="button" class="btn btn-dark" onclick="updateProfileImg(1);">Update</button>
-                    </div>
+
                 </div>
             </div>
         </div>

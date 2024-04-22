@@ -984,7 +984,8 @@ function searchProduct() {
     request.send();
 }
 
-function ViewOrder() {
+function ViewOrder(id) {
     new bootstrap.Modal(document.getElementById("ViewOrderModle")).show();
+    document.getElementById("orderid").innerHTML = id;
 }
 
