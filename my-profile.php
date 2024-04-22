@@ -215,6 +215,8 @@
                             }
                         }
 
+                        $getInvoice = Database::search("SELECT * FROM `invoice` WHERE `invoice`.`users_username` = '" . $user["username"] . "';");
+
                         ?>
                     </div>
                 </div>
@@ -224,26 +226,42 @@
                 <div class="col d-none" id="mo">
                     <div class="row">
                         <div class="col-12">
-                            <label class="text-dark fs-3 jost-bold">My Orders</label>
+                            <label class="text-dark fs-3 jost-bold">My Orders <?php 
+                        if ($getInvoice->num_rows != 0) {
+                              echo("(".$getInvoice->num_rows .")");
+                            }
+                            ?></label>
                         </div>
-                        <div class="col-12 mt-3 d-flex justify-content-between align-items-center">
 
-                            <div class="d-flex gap-1 mt-2 justify-content-center align-items-center gap-2">
-                                <div>
-                                    <img src="profile_images/download.jpeg" width="50px" class="rounded-circle" />
-                                </div>
-                                <div class="d-flex flex-column">
-                                    <label class="fs-6 fw-bold">IN 8390 908098</label>
-                                    <small>All Items: 4</small>
-                                    <small class="fw-bold">$80</small>
-                                </div>
-                            </div>
+                        <?php
 
-                            <div class="d-flex  justify-content-between  flex-column gap-3">
-                                <button class="btn btn-outline-dark bi bi-eye"> View Order</button>
-                                <small class="bg-success text-center text-white rounded-3">Delivered</small>
-                            </div>
-                        </div>
+                        if ($getInvoice->num_rows != 0) {
+
+                            for ($i = 0; $i < $getInvoice->num_rows; $i++) {
+                        ?>
+
+
+
+                                <div class="col-12 mt-3 d-flex justify-content-between align-items-center">
+
+                                    <div class="d-flex gap-1 mt-2 justify-content-center align-items-center gap-2">
+                                        <div class="d-flex flex-column">
+                                            <label class="fs-6 fw-bold">IN 8390 908098</label>
+                                            <small>All Items: 4</small>
+                                            <small class="fw-bold">$80</small>
+                                        </div>
+                                    </div>
+
+                                    <div class="d-flex  justify-content-between  flex-column gap-3">
+                                        <button class="btn btn-outline-dark bi bi-eye"> View Order</button>
+                                        <small class="bg-success text-center text-white rounded-3">Delivered</small>
+                                    </div>
+                                </div>
+
+                        <?php }
+                        }
+                        ?>
+
                     </div>
                 </div>
                 <!-- My Orders-->
@@ -329,7 +347,7 @@
                                             <?php
 
                                             if ($row["card_type_card_type_id"] == "1") {
-                                                
+
 
                                             ?>
                                                 <img src="resources/image/vcard.png" />
