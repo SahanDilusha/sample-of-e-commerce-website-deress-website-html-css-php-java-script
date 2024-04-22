@@ -248,7 +248,7 @@
 
 
 
-                                <div class="col-12 mt-3 d-flex justify-content-between align-items-center">
+                                <div class="col-12 mt-3 d-flex justify-content-between align-items-center" >
 
                                     <div class="d-flex gap-1 mt-2 justify-content-center align-items-center gap-2">
                                         <div class="d-flex flex-column">

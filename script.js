@@ -994,7 +994,6 @@ function ViewOrder(id) {
 
     request.onreadystatechange = function () {
         if (request.readyState == "4" && request.status == "200") {
-
             document.getElementById("orderid").innerHTML ="Order Id - " + id;
             document.getElementById("item-body").innerHTML = "";
             document.getElementById("item-body").innerHTML = request.responseText;
