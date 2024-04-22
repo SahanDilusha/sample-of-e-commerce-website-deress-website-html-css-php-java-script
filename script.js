@@ -985,7 +985,26 @@ function searchProduct() {
 }
 
 function ViewOrder(id) {
-    new bootstrap.Modal(document.getElementById("ViewOrderModle")).show();
-    document.getElementById("orderid").innerHTML = id;
+    
+    const request = new XMLHttpRequest();
+    const from = new FormData();
+    from.append("order", id);
+    
+    showSpinners();
+
+    request.onreadystatechange = function () {
+        if (request.readyState == "4" && request.status == "200") {
+
+            document.getElementById("orderid").innerHTML ="Order Id - " + id;
+            document.getElementById("item-body").innerHTML = "";
+            document.getElementById("item-body").innerHTML = request.responseText;
+            hideSpinners();
+            new bootstrap.Modal(document.getElementById("ViewOrderModle")).show();
+        }
+    }
+
+    request.open('POST', 'get-invoice-item.php', true);
+    request.send(from);
+
 }
 

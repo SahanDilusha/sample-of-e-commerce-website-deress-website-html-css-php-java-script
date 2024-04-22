@@ -22,6 +22,7 @@
     } else {
 
         include "connecton.php";
+        include "spinners.php";
 
         $user = $_SESSION["user"];
 
@@ -432,7 +433,7 @@
                         <h1 class="modal-title fs-5" id="orderid"></h1>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
-                    <div class="modal-body">
+                    <div class="modal-body" id="item-body">
 
                     </div>
 
