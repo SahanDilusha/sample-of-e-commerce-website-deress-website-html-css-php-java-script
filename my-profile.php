@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="style.css" />
 </head>
 
-<body>
+<body onload="onclick=show(2);">
 
     <?php
 
@@ -228,7 +228,7 @@
                         <div class="col-12">
                             <label class="text-dark fs-3 jost-bold">My Orders <?php 
                         if ($getInvoice->num_rows != 0) {
-                              echo("(".$getInvoice->num_rows .")");
+                              echo("(".$getInvoice->num_rows.")");
                             }
                             ?></label>
                         </div>
@@ -238,6 +238,11 @@
                         if ($getInvoice->num_rows != 0) {
 
                             for ($i = 0; $i < $getInvoice->num_rows; $i++) {
+
+                                $row = $getInvoice->fetch_assoc();
+
+                                $getItemCount = Database::search("SELECT COUNT(`invoice_items`.`invoice_items_id`) AS `count` FROM  `invoice_items` WHERE  `invoice_items`.`invoice_invoice_id` ='".$row["invoice_id"]."';");
+
                         ?>
 
 
@@ -246,9 +251,17 @@
 
                                     <div class="d-flex gap-1 mt-2 justify-content-center align-items-center gap-2">
                                         <div class="d-flex flex-column">
-                                            <label class="fs-6 fw-bold">IN 8390 908098</label>
-                                            <small>All Items: 4</small>
-                                            <small class="fw-bold">$80</small>
+                                            <label class="fs-6 fw-bold"><?= $row["invoice_id"];?></label>
+                                            <small>All Items: <?php 
+                                            
+                                            if ( $getItemCount->num_rows !=1 ) {
+                                                echo("0");
+                                            }else{
+                                                echo( $getItemCount->fetch_assoc()["count"]);
+                                            }
+
+                                            ?></small>
+                                            <small class="fw-bold">LKR <?= $row["grand_total"];?></small>
                                         </div>
                                     </div>
 
