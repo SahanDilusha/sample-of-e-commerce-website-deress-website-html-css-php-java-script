@@ -1062,6 +1062,14 @@ function advancedSearchProduct() {
         }
     });
 
+    let selectedBrand = "";
+    const brandInputs = document.querySelectorAll('input[name="brand"]');
+    brandInputs.forEach(input => {
+        if (input.checked) {
+            selectedBrand = input.id.replace("brand_", "");
+        }
+    });
+
     // alert(selectedSize);
     // alert(selectedColor);
     // alert(selectedCategory);
@@ -1072,15 +1080,15 @@ function advancedSearchProduct() {
 
     const request = new XMLHttpRequest();
 
-    const param = `category="${selectedCategory}"&color="${selectedColor}"&size="${selectedSize}"&stay="${stayBy}"&minPrice="${minPrice}"&maxPrice="${maxPrice}"`;
+    const param = `category="${selectedCategory}"&brand="${selectedBrand}"&color="${selectedColor}"&size="${selectedSize}"&stay="${stayBy}"&minPrice="${minPrice}"&maxPrice="${maxPrice}"`;
 
     alert(param);
 
     request.onreadystatechange = function () {
         if (request.readyState == "4" && request.status == "200") {
-            
-                alert("ok");
-            
+
+            alert("ok");
+
         }
     }
 

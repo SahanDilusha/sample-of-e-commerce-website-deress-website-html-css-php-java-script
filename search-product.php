@@ -89,7 +89,28 @@ include "spinners.php";
                     </div>
                 <?php } ?>
 
-                <!-- Filter by Size -->
+                <!-- Filter by brand name -->
+
+                <?php
+                $getBrand = Database::search("SELECT * FROM `brand`;");
+
+                if ($getColor->num_rows != 0) {
+                ?>
+                    <div class="w-100 mb-4">
+                        <h5>Filter by Brand:</h5>
+                        <?php
+                        for ($i = 0; $i < $getBrand->num_rows; $i++) {
+                            $row = $getBrand->fetch_assoc();
+                        ?>
+                            <div class="form-check mb-2">
+                                <input class="form-check-input" type="radio"  name="brand" id="<?= "brand_" . $row["idbrand"] ?>">
+                                <label class="form-check-label mx-3" for="<?= "brand_" . $row["idbrand"] ?>"><?= $row["brand_name"] ?></label>
+                            </div>
+                        <?php } ?>
+                    </div>
+                <?php } ?>
+                <!-- Filter by brand name -->
+
                 <?php
                 $getSpiner = Database::search("SELECT * FROM `product_size`;");
 
