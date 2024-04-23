@@ -17,12 +17,34 @@ if (isset($_GET["category"])) {
 $text = "";
 
 if (isset($_GET["text"])) {
-    if ($_GET["text"] != "") {
+    if (!empty($_GET["text"])) {
         $q = $q . "AND `product_name` LIKE '%" . $_GET["text"] . "%' = '" . $_GET["text"] . "'";
         $text = $_GET["text"];
     }
 }
 
+if (isset($_GET["brand"])) {
+    if (!empty($_GET["brand"])) {
+        $q = $q . " AND `product`.`brand_idbrand`= '" . $_GET["brand"] . "' ";
+    }
+}
+
+if (isset($_GET["color"])) {
+    if (!empty($_GET["color"])) {
+        $q = $q . "AND `product`.`product_colors_id`= '" . $_GET["color"] . "'";
+    }
+}
+
+if (isset($_GET['minPrice']) & isset($_GET['maxPrice'])) {
+
+    if (!empty($_GET['minPrice']) & empty($_GET['maxPrice'])) {
+        $q .= " AND `product`.`product_price` <= '" . $_GET['minPrice'] . "'";
+    } else if (!empty($_GET['maxPrice']) & empty($_GET['minPrice'])) {
+        $q .= " AND `product`.`product_price` = '" . $_GET['maxPrice'] . "'";
+    } else if (!empty($_GET['minPrice']) && !empty($_GET['maxPrice'])) {
+        $q .= " AND `product`.`product_price` >= '" . $_GET['minPrice'] . "' AND `product`.`product_price` <= '" . $_GET['maxPrice'] . "'";
+    }
+}
 
 
 // Pagination variables
@@ -42,7 +64,7 @@ $getProduct = Database::search($q);
 
 echo '
         <div class="w-100 d-flex gap-2 justify-content-end align-items-end">
-        <input class="form-control w-50" type="text" id="s_text" value="'.$text.'">
+        <input class="form-control w-50" type="text" id="s_text" value="' . $text . '">
         <button class="btn btn-dark" onclick="searchProduct()">Search</button>
     </div>
 
