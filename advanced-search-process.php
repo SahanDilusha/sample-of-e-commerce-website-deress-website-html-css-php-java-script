@@ -38,11 +38,24 @@ if (isset($_GET["color"])) {
 if (isset($_GET['minPrice']) & isset($_GET['maxPrice'])) {
 
     if (!empty($_GET['minPrice']) & empty($_GET['maxPrice'])) {
-        $q .= " AND `product`.`product_price` <= '" . $_GET['minPrice'] . "'";
+        $q .= " AND `product`.`product_price` >= '" . $_GET['minPrice'] . "'";
     } else if (!empty($_GET['maxPrice']) & empty($_GET['minPrice'])) {
-        $q .= " AND `product`.`product_price` = '" . $_GET['maxPrice'] . "'";
+        $q .= " AND `product`.`product_price` <= '" . $_GET['maxPrice'] . "'";
     } else if (!empty($_GET['minPrice']) && !empty($_GET['maxPrice'])) {
         $q .= " AND `product`.`product_price` >= '" . $_GET['minPrice'] . "' AND `product`.`product_price` <= '" . $_GET['maxPrice'] . "'";
+    }
+}
+
+if (isset($_GET['stay'])) {
+
+    if (!empty($_GET['stay'])) {
+        
+        if ($_GET['stay']=="1") {
+            $q = $q."ORDER BY  `product`.`product_price` ASC ";
+        }else if($_GET['stay']=="2"){
+            $q = $q."ORDER BY  `product`.`product_price` DESC ";
+        }
+
     }
 }
 
@@ -69,7 +82,7 @@ echo '
     </div>
 
     <div class="row">';
-include "product-card.php";
+include "product-card2.php";
 echo '</div>';
 
 if ($getProduct->num_rows != 0) {
