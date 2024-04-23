@@ -1062,12 +1062,30 @@ function advancedSearchProduct() {
         }
     });
 
-    alert(selectedSize);
-    alert(selectedColor);
-    alert(selectedCategory);
-    alert(stayBy);
-    alert(minPrice);
-    alert(maxPrice);
-    
+    // alert(selectedSize);
+    // alert(selectedColor);
+    // alert(selectedCategory);
+    // alert(stayBy);
+    // alert(minPrice);
+    // alert(maxPrice);
+
+
+    const request = new XMLHttpRequest();
+
+    const param = `category="${selectedCategory}"&color="${selectedColor}"&size="${selectedSize}"&stay="${stayBy}"&minPrice="${minPrice}"&maxPrice="${maxPrice}"`;
+
+    alert(param);
+
+    request.onreadystatechange = function () {
+        if (request.readyState == "4" && request.status == "200") {
+            
+                alert("ok");
+            
+        }
+    }
+
+    request.open('GET', `advanced-search-process.php?${param}`, true);
+    request.send();
+
 }
 

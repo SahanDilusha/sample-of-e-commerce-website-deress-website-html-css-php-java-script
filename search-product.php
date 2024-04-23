@@ -35,7 +35,7 @@ include "spinners.php";
                     <div class="w-100 mb-4">
                         <h5>Product Categories:</h5>
                         <div class="form-check mb-2">
-                            <input class="form-check-input" type="radio" name="categories" id="category_all">
+                            <input class="form-check-input" type="radio" name="categories" id="category_0">
                             <label class="form-check-label" for="category_all">All</label>
                         </div>
                         <?php
@@ -43,8 +43,8 @@ include "spinners.php";
                             $row = $getCategories->fetch_assoc();
                         ?>
                             <div class="form-check mb-2">
-                                <input class="form-check-input" type="radio" name="categories" id="<?= "category_" . $row['main_category_name']; ?>">
-                                <label class="form-check-label" for="<?= "category_" . $row['main_category_name']; ?>"><?= $row['main_category_name']; ?></label>
+                                <input class="form-check-input" type="radio" name="categories" id="<?= "category_" . $row['main_category_id']; ?>">
+                                <label class="form-check-label" for="<?= "category_" . $row['main_category_id']; ?>"><?= $row['main_category_name']; ?></label>
                             </div>
                         <?php } ?>
                     </div>
@@ -82,8 +82,8 @@ include "spinners.php";
                             $row = $getColor->fetch_assoc();
                         ?>
                             <div class="form-check mb-2">
-                                <input class="form-check-input" type="radio" style="background-color: <?= $row['color_code'] ?>;" name="color" id="<?= "color_" . $row["colors_name"] ?>">
-                                <label class="form-check-label mx-3" for="<?= "color_" . $row["colors_name"] ?>"><?= $row["colors_name"] ?></label>
+                                <input class="form-check-input" type="radio" style="background-color: <?= $row['color_code'] ?>;" name="color" id="<?= "color_" . $row["colors_id"] ?>">
+                                <label class="form-check-label mx-3" for="<?= "color_" . $row["colors_id"] ?>"><?= $row["colors_name"] ?></label>
                             </div>
                         <?php } ?>
                     </div>
@@ -102,8 +102,8 @@ include "spinners.php";
                             $row = $getSpiner->fetch_assoc();
                         ?>
                             <div class="form-check mb-2">
-                                <input class="form-check-input" type="radio" name="size" id="<?= "size_" . $row['size_name']; ?>">
-                                <label class="form-check-label" for="<?= "size_" . $row['size_name']; ?>"><?= $row['size_name']; ?></label>
+                                <input class="form-check-input" type="radio" name="size" id="<?= "size_" . $row['size_id']; ?>">
+                                <label class="form-check-label" for="<?= "size_" . $row['size_id']; ?>"><?= $row['size_name']; ?></label>
                             </div>
                         <?php } ?>
                     </div>
