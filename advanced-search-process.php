@@ -49,13 +49,12 @@ if (isset($_GET['minPrice']) & isset($_GET['maxPrice'])) {
 if (isset($_GET['stay'])) {
 
     if (!empty($_GET['stay'])) {
-        
-        if ($_GET['stay']=="1") {
-            $q = $q."ORDER BY  `product`.`product_price` ASC ";
-        }else if($_GET['stay']=="2"){
-            $q = $q."ORDER BY  `product`.`product_price` DESC ";
-        }
 
+        if ($_GET['stay'] == "1") {
+            $q = $q . "ORDER BY  `product`.`product_price` ASC ";
+        } else if ($_GET['stay'] == "2") {
+            $q = $q . "ORDER BY  `product`.`product_price` DESC ";
+        }
     }
 }
 
@@ -85,19 +84,3 @@ echo '
 include "product-card2.php";
 echo '</div>';
 
-if ($getProduct->num_rows != 0) {
-
-    echo '<nav aria-label="Page navigation example">
-     <ul class="pagination justify-content-center mt-4">
-         <li class="page-item ' . ($page <= 1 ? "disabled" : "") . '">
-             <a class="page-link" href="?page=' . ($page - 1) . '" tabindex="-1" aria-disabled="true">Previous</a>
-         </li>';
-    for ($i = 1; $i <= $totalPages; $i++) {
-        echo '<li class="page-item ' . ($i == $page ? "active" : "") . ' bg-black"><a class="page-link" href="?page=' . $i . '">' . $i . '</a></li>';
-    }
-    echo '<li class="page-item ' . ($page >= $totalPages ? "disabled" : "") . '">
-     <a class="page-link" href="?page=' . ($page + 1) . '">Next</a>
-   </li>
-   </ul>
-   </nav>';
-}

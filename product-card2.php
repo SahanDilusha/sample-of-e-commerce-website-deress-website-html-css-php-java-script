@@ -10,11 +10,13 @@ if ($getProduct->num_rows ==  0) {
     <?php
 } else {
 
+    $co = 0;
+
     for ($i = 0; $i < $getProduct->num_rows; $i++) {
 
-        $row = $getProduct->fetch_assoc();
-
         $st = true;
+
+        $row = $getProduct->fetch_assoc();
 
         if (isset($_GET['size'])) {
 
@@ -35,7 +37,8 @@ if ($getProduct->num_rows ==  0) {
 
         if ($st == true) {
 
-    ?>
+            $co += 1; ?>
+
 
             <div class="col-md-3 mt-3">
                 <div class="product-grid">
@@ -128,8 +131,32 @@ if ($getProduct->num_rows ==  0) {
                 </div>
             </div>
 
-<?php
+        <?php
         }
+    }
+
+    if ($co !== 0) {
+
+        echo '<nav aria-label="Page navigation example">
+         <ul class="pagination justify-content-center mt-4">
+             <li class="page-item ' . ($page <= 1 ? "disabled" : "") . '">
+                 <a class="page-link" href="?page=' . ($page - 1) . '" tabindex="-1" aria-disabled="true">Previous</a>
+             </li>';
+        for ($i = 1; $i <= $totalPages; $i++) {
+            echo '<li class="page-item ' . ($i == $page ? "active" : "") . ' bg-black"><a class="page-link" href="?page=' . $i . '">' . $i . '</a></li>';
+        }
+        echo '<li class="page-item ' . ($page >= $totalPages ? "disabled" : "") . '">
+         <a class="page-link" href="?page=' . ($page + 1) . '">Next</a>
+       </li>
+       </ul>
+       </nav>';
+    } else {
+        ?>
+        <div class="col-12 d-flex flex-column justify-content-center align-items-center mt-5">
+            <i class="bi bi-emoji-frown-fill text-danger fs-4"></i>
+            <h3>No items yet.</h3>
+        </div>
+<?php
     }
 }
 
