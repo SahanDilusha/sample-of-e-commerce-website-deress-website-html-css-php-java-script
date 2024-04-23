@@ -1037,6 +1037,7 @@ function advancedSearchProduct() {
     const maxPrice = document.getElementById("maxPrice").value;
     const minPrice = document.getElementById("minPrice").value;
     const stayBy = document.getElementById("stay_by").value;
+    const text = document.getElementById("s_text").value;
 
     let selectedSize = "";
     const sizeInputs = document.querySelectorAll('input[name="size"]');
@@ -1080,7 +1081,7 @@ function advancedSearchProduct() {
 
     const request = new XMLHttpRequest();
 
-    const param = `category="${selectedCategory}"&brand="${selectedBrand}"&color="${selectedColor}"&size="${selectedSize}"&stay="${stayBy}"&minPrice="${minPrice}"&maxPrice="${maxPrice}"`;
+    const param = `text="${text}"&category="${selectedCategory}"&brand="${selectedBrand}"&color="${selectedColor}"&size="${selectedSize}"&stay="${stayBy}"&minPrice="${minPrice}"&maxPrice="${maxPrice}"`;
 
     alert(param);
 
