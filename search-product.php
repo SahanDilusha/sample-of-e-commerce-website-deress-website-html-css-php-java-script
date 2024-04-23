@@ -25,7 +25,7 @@ include "spinners.php";
     <div class="container-fluid min-vh-100 mt-5">
         <div class="row">
             <!-- Sidebar -->
-            <div class="col-md-3 mb-3">
+            <div class="col-md-3 mb-3 d-none d-md-block">
                 <!-- Product Categories -->
                 <?php
                 $getCategories = Database::search("SELECT * FROM `main_category`;");
