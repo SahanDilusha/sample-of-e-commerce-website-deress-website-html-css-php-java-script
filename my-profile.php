@@ -248,7 +248,7 @@
 
 
 
-                                <div class="col-12 mt-3 d-flex justify-content-between align-items-center" >
+                                <div class="col-12 mt-3 d-flex justify-content-between align-items-center">
 
                                     <div class="d-flex gap-1 mt-2 justify-content-center align-items-center gap-2">
                                         <div class="d-flex flex-column">
@@ -272,7 +272,7 @@
                                         <?php
                                         if ($row["invoice_stetus"] == "11") {
                                         ?>
-                                            <button class="btn btn-outline-danger bi bi-x-lg"> Cancel</button>
+                                            <button class="btn btn-outline-danger bi bi-x-lg" onclick="CancelOrderModle('<?= $row['invoice_id']; ?>')"> Cancel</button>
                                         <?php
                                         }
                                         ?>
@@ -424,6 +424,27 @@
 
             </div>
         </div>
+
+        <!-- Modal Cancel Order-->
+        <div class="modal fade" id="CancelOrderModel" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Cancel Now</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        Are you sure to cancel this order? <label id="order-id"></label>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-dark">Cancel Order</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal Cancel Order-->
 
         <!-- Modal View Order -->
         <div class="modal fade" id="ViewOrderModle" aria-hidden="true" tabindex="-1">

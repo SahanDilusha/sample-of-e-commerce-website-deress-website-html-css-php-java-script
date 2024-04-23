@@ -1007,7 +1007,8 @@ function ViewOrder(id) {
 
 }
 
-function CancelOrder(params) {
-    
+function CancelOrderModle(id) {
+    new bootstrap.Modal(document.getElementById("CancelOrderModel")).show();
+    document.getElementById("order-id").innerHTML=id;
 }
 
