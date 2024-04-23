@@ -8,7 +8,7 @@ if (isset($_GET["text"])) {
        
         echo '
         <div class="w-100 d-flex gap-2 justify-content-end align-items-end">
-        <input class="form-control w-50" type="text" id="s_text" vlues>
+        <input class="form-control w-50" type="text" id="s_text" value="'.$_GET['text'].'">
         <button class="btn btn-dark" onclick="searchProduct()">Search</button>
     </div>';
 

@@ -973,7 +973,6 @@ function searchProduct() {
 
     request.onreadystatechange = function () {
         if (request.readyState == "4" && request.status == "200") {
-            alert(request.responseText);
             document.getElementById("list-view").innerHTML = "";
             document.getElementById("list-view").innerHTML = request.responseText;
             hideSpinners();
@@ -1081,14 +1080,17 @@ function advancedSearchProduct() {
 
     const request = new XMLHttpRequest();
 
-    const param = `text="${text}"&category="${selectedCategory}"&brand="${selectedBrand}"&color="${selectedColor}"&size="${selectedSize}"&stay="${stayBy}"&minPrice="${minPrice}"&maxPrice="${maxPrice}"`;
+    const param = `text=${text}&category=${selectedCategory}&brand=${selectedBrand}&color=${selectedColor}&size=${selectedSize}&stay=${stayBy}&minPrice=${minPrice}&maxPrice=${maxPrice}`;
 
     alert(param);
 
     request.onreadystatechange = function () {
         if (request.readyState == "4" && request.status == "200") {
 
-            alert("ok");
+            alert(request.responseText);
+
+            document.getElementById("list-view").innerHTML = "";
+            document.getElementById("list-view").innerHTML = request.responseText;
 
         }
     }
@@ -1097,4 +1099,61 @@ function advancedSearchProduct() {
     request.send();
 
 }
+
+
+function ClearFilters() {
+    // Clear text input
+    document.getElementById("s_text").value = "";
+
+    // Clear category selection
+    const categoryInputs = document.querySelectorAll('input[name="categories"]');
+    categoryInputs.forEach(input => {
+        input.checked = false;
+    });
+
+    // Clear brand selection
+    const brandInputs = document.querySelectorAll('input[name="brand"]');
+    brandInputs.forEach(input => {
+        input.checked = false;
+    });
+
+    // Clear color selection
+    const colorInputs = document.querySelectorAll('input[name="color"]');
+    colorInputs.forEach(input => {
+        input.checked = false;
+    });
+
+    // Clear size selection
+    const sizeInputs = document.querySelectorAll('input[name="size"]');
+    sizeInputs.forEach(input => {
+        input.checked = false;
+    });
+
+    // Clear stay by selection
+    document.getElementById("stay_by").selectedIndex = 0;
+
+    // Clear min and max price inputs
+    document.getElementById("minPrice").value = "";
+    document.getElementById("maxPrice").value = "";
+
+    const request = new XMLHttpRequest();
+
+    request.onreadystatechange = function () {
+        if (request.readyState == "4" && request.status == "200") {
+
+            alert(request.responseText);
+
+            document.getElementById("list-view").innerHTML = "";
+            document.getElementById("list-view").innerHTML = request.responseText;
+
+        }
+    }
+
+    request.open('GET', 'advanced-search-process.php', true);
+    request.send();
+
+}
+
+
+
 

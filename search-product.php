@@ -131,7 +131,7 @@ include "spinners.php";
                 <?php } ?>
 
                 <div class="w-100">
-                    <button class="btn btn-secondary mt-2">Clear</button>
+                    <button class="btn btn-secondary mt-2" onclick="ClearFilters();">Clear</button>
                     <button class="btn btn-dark mt-2" onclick="advancedSearchProduct();">Apply</button>
                 </div>
 

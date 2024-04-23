@@ -2,15 +2,17 @@
 
 include "connecton.php";
 
-$q = "SELECT * FROM `product`";
+$q = "SELECT * FROM `product` WHERE `product`.`stetus_stetus_id` != '6'";
 
 if (isset($_GET["category"])) {
-    if (!empty($_GET["category"])) {
-        
-        
+    if ($_GET["category"] != "") {
+
+        if ($_GET["category"] != "0") {
+
+            $q = $q . "AND `product`.`main_category_id` = '" . $_GET["category"] . "'";
+        }
     }
 }
-
 
 // Pagination variables
 $limit = 10; // Number of items per page
@@ -23,7 +25,7 @@ $totalProducts = Database::search("SELECT COUNT(*) as count FROM `product` WHERE
 // Calculate total pages
 $totalPages = ceil($totalProducts / $limit);
 
-$q = $q + "LIMIT $limit OFFSET $offset;";
+$q = $q . "LIMIT $limit OFFSET $offset;";
 
 $getProduct = Database::search($q);
 
