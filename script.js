@@ -439,7 +439,7 @@ function getCitys() {
                     ad_city.remove(index);
                 }
 
-                for (let index = 0; index < data.length; index++) {
+                for (const index = 0; index < data.length; index++) {
                     const getData = data[index];
 
                     const elementOption = document.createElement("option");
@@ -540,7 +540,7 @@ function saveCard() {
 
 }
 
-function deleteCard(i) {
+function deconsteCard(i) {
 
     const request = new XMLHttpRequest();
 
@@ -558,12 +558,12 @@ function deleteCard(i) {
 
     }
 
-    request.open('POST', 'delete-card.php', true);
+    request.open('POST', 'deconste-card.php', true);
     request.send(from);
 
 }
 
-function deleteAddress(i) {
+function deconsteAddress(i) {
     const request = new XMLHttpRequest();
 
     const from = new FormData();
@@ -580,7 +580,7 @@ function deleteAddress(i) {
 
     }
 
-    request.open('POST', 'delete-address.php', true);
+    request.open('POST', 'deconste-address.php', true);
     request.send(from);
 }
 
@@ -666,7 +666,7 @@ function updateProfileImg(i) {
 
 }
 
-function deleteWishiItems(i) {
+function deconsteWishiItems(i) {
 
     const request = new XMLHttpRequest();
     const from = new FormData();
@@ -684,7 +684,7 @@ function deleteWishiItems(i) {
 
     }
 
-    request.open('POST', 'delete-wishi-item.php', true);
+    request.open('POST', 'deconste-wishi-item.php', true);
     request.send(from);
 
 }
@@ -790,7 +790,7 @@ function Logout() {
     request.send();
 }
 
-function DeleteCartItem(i) {
+function DeconsteCartItem(i) {
 
     const request = new XMLHttpRequest();
     const from = new FormData();
@@ -806,7 +806,7 @@ function DeleteCartItem(i) {
         }
     }
 
-    request.open('POST', 'delete-cart-item.php', true);
+    request.open('POST', 'deconste-cart-item.php', true);
     request.send(from);
 
 }
@@ -1030,5 +1030,44 @@ function CancelOrder() {
     request.open('POST', 'cancel-order-procces.php', true);
     request.send(from);
 
+}
+
+function advancedSearchProduct() {
+
+    const maxPrice = document.getElementById("maxPrice").value;
+    const minPrice = document.getElementById("minPrice").value;
+    const stayBy = document.getElementById("stay_by").value;
+
+    let selectedSize = "";
+    const sizeInputs = document.querySelectorAll('input[name="size"]');
+    sizeInputs.forEach(input => {
+        if (input.checked) {
+            selectedSize = input.id.replace("size_", "");
+        }
+    });
+
+    let selectedColor = "";
+    const colorInputs = document.querySelectorAll('input[name="color"]');
+    colorInputs.forEach(input => {
+        if (input.checked) {
+            selectedColor = input.id.replace("color_", "");
+        }
+    });
+
+    let selectedCategory = "";
+    const categoryInputs = document.querySelectorAll('input[name="categories"]');
+    categoryInputs.forEach(input => {
+        if (input.checked) {
+            selectedCategory = input.id.replace("category_", "");
+        }
+    });
+
+    alert(selectedSize);
+    alert(selectedColor);
+    alert(selectedCategory);
+    alert(stayBy);
+    alert(minPrice);
+    alert(maxPrice);
+    
 }
 

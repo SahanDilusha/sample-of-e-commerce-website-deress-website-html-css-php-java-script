@@ -35,16 +35,16 @@ include "spinners.php";
                     <div class="w-100 mb-4">
                         <h5>Product Categories:</h5>
                         <div class="form-check mb-2">
-                            <input class="form-check-input" type="radio" name="categories" id="categories_all">
-                            <label class="form-check-label" for="categories_all">All</label>
+                            <input class="form-check-input" type="radio" name="categories" id="category_all">
+                            <label class="form-check-label" for="category_all">All</label>
                         </div>
                         <?php
                         for ($i = 0; $i < $getCategories->num_rows; $i++) {
                             $row = $getCategories->fetch_assoc();
                         ?>
                             <div class="form-check mb-2">
-                                <input class="form-check-input" type="radio" name="categories" id="<?= "category" . $row['main_category_name']; ?>">
-                                <label class="form-check-label" for="<?= "category" . $row['main_category_name']; ?>"><?= $row['main_category_name']; ?></label>
+                                <input class="form-check-input" type="radio" name="categories" id="<?= "category_" . $row['main_category_name']; ?>">
+                                <label class="form-check-label" for="<?= "category_" . $row['main_category_name']; ?>"><?= $row['main_category_name']; ?></label>
                             </div>
                         <?php } ?>
                     </div>
@@ -53,11 +53,10 @@ include "spinners.php";
                 <!-- Stay by -->
                 <div class="w-100 mb-4">
                     <h5>Stay by:</h5>
-                    <select class="form-select w-75" aria-label="Default select example">
-                        <option selected>Open this select menu</option>
-                        <option value="1">One</option>
-                        <option value="2">Two</option>
-                        <option value="3">Three</option>
+                    <select class="form-select w-75" aria-label="Default select example" id="stay_by">
+                        <option selected value="0">Select</option>
+                        <option value="1">Price Accending</option>
+                        <option value="2">Price Descending</option>
                     </select>
                 </div>
 
@@ -68,7 +67,6 @@ include "spinners.php";
                         <input class="form-control" type="text" id="minPrice" placeholder="min" />
                         <input class="form-control" type="text" id="maxPrice" placeholder="max" />
                     </div>
-                    <button class="btn btn-dark mt-2">Apply</button>
                 </div>
 
                 <!-- Filter by Color -->
@@ -110,6 +108,12 @@ include "spinners.php";
                         <?php } ?>
                     </div>
                 <?php } ?>
+
+                <div class="w-100">
+                    <button class="btn btn-secondary mt-2">Clear</button>
+                    <button class="btn btn-dark mt-2" onclick="advancedSearchProduct();">Apply</button>
+                </div>
+
             </div>
 
             <!-- Product List -->
