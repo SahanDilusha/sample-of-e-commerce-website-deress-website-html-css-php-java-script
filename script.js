@@ -985,16 +985,16 @@ function searchProduct() {
 }
 
 function ViewOrder(id) {
-    
+
     const request = new XMLHttpRequest();
     const from = new FormData();
     from.append("order", id);
-    
+
     showSpinners();
 
     request.onreadystatechange = function () {
         if (request.readyState == "4" && request.status == "200") {
-            document.getElementById("orderid").innerHTML ="Order Id - " + id;
+            document.getElementById("orderid").innerHTML = "Order Id - " + id;
             document.getElementById("item-body").innerHTML = "";
             document.getElementById("item-body").innerHTML = request.responseText;
             hideSpinners();
@@ -1009,6 +1009,26 @@ function ViewOrder(id) {
 
 function CancelOrderModle(id) {
     new bootstrap.Modal(document.getElementById("CancelOrderModel")).show();
-    document.getElementById("order-id").innerHTML=id;
+    document.getElementById("order-id").innerHTML = id;
+}
+
+function CancelOrder() {
+    const id = document.getElementById("order-id").innerHTML;
+
+    const request = new XMLHttpRequest();
+    const from = new FormData();
+    from.append("id", id);
+
+    request.onreadystatechange = function () {
+        if (request.readyState == "4" && request.status == "200") {
+            if (request.responseText == "ok") {
+                window.location.reload();
+            }
+        }
+    }
+
+    request.open('POST', 'cancel-order-procces.php', true);
+    request.send(from);
+
 }
 
