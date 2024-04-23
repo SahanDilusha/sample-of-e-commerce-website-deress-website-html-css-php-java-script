@@ -1007,3 +1007,7 @@ function ViewOrder(id) {
 
 }
 
+function CancelOrder(params) {
+    
+}
+
