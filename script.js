@@ -725,7 +725,6 @@ function addToCart(i) {
     from.append("size_id", document.getElementById("size").value);
 
     request.onreadystatechange = function () {
-        alert(request.responseText);
 
         if (request.readyState == "4" && request.status == "200") {
 
@@ -1223,6 +1222,7 @@ function updateCart(id) {
 
     request.onreadystatechange = function () {
         if (request.readyState == "4" && request.status == "200") {
+
             if (request.responseText == "ok") {
                 window.location.reload();
             }
@@ -1233,6 +1233,89 @@ function updateCart(id) {
     request.send(from);
 
 }
+
+
+
+function setRating(rating) {
+    const starIcons = document.querySelectorAll('#ar #star-div i');
+
+    starIcons.forEach((star, index) => {
+        if (index < rating) {
+            star.classList.add('text-warning');
+        } else {
+            star.classList.remove('text-warning');
+        }
+    });
+
+    // Update the value of the hidden rating input
+    const ratingInput = document.querySelector('#ar #rating-in');
+    ratingInput.value = rating;
+}
+
+document.getElementById('submitReview').addEventListener('click', function (event) {
+    event.preventDefault();
+
+    const ratingInput = document.querySelector('#ar #rating-in');
+    const reviewText = document.getElementById('exampleFormControlTextarea1').value;
+    const productId = document.getElementById('productId').value;
+
+    const minLength = 10; // Example minimum length
+    const maxLength = 100; // Example maximum length
+
+    if (ratingInput.value == "no") {
+        alert("Please Select Your Rating");
+        document.getElementById("msg_l").innerHTML = request.responseText;
+
+        const myToast = new bootstrap.Toast(document.getElementById('myToast'));
+        myToast.show();
+
+        setTimeout(function () {
+            myToast.hide();
+        }, 5000);
+        return;
+    }
+
+    if (reviewText.length < minLength || reviewText.length > maxLength) {
+        alert(`Review must be between ${minLength} and ${maxLength} characters`);
+        document.getElementById("msg_l").innerHTML = request.responseText;
+
+        const myToast = new bootstrap.Toast(document.getElementById('myToast'));
+        myToast.show();
+
+        setTimeout(function () {
+            myToast.hide();
+        }, 5000);
+        return;
+    }
+
+    const request = new XMLHttpRequest();
+    const formData = new FormData();
+    formData.append("text", reviewText);
+    formData.append("rating", ratingInput.value);
+    formData.append("productId", productId);  // Add product ID to formData
+
+    request.onreadystatechange = function () {
+        if (request.readyState == "4" && request.status == "200") {
+            alert(request.responseText);
+
+            document.getElementById("msg_l").innerHTML = request.responseText;
+
+            const myToast = new bootstrap.Toast(document.getElementById('myToast'));
+            myToast.show();
+
+            setTimeout(function () {
+                myToast.hide();
+            }, 5000);
+
+            if (request.responseText == "ok") {
+                window.location.reload();
+            }
+        }
+    }
+
+    request.open('POST', 'submit-rivew.php', true);
+    request.send(formData);
+});
 
 
 

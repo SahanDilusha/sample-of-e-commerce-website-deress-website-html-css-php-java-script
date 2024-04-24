@@ -303,77 +303,24 @@ if (!isset($_GET["id"]) || !isset($_GET["name"])) {
                         </table>
                     </div>
 
-                    <!-- Customer Reviews -->
-
-                    <div class="col-12 p-3 d-flex flex-column justify-content-start align-items-start d-none" id="cr">
-                        <h4 class="jost-bold mb-4">Customer Reviews</h4>
-
-                        <div class="d-flex gap-3">
-                            <img src="profile_images/download.jpeg" class="rounded-5" width="50px" />
-                            <div class="">
-                                <small>Mark Williams</small>
-                                <div>
-                                    <i class="bi bi-star-fill text-warning"></i>
-                                    <i class="bi bi-star-fill text-warning"></i>
-                                    <i class="bi bi-star-fill text-warning"></i>
-                                    <i class="bi bi-star-fill text-warning"></i>
-                                    <i class="bi bi-star-fill text-warning"></i>
-                                </div>
-                            </div>
-                        </div>
-
-                        <small class="mt-2 mb-2 px-2 fw-bold">Excellent Product, I love it 😍</small>
-
-                        <small class="text-secondary mt-2 mb-2 px-2">dcjkdhckdsjhcvdcvjknjdscvknkvnckncvdnjvdncvncvnnjvkjdnjvdnjvnjdfvndnvkdjnjvefhw
-                            b bbbcbcjvbnkcvbkfbvfbv</small>
-
-                        <small class="px-2">Review by <small class="fw-bold">Krist</small>Posted on <small class="fw-bold">june
-                                05, 2023</small></small>
-                    </div>
-                    <!-- Customer Reviews -->
                     <?php
                     if (isset($_SESSION["user"])) { ?>
                         <!-- Add your Review -->
 
                         <div class="col-md-8 d-flex  mt-3 d-none" id="ar">
+
+                            <input type="text" class="d-none" id="productId" value="<?php echo $getId; ?>">
+
                             <h4 class="jost-bold mb-4">Add your Review</h4>
 
                             <label class="form-label">Your Rating</label>
-
-                            <div class="d-flex flex-column flex-lg-row gap-3 mb-2">
-                                <div>
-                                    <input type="checkbox" class="d-none" />
-                                    <i class="bi bi-star text-dark fs-4 me-2"></i>
-                                </div>
-
-                                <div>
-                                    <input type="checkbox" class="d-none" />
-                                    <i class="bi bi-star text-dark fs-4 me-2"></i>
-                                    <i class="bi bi-star text-dark fs-4 me-2"></i>
-                                </div>
-
-                                <div>
-                                    <input type="checkbox" class="d-none" />
-                                    <i class="bi bi-star text-dark fs-4 me-2"></i>
-                                    <i class="bi bi-star text-dark fs-4 me-2"></i>
-                                    <i class="bi bi-star text-dark fs-4 me-2"></i>
-                                </div>
-
-                                <div>
-                                    <input type="checkbox" class="d-none" />
-                                    <i class="bi bi-star text-dark fs-4 me-2"></i>
-                                    <i class="bi bi-star text-dark fs-4 me-2"></i>
-                                    <i class="bi bi-star text-dark fs-4 me-2"></i>
-                                    <i class="bi bi-star text-dark fs-4 me-2"></i>
-                                </div>
-                                <div>
-                                    <input type="checkbox" class="d-none" />
-                                    <i class="bi bi-star text-dark fs-4 me-2"></i>
-                                    <i class="bi bi-star text-dark fs-4 me-2"></i>
-                                    <i class="bi bi-star text-dark fs-4 me-2"></i>
-                                    <i class="bi bi-star text-dark fs-4 me-2"></i>
-                                    <i class="bi bi-star text-dark fs-4 me-2"></i>
-                                </div>
+                            <div id="star-div">
+                                <input type="checkbox" value="no" id="rating-in" class="d-none" />
+                                <i class="bi bi-star-fill fs-4 me-2" onclick="setRating(1)"></i>
+                                <i class="bi bi-star-fill fs-4 me-2" onclick="setRating(2)"></i>
+                                <i class="bi bi-star-fill fs-4 me-2" onclick="setRating(3)"></i>
+                                <i class="bi bi-star-fill fs-4 me-2" onclick="setRating(4)"></i>
+                                <i class="bi bi-star-fill fs-4 me-2" onclick="setRating(5)"></i>
                             </div>
 
                             <div class="mb-3">
@@ -381,7 +328,7 @@ if (!isset($_GET["id"]) || !isset($_GET["name"])) {
                                 <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
                             </div>
                             <div class="mt-2 mb-2">
-                                <button class="btn btn-dark p-2">Submit</button>
+                                <button class="btn btn-dark p-2" id="submitReview">Submit</button>
                             </div>
                         </div>
                 </div>
@@ -389,6 +336,35 @@ if (!isset($_GET["id"]) || !isset($_GET["name"])) {
                 <!-- Add your Review -->
 
             <?php } ?>
+
+            <!-- Customer Reviews -->
+
+            <div class="col-12 p-3 d-flex flex-column justify-content-start align-items-start d-none" id="cr">
+                <h4 class="jost-bold mb-4">Customer Reviews</h4>
+
+                <div class="d-flex gap-3">
+                    <img src="profile_images/download.jpeg" class="rounded-5" width="50px" />
+                    <div class="">
+                        <small>Mark Williams</small>
+                        <div>
+                            <i class="bi bi-star-fill text-warning"></i>
+                            <i class="bi bi-star-fill text-warning"></i>
+                            <i class="bi bi-star-fill text-warning"></i>
+                            <i class="bi bi-star-fill text-warning"></i>
+                            <i class="bi bi-star-fill text-warning"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <small class="mt-2 mb-2 px-2 fw-bold">Excellent Product, I love it 😍</small>
+
+                <small class="text-secondary mt-2 mb-2 px-2">dcjkdhckdsjhcvdcvjknjdscvknkvnckncvdnjvdncvncvnnjvkjdnjvdnjvnjdfvndnvkdjnjvefhw
+                    b bbbcbcjvbnkcvbkfbvfbv</small>
+
+                <small class="px-2">Review by <small class="fw-bold">Krist</small>Posted on <small class="fw-bold">june
+                        05, 2023</small></small>
+            </div>
+            <!-- Customer Reviews -->
 
             <!-- Related Product -->
 
@@ -398,8 +374,6 @@ if (!isset($_GET["id"]) || !isset($_GET["name"])) {
                 </div>
 
                 <?php
-
-
 
                 $getProduct = Database::search("SELECT * FROM `product` WHERE `product`.`id` !='" . $getId . "' AND `main_category_id` = '" . $categoryId . "' LIMIT 5;");
 
