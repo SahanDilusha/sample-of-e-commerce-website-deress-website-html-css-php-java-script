@@ -1200,12 +1200,9 @@ function DeleteCartItem(id) {
     const from = new FormData();
     from.append("id", id);
 
-    alert(id);
-
     request.onreadystatechange = function () {
         if (request.readyState == "4" && request.status == "200") {
             if (request.responseText == "ok") {
-                alert(request.responseText);
                 window.location.reload();
             }
         }
@@ -1215,12 +1212,27 @@ function DeleteCartItem(id) {
     request.send(from);
 }
 
-function UpdateCart(id) {
-    
-    
+function updateCart(id) {
+
+    const qty = document.getElementById("quantity_" + id).value;
+
+    const request = new XMLHttpRequest();
+    const from = new FormData();
+    from.append("id", id);
+    from.append("qty", qty);
+
+    request.onreadystatechange = function () {
+        if (request.readyState == "4" && request.status == "200") {
+            if (request.responseText == "ok") {
+                window.location.reload();
+            }
+        }
+    }
+
+    request.open('POST', 'update-cart.php', true);
+    request.send(from);
 
 }
-
 
 
 

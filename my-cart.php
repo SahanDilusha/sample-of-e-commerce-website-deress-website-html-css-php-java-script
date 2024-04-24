@@ -113,9 +113,9 @@
                                                                 <i class="text-muted" onclick="addToWishi(<?php echo ($row['id']); ?>);"><i class="bi bi-heart text-danger"></i> Add to wish</i>
                                                                 |
                                                                 <i class="text-muted" onclick="DeleteCartItem('<?php echo ($row['cart_item_id']); ?>');"><i class="bi bi-trash3 text-danger"></i> Remove item</i>
-                                        
                                                             </div>
                                                         </td>
+
                                                         <td>
                                                             <?php
 
@@ -132,7 +132,10 @@
 
                                                         </td>
                                                         <td width="100px">
-                                                            <input type="number" class="form-control" min="1" max="10" value="<?= $row['qty'] ?>" disabled />
+                                                            <input type="number" class="form-control" min="1" max="10" id="quantity_<?php echo $row['cart_item_id']; ?>" value="<?= $row['qty'] ?>" />
+                                                        </td>
+                                                        <td>
+                                                            <button class="btn btn-dark btn-update" onclick="updateCart(<?php echo $row['cart_item_id']; ?>)">Update</button>
                                                         </td>
                                                         <td>
                                                             <h4>
