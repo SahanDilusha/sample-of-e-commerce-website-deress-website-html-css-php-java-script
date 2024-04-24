@@ -99,7 +99,7 @@
                                                         </td>
                                                         <td class="desc">
                                                             <h4>
-                                                                <a href="product-ditels.php?id=<?php echo ($row["id"]); ?>" class="text-dark fw-bold text-decoration-none fs-6">
+                                                                <a href="product-ditels.php?id=<?php echo ($row["id"]); ?>&name=<?= $row["product_name"] ?>" class="text-dark fw-bold text-decoration-none fs-6">
                                                                     <?php echo ($row["product_name"]); ?>
                                                                 </a>
                                                             </h4>
@@ -107,14 +107,13 @@
                                                                 <?php echo ($row["product_description"]); ?>
                                                             </p>
                                                             <dl class="small m-b-none">
-                                                                <dt>Size : <?= $row["size_name"]?></dt>
+                                                                <dt>Size : <?= $row["size_name"] ?></dt>
                                                             </dl>
                                                             <div class="m-t-sm">
                                                                 <i class="text-muted" onclick="addToWishi(<?php echo ($row['id']); ?>);"><i class="bi bi-heart text-danger"></i> Add to wish</i>
                                                                 |
                                                                 <i class="text-muted" onclick="DeleteCartItem('<?php echo ($row['cart_item_id']); ?>');"><i class="bi bi-trash3 text-danger"></i> Remove item</i>
-                                                                |
-                                                                <a href="product-ditels.php?id=<?php echo ($row["id"]); ?>&name=<?=$row["product_name"]?>" class="text-muted text-decoration-none"><i class="bi bi-pencil-square text-danger"></i> Update</a>
+                                        
                                                             </div>
                                                         </td>
                                                         <td>
@@ -144,15 +143,15 @@
 
                                                 <?php  }
                                                 $grandTotal = (($subtotal + $deliveryCharge) - $discount);
-                                               
+
                                                 $_SESSION["cart"] = $array;
-                                               
+
                                                 $_SESSION["total"] = [
-                                                    "grandTotal"=> $grandTotal,
-                                                    "subtotal"=>$subtotal,
-                                                    "deliveryCharge"=>$deliveryCharge,
-                                                    "discount"=>$discount,
-                                                    "items"=>$getCart->num_rows,
+                                                    "grandTotal" => $grandTotal,
+                                                    "subtotal" => $subtotal,
+                                                    "deliveryCharge" => $deliveryCharge,
+                                                    "discount" => $discount,
+                                                    "items" => $getCart->num_rows,
                                                 ];
                                                 ?>
                                             </tbody>
@@ -189,7 +188,7 @@
                             </div>
                             <div class="w-100 d-flex justify-content-between align-items-center border-bottom border-1">
                                 <p class="fw-bold fs-5">Grand Total</p>
-                                <p class="fw-bold fs-5">Rs. <?=  $_SESSION["total"]["grandTotal"]; ?></p>
+                                <p class="fw-bold fs-5">Rs. <?= $_SESSION["total"]["grandTotal"]; ?></p>
                             </div>
 
                             <div class="d-flex justify-content-center flex-column gap-2 align-items-center w-100 mt-2 mb-2">
