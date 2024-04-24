@@ -78,6 +78,8 @@ echo '
         <div class="w-100 d-flex gap-2 justify-content-end align-items-end">
         <input class="form-control w-50" type="text" id="s_text" value="' . $text . '">
         <button class="btn btn-dark" onclick="searchProduct()">Search</button>
+        <button class="btn bg-transparent bi bi-funnel-fill fs-5 d-block" onclick="showfilter(1);" id="onBtn"></button>
+        <button class="d-none" onclick="showfilter(0)" id="offBtn"></button>
     </div>
 
     <div class="row">';
