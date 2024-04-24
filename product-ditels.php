@@ -142,9 +142,10 @@ if (!isset($_GET["id"]) || !isset($_GET["name"])) {
 
 
                         <label class="fs-4">$80.00 <span class="text-decoration-line-through">$100.00</span></label>
-                        <small class="mt-3"><?php echo ($row["product_description"]);   $colorNames = $row["colors_name"];?></small>
+                        <small class="mt-3"><?php echo ($row["product_description"]);
+                                            $colorNames = $row["colors_name"]; ?></small>
 
-                      
+
 
                         <label class="mt-3 fs-5 fw-bold">Colors</label>
 
@@ -171,7 +172,7 @@ if (!isset($_GET["id"]) || !isset($_GET["name"])) {
                             <div class="mt-3">
                                 <label class="mb-2 fs-5 fw-bold">Size</label>
                                 <select class="form-select" id="size">
-                                    <option selected>Select your size</option>
+                                    <option value="0" selected>Select your size</option>
                                     <?php
                                     for ($i = 0; $i < $getSize->num_rows; $i++) {
 
@@ -242,7 +243,8 @@ if (!isset($_GET["id"]) || !isset($_GET["name"])) {
                                     } else {
 
                                     ?>
-                                        <button class="btn btn-dark w-50">Update Cart</button>
+                                        <button class="btn btn-dark w-25">Update Cart</button>
+                                        <button class="btn btn-dark w-25" onclick="addToCart(<?= $getId ?>)">Add to cart</button>
                                     <?php
 
                                     }
@@ -402,12 +404,12 @@ if (!isset($_GET["id"]) || !isset($_GET["name"])) {
                 </div>
 
                 <?php
-             
-                 
 
-                    $getProduct = Database::search("SELECT * FROM `product` WHERE `product`.`id` !='" . $getId . "' AND `main_category_id` = '" . $categoryId . "' LIMIT 5;");
 
-                    include "product-card.php";
+
+                $getProduct = Database::search("SELECT * FROM `product` WHERE `product`.`id` !='" . $getId . "' AND `main_category_id` = '" . $categoryId . "' LIMIT 5;");
+
+                include "product-card.php";
 
                 ?>
             </div>

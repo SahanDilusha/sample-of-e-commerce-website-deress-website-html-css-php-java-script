@@ -722,8 +722,7 @@ function addToCart(i) {
 
     from.append("qty", quantity);
     from.append("id", i);
-
-
+    from.append("size_id", document.getElementById("size").value);
 
     request.onreadystatechange = function () {
         alert(request.responseText);
@@ -885,7 +884,6 @@ function ContactUsSend() {
     request.send(from);
 
 }
-
 
 function DiscountCodeCheck() {
 
@@ -1215,6 +1213,12 @@ function DeleteCartItem(id) {
 
     request.open('POST', 'delete-cart-item.php', true);
     request.send(from);
+}
+
+function UpdateCart(id) {
+    
+    
+
 }
 
 
