@@ -118,7 +118,7 @@ if ($getProduct->num_rows ==  0) {
                             <a href="product-ditels.php?id=<?= $row['id'] ?>&name=<?= $row["product_name"] ?>" class="btn btn-outline-dark rounded-3 p-2 fs-6"> View Item </a>
                         </div>
                     </div>
-                    <a class="text-decoration-none text-dark px-2" href="product-ditels.php?id=<?= $row['id'] ?>">
+                    <a class="text-decoration-none text-dark px-2" href="product-ditels.php?id=<?= $row['id'] ?>&name=<?=$row["product_name"]?>">
                         <small class="fs-6 fw-bold"><?php echo ($row["product_name"]); ?></small>
                         <div class="price"><span><?php if ($row["product_discount"] !== "0") {
                                                         echo ("LKR" . $row["product_price"]);

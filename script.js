@@ -966,22 +966,6 @@ function filCard(no, name, cvv, year, month) {
 
 }
 
-function searchProduct() {
-    const request = new XMLHttpRequest();
-
-    showSpinners();
-
-    request.onreadystatechange = function () {
-        if (request.readyState == "4" && request.status == "200") {
-            document.getElementById("list-view").innerHTML = "";
-            document.getElementById("list-view").innerHTML = request.responseText;
-            hideSpinners();
-        }
-    }
-
-    request.open('GET', 'search_procces.php?text=' + document.getElementById("s_text").value, true);
-    request.send();
-}
 
 function ViewOrder(id) {
 
@@ -1030,6 +1014,53 @@ function CancelOrder() {
     request.send(from);
 
 }
+
+function showfilter(i) {
+    const filter = document.getElementById("filter");
+    const onBtn = document.getElementById("onBtn");
+    const offBtn = document.getElementById("offBtn");
+
+    if (i == 1) {
+        // Show the sidebar
+        filter.classList.remove("d-none");
+        setTimeout(() => filter.classList.add("show-sidebar"), 10);
+
+        // Toggle button classes
+        onBtn.classList.add("d-none");
+        offBtn.classList.remove("d-none");
+        offBtn.classList.add("btn", "bg-transparent", "fs-5", "bi", "bi-x-lg");
+    } else {
+        // Hide the sidebar
+        filter.classList.remove("show-sidebar");
+
+        // Toggle button classes
+        onBtn.classList.remove("d-none");
+        offBtn.classList.add("d-none");
+        onBtn.classList.add("btn", "bg-transparent", "fs-5", "bi", "bi-funnel-fill");
+
+        setTimeout(() => filter.classList.add("d-none"), 500);
+    }
+}
+
+function searchProduct() {
+    const request = new XMLHttpRequest();
+
+    showSpinners();
+
+    request.onreadystatechange = function () {
+        if (request.readyState == "4" && request.status == "200") {
+            document.getElementById("list-view").innerHTML = "";
+            document.getElementById("list-view").innerHTML = request.responseText;
+            showfilter(0);
+            hideSpinners();
+        }
+    }
+
+    request.open('GET', 'search_procces.php?text=' + document.getElementById("s_text").value, true);
+    request.send();
+}
+
+
 
 function advancedSearchProduct() {
 
@@ -1082,13 +1113,9 @@ function advancedSearchProduct() {
 
     const param = `text=${text}&category=${selectedCategory}&brand=${selectedBrand}&color=${selectedColor}&size=${selectedSize}&stay=${stayBy}&minPrice=${minPrice}&maxPrice=${maxPrice}`;
 
-    alert(param);
-
     request.onreadystatechange = function () {
         if (request.readyState == "4" && request.status == "200") {
-
-            alert(request.responseText);
-
+            showfilter(0);
             document.getElementById("list-view").innerHTML = "";
             document.getElementById("list-view").innerHTML = request.responseText;
 
@@ -1140,9 +1167,7 @@ function ClearFilters() {
 
     request.onreadystatechange = function () {
         if (request.readyState == "4" && request.status == "200") {
-
-            alert(request.responseText);
-
+            showfilter(0);
             document.getElementById("list-view").innerHTML = "";
             document.getElementById("list-view").innerHTML = request.responseText;
 
@@ -1154,32 +1179,24 @@ function ClearFilters() {
 
 }
 
-function showfilter(i) {
-    const filter = document.getElementById("filter");
-    const onBtn = document.getElementById("onBtn");
-    const offBtn = document.getElementById("offBtn");
+function deleteWishiItems(i) {
+   
+    const request = new XMLHttpRequest();
+    const from = new FormData();
+    from.append("id", i);
 
-    if (i == 1) {
-        // Show the sidebar
-        filter.classList.remove("d-none");
-        setTimeout(() => filter.classList.add("show-sidebar"), 10);
-
-        // Toggle button classes
-        onBtn.classList.add("d-none");
-        offBtn.classList.remove("d-none");
-        offBtn.classList.add("btn", "bg-transparent", "fs-5", "bi", "bi-x-lg");
-    } else {
-        // Hide the sidebar
-        filter.classList.remove("show-sidebar");
-
-        // Toggle button classes
-        onBtn.classList.remove("d-none");
-        offBtn.classList.add("d-none");
-        onBtn.classList.add("btn", "bg-transparent", "fs-5", "bi", "bi-funnel-fill");
-
-        setTimeout(() => filter.classList.add("d-none"), 500);
+    request.onreadystatechange = function () {
+        if (request.readyState == "4" && request.status == "200") {
+            if (request.responseText == "ok") {
+                window.location.reload();
+            }
+        }
     }
+
+    request.open('POST', 'delete-wishi-item.php', true);
+    request.send(from);
 }
+
 
 
 

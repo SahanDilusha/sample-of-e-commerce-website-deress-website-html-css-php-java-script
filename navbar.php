@@ -28,16 +28,6 @@ session_start();
                     <li class="nav-item">
                         <a class=" nav-link jost-bold" aria-current="page" href="index.php">Home</a>
                     </li>
-                    <li class="nav-item dropdown has-megamenu">
-                        <a class=" nav-link jost-bold dropdown-toggle" href="#" data-bs-toggle="dropdown"> Shop </a>
-                        <div class="dropdown-menu megamenu" role="menu">
-                            This is content of megamenu. <br>
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                            quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                            consequat.
-                        </div>
-                    </li>
                     <li class="nav-item">
                         <a class=" nav-link jost-bold" href="#">Our Story</a>
                     </li>
@@ -66,10 +56,11 @@ session_start();
                             <a href="my-cart.php" class="text-decoration-none"><i class="bi bi-handbag fs-4"></i></a>
                             <a href="my-profile.php" class=" me-4 ">
                                 <img src="<?php if ($_SESSION["user"]["stetus_dp"] == "2") {
-                                    echo("resources/image/default_profile.png");
-                                }else {
-                                    # code...
-                                 echo('profile_images/'.$_SESSION["user"]["username"].'.png');}?>" width="35px" height="35px" class="rounded-5" />
+                                                echo ("resources/image/default_profile.png");
+                                            } else {
+                                                # code...
+                                                echo ('profile_images/' . $_SESSION["user"]["username"] . '.png');
+                                            } ?>" width="35px" height="35px" class="rounded-5" />
                             </a>
                         <?php
                         }

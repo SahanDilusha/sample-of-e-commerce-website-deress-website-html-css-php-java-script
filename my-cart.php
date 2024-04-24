@@ -112,9 +112,9 @@
                                                             <div class="m-t-sm">
                                                                 <i class="text-muted" onclick="addToWishi(<?php echo ($row['id']); ?>);"><i class="bi bi-heart text-danger"></i> Add to wish</i>
                                                                 |
-                                                                <i class="text-muted"><i class="bi bi-trash3 text-danger" onclick="DeleteCartItem(<?php echo ($row['id']); ?>);"></i> Remove item</i>
+                                                                <i class="text-muted" onclick="DeleteCartItem(<?php echo ($row['id']); ?>);"><i class="bi bi-trash3 text-danger"></i> Remove item</i>
                                                                 |
-                                                                <a href="product-ditels.php?id=<?php echo ($row["id"]); ?>" class="text-muted text-decoration-none"><i class="bi bi-pencil-square text-danger" onclick="DeleteCartItem(<?php echo ($row['id']); ?>);"></i> Update</a>
+                                                                <a href="product-ditels.php?id=<?php echo ($row["id"]); ?>&name=<?=$row["product_name"]?>" class="text-muted text-decoration-none"><i class="bi bi-pencil-square text-danger"></i> Update</a>
                                                             </div>
                                                         </td>
                                                         <td>
@@ -143,11 +143,8 @@
                                                     </tr>
 
                                                 <?php  }
-                                                $grandTotal = (($subtotal + $deliveryCharge) - $discount) - $_SESSION["discount"];
-                                                if (isset($_SESSION["discount"])) {
-                                                    $grandTotal -= $_SESSION["discount"];
-                                                }
-                                                
+                                                $grandTotal = (($subtotal + $deliveryCharge) - $discount);
+                                               
                                                 $_SESSION["cart"] = $array;
                                                
                                                 $_SESSION["total"] = [

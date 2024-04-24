@@ -103,7 +103,7 @@ if ($getWishiItems->num_rows ==  0) {
                             <?php }  ?>
 
                         </div>
-                        <button class="btn btn-outline-dark rounded-3 p-2 fs-6" onclick="addToCart(<?php echo ($row['id']); ?>);"> ADD TO CART </button>
+                        <a href="product-ditels.php?id=<?=$row['product_id']?>&name=<?=$row["product_name"]?>" class="btn btn-outline-dark text-decoration-none rounded-3 p-2 fs-6"> View Item </a>
                     </div>
                 </div>
                 <a class="text-decoration-none text-dark px-2" href="product-ditels.php?id=<?=$row['product_id']?>&name=<?=$row["product_name"]?>">
