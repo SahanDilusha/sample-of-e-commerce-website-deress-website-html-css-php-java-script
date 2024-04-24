@@ -420,8 +420,6 @@ if (!isset($_GET["id"]) || !isset($_GET["name"])) {
                             <small class="px-2">Review by <small class="fw-bold">Krist</small>Posted on <small class="fw-bold">june
                                     05, 2023</small></small>
                         </div>
-
-           
             
     <?php
                     }
