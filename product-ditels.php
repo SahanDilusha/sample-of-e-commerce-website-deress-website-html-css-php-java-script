@@ -31,7 +31,7 @@ if (!isset($_GET["id"]) || !isset($_GET["name"])) {
 
         include  'navbar.php';
 
-        $getProduct = Database::search("SELECT * FROM `product` INNER JOIN `material` ON `product`.`material_material_id` = `material`.`material_id` WHERE  `product`.`id` = '" . $getId . "';");
+        $getProduct = Database::search("SELECT * FROM `product` INNER JOIN `product_colors` ON `product`.`product_colors_id` = `product_colors`.`colors_id` INNER JOIN `material` ON `product`.`material_material_id` = `material`.`material_id` WHERE  `product`.`id` = '" . $getId . "';");
 
         if ($getProduct->num_rows ==  0) {
         ?>
@@ -46,6 +46,8 @@ if (!isset($_GET["id"]) || !isset($_GET["name"])) {
         } else {
 
             $row = $getProduct->fetch_assoc();
+
+            $categoryId = $row["main_category_id"];
 
         ?>
 
@@ -140,48 +142,25 @@ if (!isset($_GET["id"]) || !isset($_GET["name"])) {
 
 
                         <label class="fs-4">$80.00 <span class="text-decoration-line-through">$100.00</span></label>
-                        <small class="mt-3"><?php echo ($row["product_description"]); ?></small>
+                        <small class="mt-3"><?php echo ($row["product_description"]);   $colorNames = $row["colors_name"];?></small>
+
+                      
+
+                        <label class="mt-3 fs-5 fw-bold">Colors</label>
+
+                        <div class="d-flex gap-2">
+
+                            <div class="d-flex flex-column justify-content-center align-items-center mt-1">
+                                <div class="color-div form-check-input border border-dark-subtle rounded-3" style="background-color: <?= $row["color_code"]; ?>;">
+                                </div>
+                                <label for="color"><small><?= $row["colors_name"]; ?></small></label>
+                            </div>
+                        </div>
 
                         <?php
 
-                        $getColor = Database::search("SELECT * FROM `product_has_product_colors` INNER JOIN `product_colors` ON `product_has_product_colors`.`product_colors_colors_id` = `product_colors`.`colors_id`
-                        WHERE `product_has_product_colors`.`product_id` = '" . $getId . "' AND `product_has_product_colors`.`color_stetus_id` = '1';");
-
-                        $colorNames = "";
-                        if ($getColor->num_rows !== 0) {
-
-                        ?>
-
-                            <label class="mt-3 fs-5 fw-bold">Colors</label>
-
-                            <div class="d-flex gap-2">
-                                <?php
-
-                                for ($i = 0; $i < $getColor->num_rows; $i++) {
-
-                                    $rowColor = $getColor->fetch_assoc();
-
-                                    $colorNames = $colorNames . $rowColor["colors_name"] . ",";
-
-                                ?>
-                                    <div class="d-flex flex-column justify-content-center align-items-center mt-1">
-                                        <input type="radio" name="color" id="color" value="<?= $rowColor["colors_id"]; ?>" <?php
-                                                                                                                            if ($i == 0) {
-                                                                                                                            ?> checked <?php
-                                                                                                                                    }
-                                                                                                                                        ?> />
-                                        <div class="color-div form-check-input border border-dark-subtle rounded-3" style="background-color: <?= $rowColor["color_code"]; ?>;">
-                                        </div>
-                                        <label for="color"><small><?= $rowColor["colors_name"]; ?></small></label>
-                                    </div>
-
-                                <?php } ?>
-                            </div>
-
-                        <?php  }
-
-                        $getSize =  Database::search("SELECT * FROM `product_size_has_product` INNER JOIN `product_size` ON 
-                        `product_size_has_product`.`product_size_size_id` = `product_size`.`size_id` WHERE 
+                        $getSize = Database::search("SELECT * FROM `product_size_has_product` INNER JOIN `product_size` ON
+                        `product_size_has_product`.`product_size_size_id` = `product_size`.`size_id` WHERE
                         `product_size_has_product`.`product_id` = '" . $_GET["id"] . "' AND `product_size_has_product`.`size_stetus_id` = '1';");
 
                         $sizeNames = "";
@@ -422,17 +401,13 @@ if (!isset($_GET["id"]) || !isset($_GET["name"])) {
                     <h3 class="jost-bold mt-5 mb-4 text-center">Related Product</h3>
                 </div>
 
-                <?php $getCategory = Database::search("SELECT `product_category`.`product_category_id` FROM `product_category` WHERE `product_category`.`product_id` = '" . $getId . "';");
+                <?php
+             
+                 
 
-                if ($getCategory->num_rows !== 0) {
-
-                    $categoryId = $getCategory->fetch_assoc()["product_category_id"];
-
-                    $getProduct = Database::search("SELECT * FROM `product` INNER JOIN `product_category` ON `product`.`id` = `product_category`.`product_id`
-                    WHERE `product`.`id` !='" . $getId . "' AND `product_category`.`product_category_id` = '" . $categoryId . "' LIMIT 5;");
+                    $getProduct = Database::search("SELECT * FROM `product` WHERE `product`.`id` !='" . $getId . "' AND `main_category_id` = '" . $categoryId . "' LIMIT 5;");
 
                     include "product-card.php";
-                }
 
                 ?>
             </div>
@@ -493,8 +468,9 @@ if (!isset($_GET["id"]) || !isset($_GET["name"])) {
             </div>
 
     <?php
+
+            include "footer.php";
         }
-        include "footer.php";
     }
     ?>
 
