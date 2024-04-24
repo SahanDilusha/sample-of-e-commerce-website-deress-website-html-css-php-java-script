@@ -27,7 +27,7 @@
 
         $user = $_SESSION["user"];
 
-        $getCart = Database::search("SELECT * FROM `cart` INNER JOIN `product` ON `cart`.`product_id` = `product`.`id` WHERE `cart`.`users_username` = '" . $user["username"] . "' AND 
+        $getCart = Database::search("SELECT * FROM `cart` INNER JOIN `product_size` ON `product_size`.`size_id` = `cart`.`product_size_size_id` INNER JOIN `product` ON `cart`.`product_id` = `product`.`id` WHERE `cart`.`users_username` = '" . $user["username"] . "' AND 
         `product`.`stetus_stetus_id` != '6';");
     ?>
 
@@ -107,12 +107,12 @@
                                                                 <?php echo ($row["product_description"]); ?>
                                                             </p>
                                                             <dl class="small m-b-none">
-                                                                <dt>Size : XL</dt>
+                                                                <dt>Size : <?= $row["size_name"]?></dt>
                                                             </dl>
                                                             <div class="m-t-sm">
                                                                 <i class="text-muted" onclick="addToWishi(<?php echo ($row['id']); ?>);"><i class="bi bi-heart text-danger"></i> Add to wish</i>
                                                                 |
-                                                                <i class="text-muted" onclick="DeleteCartItem(<?php echo ($row['id']); ?>);"><i class="bi bi-trash3 text-danger"></i> Remove item</i>
+                                                                <i class="text-muted" onclick="DeleteCartItem('<?php echo ($row['cart_item_id']); ?>');"><i class="bi bi-trash3 text-danger"></i> Remove item</i>
                                                                 |
                                                                 <a href="product-ditels.php?id=<?php echo ($row["id"]); ?>&name=<?=$row["product_name"]?>" class="text-muted text-decoration-none"><i class="bi bi-pencil-square text-danger"></i> Update</a>
                                                             </div>

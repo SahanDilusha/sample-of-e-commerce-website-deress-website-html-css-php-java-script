@@ -1180,7 +1180,7 @@ function ClearFilters() {
 }
 
 function deleteWishiItems(i) {
-   
+
     const request = new XMLHttpRequest();
     const from = new FormData();
     from.append("id", i);
@@ -1197,7 +1197,25 @@ function deleteWishiItems(i) {
     request.send(from);
 }
 
+function DeleteCartItem(id) {
+    const request = new XMLHttpRequest();
+    const from = new FormData();
+    from.append("id", id);
 
+    alert(id);
+
+    request.onreadystatechange = function () {
+        if (request.readyState == "4" && request.status == "200") {
+            if (request.responseText == "ok") {
+                alert(request.responseText);
+                window.location.reload();
+            }
+        }
+    }
+
+    request.open('POST', 'delete-cart-item.php', true);
+    request.send(from);
+}
 
 
 
