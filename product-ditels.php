@@ -248,9 +248,6 @@ if (!isset($_GET["id"]) || !isset($_GET["name"])) {
                                     <?php
 
                                     }
-                                }
-
-                                if (isset($_SESSION["user"])) {
 
                                     ?>
                                     <button class="bi bi-heart btn btn-outline-dark ms-2" onclick="addToWishi(<?php echo ($getId); ?>);"></button>
@@ -258,7 +255,10 @@ if (!isset($_GET["id"]) || !isset($_GET["name"])) {
                             <?php
 
                                 }
-                            } ?>
+                            }
+
+                            ?>
+
 
                         </div>
                     </div>
