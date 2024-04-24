@@ -50,7 +50,7 @@ body {
   background-image: url(resources/image/Rectangle\ 3463272.png);
   background-size: cover;
   background-repeat: no-repeat;
-  
+
 }
 
 .img-div3 {
@@ -302,7 +302,7 @@ body {
   padding: 20px;
 }
 
-.ins:hover  {
+.ins:hover {
   display: block;
   background: rgba(0, 0, 0, 0.2);
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
@@ -317,95 +317,134 @@ body {
 .text-navy {
   color: #1ab394;
 }
+
 .cart-product-imitation {
-text-align: center;
-padding-top: 30px;
-height: 80px;
-width: 80px;
-background-color: #f8f8f9;
-}
-.product-imitation.xl {
-padding: 120px 0;
-}
-.product-desc {
-padding: 20px;
-position: relative;
-}
-.ecommerce .tag-list {
-padding: 0;
-}
-.ecommerce .fa-star {
-color: #d1dade;
-}
-.ecommerce .fa-star.active {
-color: #f8ac59;
-}
-.ecommerce .note-editor {
-border: 1px solid #e7eaec;
-}
-table.shoping-cart-table {
-margin-bottom: 0;
-}
-table.shoping-cart-table tr td {
-border: none;
-text-align: right;
-}
-table.shoping-cart-table tr td.desc,
-table.shoping-cart-table tr td:first-child {
-text-align: left;
-}
-table.shoping-cart-table tr td:last-child {
-width: 80px;
-}
-.ibox {
-clear: both;
-margin-bottom: 25px;
-margin-top: 0;
-padding: 0;
-}
-.ibox.collapsed .ibox-content {
-display: none;
-}
-.ibox:after,
-.ibox:before {
-display: table;
-}
-.ibox-title {
--moz-border-bottom-colors: none;
--moz-border-left-colors: none;
--moz-border-right-colors: none;
--moz-border-top-colors: none;
-background-color: #ffffff;
-border-color: #e7eaec;
-border-image: none;
-border-style: solid solid none;
-border-width: 3px 0 0;
-color: inherit;
-margin-bottom: 0;
-padding: 14px 15px 7px;
-min-height: 48px;
-}
-.ibox-content {
-background-color: #ffffff;
-color: inherit;
-padding: 15px 20px 20px 20px;
-border-color: #e7eaec;
-border-image: none;
-border-style: solid solid none;
-border-width: 1px 0;
-}
-.ibox-footer {
-color: inherit;
-border-top: 1px solid #e7eaec;
-font-size: 90%;
-background: #ffffff;
-padding: 10px 15px;
+  text-align: center;
+  padding-top: 30px;
+  height: 80px;
+  width: 80px;
+  background-color: #f8f8f9;
 }
 
-.color-div{
+.product-imitation.xl {
+  padding: 120px 0;
+}
+
+.product-desc {
+  padding: 20px;
+  position: relative;
+}
+
+.ecommerce .tag-list {
+  padding: 0;
+}
+
+.ecommerce .fa-star {
+  color: #d1dade;
+}
+
+.ecommerce .fa-star.active {
+  color: #f8ac59;
+}
+
+.ecommerce .note-editor {
+  border: 1px solid #e7eaec;
+}
+
+table.shoping-cart-table {
+  margin-bottom: 0;
+}
+
+table.shoping-cart-table tr td {
+  border: none;
+  text-align: right;
+}
+
+table.shoping-cart-table tr td.desc,
+table.shoping-cart-table tr td:first-child {
+  text-align: left;
+}
+
+table.shoping-cart-table tr td:last-child {
+  width: 80px;
+}
+
+.ibox {
+  clear: both;
+  margin-bottom: 25px;
+  margin-top: 0;
+  padding: 0;
+}
+
+.ibox.collapsed .ibox-content {
+  display: none;
+}
+
+.ibox:after,
+.ibox:before {
+  display: table;
+}
+
+.ibox-title {
+  -moz-border-bottom-colors: none;
+  -moz-border-left-colors: none;
+  -moz-border-right-colors: none;
+  -moz-border-top-colors: none;
+  background-color: #ffffff;
+  border-color: #e7eaec;
+  border-image: none;
+  border-style: solid solid none;
+  border-width: 3px 0 0;
+  color: inherit;
+  margin-bottom: 0;
+  padding: 14px 15px 7px;
+  min-height: 48px;
+}
+
+.ibox-content {
+  background-color: #ffffff;
+  color: inherit;
+  padding: 15px 20px 20px 20px;
+  border-color: #e7eaec;
+  border-image: none;
+  border-style: solid solid none;
+  border-width: 1px 0;
+}
+
+.ibox-footer {
+  color: inherit;
+  border-top: 1px solid #e7eaec;
+  font-size: 90%;
+  background: #ffffff;
+  padding: 10px 15px;
+}
+
+.color-div {
   width: 30px;
   height: 30px;
 }
+
+#filter {
+  z-index: 1000;
+  position: fixed;
+  top: 0;
+  left: -100%; /* Initially hide the sidebar off-screen */
+  bottom: 0;
+  overflow-y: auto;
+  background-color: white;
+  width: 100%;
+  max-width: 300px;
+  padding: 20px;
+  transition: left 0.5s ease; /* Animate the left position */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Added box-shadow for better visual */
+}
+
+/* Class to show the sidebar */
+#filter.show-sidebar {
+  left: 0; /* Show the sidebar by moving it to the left */
+}
+
+
 
 @media only screen and (max-width:990px) {
   .product-grid {
@@ -434,11 +473,12 @@ padding: 10px 15px;
   width: 24px;
   border-radius: 24px;
   background-color: black;
-  position: fixed; 
+  position: fixed;
   top: 0;
   left: 0;
   pointer-events: none;
-  z-index: 99999999; /* so that it stays on top of all other elements */
+  z-index: 99999999;
+  /* so that it stays on top of all other elements */
 }
 
 /* ============ desktop view .end// ============ */

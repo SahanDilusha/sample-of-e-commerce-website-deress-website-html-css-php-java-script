@@ -25,7 +25,7 @@ include "spinners.php";
     <div class="container-fluid min-vh-100 mt-5">
         <div class="row">
             <!-- Sidebar -->
-            <div class="col-md-3 mb-3 d-none d-md-block">
+            <div class="d-none" id="filter">
                 <!-- Product Categories -->
                 <?php
                 $getCategories = Database::search("SELECT * FROM `main_category`;");
@@ -103,7 +103,7 @@ include "spinners.php";
                             $row = $getBrand->fetch_assoc();
                         ?>
                             <div class="form-check mb-2">
-                                <input class="form-check-input" type="radio"  name="brand" id="<?= "brand_" . $row["idbrand"] ?>">
+                                <input class="form-check-input" type="radio" name="brand" id="<?= "brand_" . $row["idbrand"] ?>">
                                 <label class="form-check-label mx-3" for="<?= "brand_" . $row["idbrand"] ?>"><?= $row["brand_name"] ?></label>
                             </div>
                         <?php } ?>
@@ -138,11 +138,13 @@ include "spinners.php";
             </div>
 
             <!-- Product List -->
-            <div class="col-md-9" id="list-view">
+            <div class="col-12" id="list-view">
 
                 <div class="w-100 d-flex gap-2 justify-content-end align-items-end">
                     <input class="form-control w-50" type="text" id="s_text">
                     <button class="btn btn-dark" onclick="searchProduct()">Search</button>
+                    <button class="btn bg-transparent bi bi-funnel-fill fs-5 d-block" onclick="showfilter(1);" id="onBtn"></button>
+                    <button class="d-none" onclick="showfilter(0)" id="offBtn"></button>
                 </div>
 
                 <?php

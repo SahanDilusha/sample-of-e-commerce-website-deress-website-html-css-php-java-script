@@ -1154,6 +1154,29 @@ function ClearFilters() {
 
 }
 
+function showfilter(i) {
+    const filter = document.getElementById("filter");
+    const onBtn = document.getElementById("onBtn");
+    const offBtn = document.getElementById("offBtn");
+
+    if (i == 1) {
+        filter.classList.remove("d-none");  // Remove the 'd-none' class to show the sidebar
+        setTimeout(() => {
+            filter.classList.add("show-sidebar");  // Add the 'show-sidebar' class to animate the sidebar into view
+        }, 10);
+        onBtn.className = "d-none";
+        offBtn.className = "btn bg-transparent fs-5 bi bi-x-lg";  // Add a new class to adjust the sidebar position
+    } else {
+        filter.classList.remove("show-sidebar");  // Remove the 'show-sidebar' class to animate the sidebar out of view
+        onBtn.className = "btn bg-transparent bi bi-funnel-fill fs-5";
+        offBtn.className = "d-none";
+        setTimeout(() => {
+            filter.classList.add("d-none");  // Add the 'd-none' class to hide the sidebar after the transition
+        }, 500);
+    }
+}
+
+
 
 
 
