@@ -569,7 +569,7 @@ function deconsteCard(i) {
 
     }
 
-    request.open('POST', 'deconste-card.php', true);
+    request.open('POST', 'delete-card.php', true);
     request.send(from);
 
 }

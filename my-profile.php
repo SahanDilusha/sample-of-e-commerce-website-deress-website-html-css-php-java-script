@@ -399,7 +399,7 @@
                                     </div>
 
                                     <div class="d-flex justify-content-between align-items-center">
-                                        <button class="btn btn-danger bi bi-trash3" onclick="deleteCard(<?php echo ($row['card_no']); ?>);"> Delete</button>
+                                        <button class="btn btn-danger bi bi-trash3" onclick="deconsteCard(<?php echo ($row['card_no']); ?>);"> Delete</button>
                                     </div>
                                 </div>
 

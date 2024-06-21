@@ -15,9 +15,8 @@
 
     <?php
 
-
-
     include "navbar.php";
+    include "spinners.php";
 
     if (!isset($_SESSION["user"])) {
         header("Location: http://localhost/MyShop/login.php");
