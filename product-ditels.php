@@ -412,7 +412,7 @@ if (!isset($_GET["id"]) || !isset($_GET["name"])) {
                                 </div>
                             </div>
 
-                            <small class="mt-2 mb-2 px-2 fw-bold">Excellent Product, I love it 😍</small>
+                            <small class="mt-2 mb-2 px-2 fw-bold"><?=$row["reviews_text"]?></small>
 
                             <small class="text-secondary mt-2 mb-2 px-2">dcjkdhckdsjhcvdcvjknjdscvknkvnckncvdnjvdncvncvnnjvkjdnjvdnjvnjdfvndnvkdjnjvefhw
                                 b bbbcbcjvbnkcvbkfbvfbv</small>

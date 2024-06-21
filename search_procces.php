@@ -4,8 +4,6 @@ include "connecton.php";
 
 if (isset($_GET["text"])) {
 
-    if (!empty(trim($_GET['text']))) {
-       
         echo '
         <div class="w-100 d-flex gap-2 justify-content-end align-items-end">
         <input class="form-control w-50" type="text" id="s_text" value="'.$_GET['text'].'">
@@ -47,19 +45,8 @@ if (isset($_GET["text"])) {
               </li>
               </ul>
               </nav>';
-    } else {
-        echo '<div class="w-100 d-flex gap-2 justify-content-end align-items-end">
-        <input class="form-control w-50" type="text" id="s_text">
-        <button class="btn btn-dark" onclick="searchProduct()">Search</button>
-        <button class="btn bg-transparent bi bi-funnel-fill fs-5 d-block" onclick="showfilter(1);" id="onBtn"></button>
-        <button class="d-none" onclick="showfilter(0)" id="offBtn"></button>
-    </div>
-              <div class="col-12 d-flex flex-column justify-content-center align-items-center mt-5">
-                <i class="bi bi-emoji-frown-fill text-danger fs-4"></i>
-                <h3>No items yet.</h3>
-                <a class="btn btn-dark" href="http://localhost/MyShop/search-product.php">Back</a>
-              </div>';
-    }
+  
+    
 } else {
     echo '<div class="w-100 d-flex gap-2 justify-content-end align-items-end">
     <input class="form-control w-50" type="text" id="s_text">

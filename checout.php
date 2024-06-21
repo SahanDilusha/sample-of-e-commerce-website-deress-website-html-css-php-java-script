@@ -22,6 +22,7 @@
         exit();
     } else {
         include "connecton.php";
+        include "spinners.php";
 
 
         $user = $_SESSION["user"];

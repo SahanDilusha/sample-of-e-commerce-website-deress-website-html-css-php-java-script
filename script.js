@@ -274,9 +274,14 @@ function SingUp() {
 
     const request = new XMLHttpRequest();
 
+    showSpinners();
+
     request.onreadystatechange = function () {
 
         if (request.readyState == "4" && request.status == "200") {
+
+            hideSpinners();
+
             if (request.responseText !== "ok") {
                 document.getElementById("error-text").innerHTML = request.responseText;
                 new bootstrap.Modal(document.getElementById("error")).show();
@@ -313,9 +318,12 @@ function Login() {
 
     const request = new XMLHttpRequest();
 
+    showSpinners();
+
     request.onreadystatechange = function () {
 
         if (request.readyState == "4" && request.status == "200") {
+            hideSpinners();
             if (request.responseText !== "ok") {
                 document.getElementById("error-text").innerHTML = request.responseText;
                 new bootstrap.Modal(document.getElementById("error")).show();
@@ -339,10 +347,11 @@ function sendOtpCode() {
     form.append('email', email);
 
     const request = new XMLHttpRequest();
-
+    showSpinners();
     request.onreadystatechange = function () {
 
         if (request.readyState == "4" && request.status == "200") {
+            hideSpinners();
             if (request.responseText !== "ok") {
                 document.getElementById("error-text").innerHTML = request.responseText;
                 new bootstrap.Modal(document.getElementById("error")).show();
@@ -366,10 +375,11 @@ function verifyCode() {
     form.append('otp', otp);
 
     const request = new XMLHttpRequest();
-
+    showSpinners();
     request.onreadystatechange = function () {
 
         if (request.readyState == "4" && request.status == "200") {
+            hideSpinners();
             if (request.responseText !== "ok") {
                 document.getElementById("error-text").innerHTML = request.responseText;
                 new bootstrap.Modal(document.getElementById("error")).show();
@@ -400,9 +410,9 @@ function ResetPassword() {
     form.append('coPassword', coPassword);
 
     const request = new XMLHttpRequest();
-
+    showSpinners();
     request.onreadystatechange = function () {
-
+        hideSpinners();
         if (request.readyState == "4" && request.status == "200") {
             if (request.responseText !== "ok") {
                 document.getElementById("error-text").innerHTML = request.responseText;
@@ -485,10 +495,11 @@ function AddNewAddress() {
     } else {
         from.append("is_default", "3");
     }
-
+    showSpinners();
     request.onreadystatechange = function () {
 
         if (request.readyState == "4" && request.status == "200") {
+            hideSpinners();
             if (request.responseText !== "ok") {
                 alert(request.responseText);
 
@@ -521,9 +532,9 @@ function saveCard() {
     from.append("cvv", c_cvv);
     from.append("month", c_ed_m);
     from.append("year", c_ed_y);
-
+    showSpinners();
     request.onreadystatechange = function () {
-
+        hideSpinners();
         if (request.readyState == "4" && request.status == "200") {
             if (request.responseText !== "ok") {
                 alert(request.responseText);
@@ -622,7 +633,6 @@ function updateProfile() {
         if (request.readyState == "4" && request.status == "200") {
 
             if (request.responseText == "ok") {
-
                 window.location.reload();
                 show(1);
             } else {
@@ -694,11 +704,11 @@ function Subscribe() {
     const request = new XMLHttpRequest();
     const from = new FormData();
     from.append("email", document.getElementById("subscribe_email").value);
-
+    showSpinners();
     request.onreadystatechange = function () {
 
         if (request.readyState == "4" && request.status == "200") {
-
+            hideSpinners();
             document.getElementById("error-text").innerHTML = request.responseText;
             new bootstrap.Modal(document.getElementById("error")).show();
 
@@ -775,11 +785,11 @@ function addToWishi(i) {
 
 function Logout() {
     const request = new XMLHttpRequest();
-
+    showSpinners();
     request.onreadystatechange = function () {
 
         if (request.readyState == "4" && request.status == "200") {
-
+            hideSpinners();
             window.location.href = "index.php";
         }
     }
@@ -819,9 +829,9 @@ function saveRequest(i) {
     from.append("p_id", i);
     from.append("type_id", type_id.value);
     from.append("msg", msg.value);
-
+    showSpinners();
     request.onreadystatechange = function () {
-
+        hideSpinners();
         if (request.readyState == "4" && request.status == "200") {
 
             if (request.responseText == "Request saved!") {
@@ -864,10 +874,12 @@ function ContactUsSend() {
     from.append("mobile", mobile);
     from.append("email", email);
 
+    showSpinners();
+
     request.onreadystatechange = function () {
 
         if (request.readyState == "4" && request.status == "200") {
-
+            hideSpinners();
             if (request.responseText == "ok") {
                 document.getElementById("msg").value = "";
             }
@@ -891,10 +903,12 @@ function DiscountCodeCheck() {
     const from = new FormData();
     from.append("code", DiscountCode);
 
+    showSpinners();
+
     request.onreadystatechange = function () {
 
         if (request.readyState == "4" && request.status == "200") {
-
+            hideSpinners();
             document.getElementById("msg_l").innerHTML = request.responseText;
 
             const myToast = new bootstrap.Toast(document.getElementById('myToast'));
@@ -929,7 +943,6 @@ function SelectShoppingAddress(i) {
     request.onreadystatechange = function () {
 
         if (request.readyState == "4" && request.status == "200") {
-
 
             if (request.responseText == "ok") {
                 window.location.reload();

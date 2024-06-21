@@ -24,6 +24,10 @@ if (isset($_SESSION["user"])) {
 
 <body>
 
+<?php 
+include "spinners.php";
+?>
+
   <div class="container-fluid">
 
     <!-- login from -->

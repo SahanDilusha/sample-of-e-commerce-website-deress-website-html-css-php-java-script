@@ -18,7 +18,9 @@ include "connecton.php";
 
 <body>
 
-    <?php include "navbar.php" ?>
+    <?php include "navbar.php";
+    include "spinners.php";
+    ?>
 
     <div class="container-fluid">
 
