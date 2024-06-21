@@ -880,6 +880,7 @@ function ContactUsSend() {
 
         if (request.readyState == "4" && request.status == "200") {
             hideSpinners();
+            alert(request.responseText);
             if (request.responseText == "ok") {
                 document.getElementById("msg").value = "";
             }
