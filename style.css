@@ -460,6 +460,30 @@ backdrop-filter: blur(11.7px);
   width: 100%; /* Adjust width as needed */
   height: auto; /* Adjust height as needed */
 }
+
+.order-success-container {
+  max-width: 600px;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background-color: #fff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  margin-top: 50px;
+}
+
+.order-success-icon {
+  font-size: 48px;
+  color: #28a745;
+  margin-bottom: 20px;
+}
+
+.order-details {
+  margin-top: 20px;
+  border-top: 1px solid #ddd;
+  padding-top: 10px;
+}
+
 @media only screen and (max-width:990px) {
   .product-grid {
     margin-bottom: 40px;
