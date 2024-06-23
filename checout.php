@@ -96,8 +96,8 @@
 
 
                         <div class="form-check mt-3 mb-3">
-                            <input class="form-check-input bg-black" type="radio" name="flexRadioDefault" id="flexRadioDefault1" checked onchange="methodHide();">
-                            <label class="form-check-label fw-bold" for="flexRadioDefault1">
+                            <input class="form-check-input bg-black" type="radio" name="flexRadioDefault" id="c_on" checked onchange="methodHide();">
+                            <label class="form-check-label fw-bold" for="c_on">
                                 Chash on delivery
                             </label>
                         </div>
@@ -106,74 +106,6 @@
                             <label class="form-check-label fw-bold" for="flexRadioDefault2">
                                 Debit/Credit Card
                             </label>
-                        </div>
-                        <div class="d-none" id="card-from">
-                            <?php
-                            $getCard = Database::search("SELECT * FROM `user_card` INNER JOIN `card_type` ON `user_card`.`card_type_card_type_id` = `card_type`.`card_type_id` WHERE `user_card`.`users_username` = '" . $user["username"] . "'");
-
-                            if ($getCard->num_rows !== 0) {
-
-                            ?>
-
-                                <div class="w-100 d-flex gap-2">
-
-                                    <?php
-                                    for ($i = 0; $i < $getCard->num_rows; $i++) {
-
-                                        $row = $getCard->fetch_assoc();
-                                    ?>
-                                        <div class="col-md-3 gap-2 m-2 bg-secondary-subtle d-flex py-3 px-1 justify-content-center align-items-center" onclick="filCard('<?= $row['card_no'] ?>','<?= $row['h_name'] ?>','<?= $row['cvv'] ?>','<?= $row['ex_y'] ?>','<?= $row['ex_m'] ?>');">
-
-                                            <?php
-
-                                            if ($row["card_type_card_type_id"] == "1") {
-
-
-                                            ?> <img src="resources/image/vcard.png" />
-                                            <?php
-                                            } else {
-                                            ?>
-                                                <img src="resources/image/mCard.png" />
-                                            <?php
-                                            }
-                                            ?>
-
-                                            <small class="fw-bold"><?= $row["card_no"]; ?></small>
-
-                                        </div>
-
-                                    <?php } ?>
-                                </div>
-                            <?php } ?>
-
-
-
-
-                            <div class="col-md-6 mt-2">
-                                <label for="c_no" class="form-label">Card Number <small class="text-danger">*</small></label>
-                                <input type="text" class="form-control" id="c_no" required />
-                            </div>
-
-                            <div class="col-md-6 mt-2">
-                                <label for="c_name" class="form-label">Name on the Card <small class="text-danger">*</small></label>
-                                <input type="text" class="form-control" id="c_name" required />
-                            </div>
-
-                            <div class="col-md-6 mt-2">
-                                <label for="c_cvv" class="form-label">CVV <small class="text-danger">*</small></label>
-                                <input type="text" class="form-control" id="c_cvv" required />
-                            </div>
-
-                            <div class="col-6 mt-2">
-                                <label for="c_ed" class="form-label">Expiry Date <small class="text-danger">*</small></label>
-                                <div class="d-flex justify-content-center align-items-center g-2">
-                                    <input type="text" class="form-control mx-1" id="c_ed_y" required placeholder="YY" />
-                                    -
-                                    <input type="text" class="form-control mx-1" id="c_ed_m" required placeholder="MM" />
-                                </div>
-
-                            </div>
-
                         </div>
 
                     </div>
@@ -204,7 +136,7 @@
                         </div>
 
                         <div class="d-flex justify-content-center flex-column gap-2 align-items-center w-100 mt-2 mb-2">
-                            <button class="btn btn-dark w-100 p-2">Pay Now</button>
+                            <button class="btn btn-dark w-100 p-2" onclick="payCheck();">Place Order</button>
                         </div>
 
                     </div>
@@ -235,11 +167,10 @@
     include "footer.php";
 
     ?>
-
+    <script src="https://www.paypal.com/sdk/js?client-id=AacVFATBU3IRA0tP72nBWr0RrEyEbB4W86RfNcDcf3lkLxZQfClcW7u356jjZV8n4rss4iDSLtHZ2NOP"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 
     <script src="script.js"></script>
-
 
 </body>
 

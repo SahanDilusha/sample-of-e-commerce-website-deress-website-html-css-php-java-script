@@ -1248,8 +1248,6 @@ function updateCart(id) {
 
 }
 
-
-
 function setRating(rating) {
     const starIcons = document.querySelectorAll('#ar #star-div i');
 
@@ -1261,7 +1259,6 @@ function setRating(rating) {
         }
     });
 
-    // Update the value of the hidden rating input
     const ratingInput = document.querySelector('#ar #rating-in');
     ratingInput.value = rating;
 }
@@ -1273,8 +1270,8 @@ document.getElementById('submitReview').addEventListener('click', function (even
     const reviewText = document.getElementById('exampleFormControlTextarea1').value;
     const productId = document.getElementById('productId').value;
 
-    const minLength = 10; // Example minimum length
-    const maxLength = 100; // Example maximum length
+    const minLength = 10;
+    const maxLength = 100;
 
     if (ratingInput.value == "no") {
         alert("Please Select Your Rating");
@@ -1331,8 +1328,31 @@ document.getElementById('submitReview').addEventListener('click', function (even
     request.send(formData);
 });
 
+function payCheck() {
 
+    const request = new XMLHttpRequest();
 
+    let me = "";
+    if (document.getElementById("c_on").checked) {
+        me = "1";
+    } else {
+        me = "2";
+    }
+
+    request.onreadystatechange = function () {
+        if (request.readyState == "4" && request.status == "200") {
+            if (request.responseText === "ok") {
+                window.location.replace("http://localhost/MyShop/pay-now.php");
+            } else {
+                window.location.replace("http://localhost/MyShop/index.php");
+            }
+        }
+
+    }
+    request.open('GET', 'check-pay-now.php?me=' + encodeURIComponent(me), true);
+    request.send();
+
+}
 
 
 

@@ -23,7 +23,6 @@
         exit();
     } else {
         include "connecton.php";
-        include "spinners.php";
         $user = $_SESSION["user"];
 
         $getCart = Database::search("SELECT * FROM `cart` INNER JOIN `product_size` ON `product_size`.`size_id` = `cart`.`product_size_size_id` INNER JOIN `product` ON `cart`.`product_id` = `product`.`id` WHERE `cart`.`users_username` = '" . $user["username"] . "' AND 
