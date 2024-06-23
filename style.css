@@ -456,6 +456,10 @@ backdrop-filter: blur(11.7px);
 -webkit-backdrop-filter: blur(11.7px);
 }
 
+#paypal-button-container {
+  width: 100%; /* Adjust width as needed */
+  height: auto; /* Adjust height as needed */
+}
 @media only screen and (max-width:990px) {
   .product-grid {
     margin-bottom: 40px;
