@@ -108,31 +108,7 @@ function show(i) {
         sc.className = "d-none";
         n.className = "d-none";
         se.className = "d-none";
-    } else if (i == 5) {
-        pi.className = "d-none";
-        mo.className = "d-none";
-        mw.className = "d-none";
-        ma.className = "d-none";
-        sc.className = "col py-3";
-        n.className = "d-none";
-        se.className = "d-none";
-    } else if (i == 6) {
-        pi.className = "d-none";
-        mo.className = "d-none";
-        mw.className = "d-none";
-        ma.className = "d-none";
-        sc.className = "d-none";
-        n.className = "col py-3";
-        se.className = "d-none";
-    } else if (i == 7) {
-        pi.className = "d-none";
-        mo.className = "d-none";
-        mw.className = "d-none";
-        ma.className = "d-none";
-        sc.className = "d-none";
-        n.className = "d-none";
-        se.className = "col py-3";
-    }
+    } 
 
 }
 
@@ -1352,6 +1328,30 @@ function payCheck() {
     request.open('GET', 'check-pay-now.php?me=' + encodeURIComponent(me), true);
     request.send();
 
+}
+
+function getInvoice() {
+    const request = new XMLHttpRequest();
+
+    let me = "";
+    if (document.getElementById("c_on").checked) {
+        me = "1";
+    } else {
+        me = "2";
+    }
+
+    request.onreadystatechange = function () {
+        if (request.readyState == "4" && request.status == "200") {
+            if (request.responseText === "ok") {
+                window.location.replace("http://localhost/MyShop/pay-now.php");
+            } else {
+                window.location.replace("http://localhost/MyShop/index.php");
+            }
+        }
+
+    }
+    request.open('POST', 'get-invoice.php', true);
+    request.send();
 }
 
 

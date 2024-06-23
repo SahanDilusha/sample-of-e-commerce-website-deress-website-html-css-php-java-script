@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="style.css" />
 </head>
 
-<body onload="onclick=show(2);">
+<body onload="onclick=show(2); getInvoice();">
 
     <?php
 
@@ -55,22 +55,6 @@
                                 <div class="nav-link px-0 align-middle text-dark">
                                     <i class="fs-4 bi bi-geo-alt"></i> <span class="ms-1 d-none d-sm-inline">Manage
                                         Addresses</span>
-                                </div>
-                            </li>
-                            <li onclick="show(5);">
-                                <div class="nav-link px-0 align-middle text-dark">
-                                    <i class="fs-4 bi bi-credit-card"></i> <span class="ms-1 d-none d-sm-inline">Saved
-                                        Cards</span>
-                                </div>
-                            </li>
-                            <li onclick="show(6);">
-                                <div class="nav-link px-0 align-middle text-dark">
-                                    <i class="fs-4 bi bi-bell"></i> <span class="ms-1 d-none d-sm-inline">Notifications</span>
-                                </div>
-                            </li>
-                            <li onclick="show(7);">
-                                <div href="#" class="nav-link px-0 align-middle text-dark">
-                                    <i class="fs-4 bi bi-gear"></i> <span class="ms-1 d-none d-sm-inline">Settings</span>
                                 </div>
                             </li>
                         </ul>
@@ -313,114 +297,6 @@
                     </div>
                 </div>
                 <!-- My Wishlist-->
-
-                <!-- Notifications -->
-                <div class="col d-none" id="n">
-                    <div class="row">
-                        <div class="col-12">
-                            <label class="text-dark fs-3 jost-bold">Notifications</label>
-                        </div>
-
-                        <div class="col-12 mt-3 d-flex justify-content-between align-items-center">
-
-                            <div class="d-flex gap-1 mt-2 justify-content-center align-items-center gap-2">
-                                <div>
-                                    <img src="profile_images/download.jpeg" width="50px" class="rounded-circle" />
-                                </div>
-                                <div class="d-flex flex-column">
-                                    <label class="fs-6 fw-bold">Profile Update</label>
-                                    <small>You just update your profile picture</small>
-                                </div>
-                            </div>
-
-                            <div class="d-flex justify-content-between align-items-center">
-                                <label>Jest Now</label>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- Notifications -->
-
-                <!-- Saved Cards -->
-                <div class="col py-3 d-none" id="sc">
-                    <div class="row">
-                        <div class="col-12 d-flex flex-column justify-content-center align-items-start">
-                            <label class="text-dark fs-3 jost-bold">Saved Cards</label>
-                            <button class="fs-6 btn btn-dark mt-3 p-lg-3 p-2" onclick="addNewCard();"><i class="bi bi-plus"></i> Add New Card</button>
-                        </div>
-
-                        <?php
-
-
-                        $getCard = Database::search("SELECT * FROM `user_card` INNER JOIN `card_type` ON `user_card`.`card_type_card_type_id` = `card_type`.`card_type_id` WHERE `user_card`.`users_username` = '" . $user["username"] . "'");
-
-                        if ($getCard->num_rows == 0) {
-
-                        ?>
-                            <div class="col-12 mt-5 d-flex flex-column gap-3 justify-content-center align-items-center">
-                                <i class="bi bi-emoji-frown-fill text-danger fs-4"></i>
-                                <h5 class="text-secondary">not alivibal</h5>
-                            </div>
-
-                            <?php
-
-                        } else {
-
-                            for ($i = 0; $i < $getCard->num_rows; $i++) {
-
-                                $row = $getCard->fetch_assoc();
-
-
-                            ?>
-
-                                <div class="col-12 mt-3 d-flex justify-content-between align-items-center">
-
-                                    <div class="d-flex gap-1 mt-2 justify-content-center align-items-center gap-2">
-                                        <div>
-                                            <?php
-
-                                            if ($row["card_type_card_type_id"] == "1") {
-
-
-                                            ?>
-                                                <img src="resources/image/vcard.png" />
-                                            <?php
-                                            } else {
-                                            ?>
-                                                <img src="resources/image/mCard.png" />
-                                            <?php
-                                            }
-                                            ?>
-                                        </div>
-                                        <div class="d-flex flex-column">
-                                            <label class="fs-5 fw-bold"><?php echo ($row["card_type_name"]); ?></label>
-                                            <small><?php echo ($row["card_no"]); ?></small>
-                                        </div>
-                                    </div>
-
-                                    <div class="d-flex justify-content-between align-items-center">
-                                        <button class="btn btn-danger bi bi-trash3" onclick="deconsteCard(<?php echo ($row['card_no']); ?>);"> Delete</button>
-                                    </div>
-                                </div>
-
-                        <?php
-
-                            }
-                        }
-                        ?>
-                    </div>
-                </div>
-                <!-- Saved Cards -->
-
-                <!-- Settings -->
-                <div class="col d-none" id="se">
-                    <div class="row">
-                        <div class="col-12">
-                            <label class="text-dark fs-3 jost-bold">Setting</label>
-                        </div>
-                    </div>
-                </div>
-                <!-- Setting -->
 
             </div>
         </div>

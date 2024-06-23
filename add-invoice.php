@@ -29,7 +29,7 @@ VALUES('" . $id . "',
 '" . date('Y-m-d H:i:s') . "',
 '" . $total["grandTotal"] . "',
 '" . $user["username"] . "',
-'1',
+'11',
 '" . $_SESSION["address_id"] . "',
 '" . $me . "',
 '" . $total["discount"] . "'
