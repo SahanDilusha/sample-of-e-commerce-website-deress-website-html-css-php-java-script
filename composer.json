@@ -1,0 +1,15 @@
+{
+    "name": "vendor/my-shop",
+    "type": "project",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "SahanDilusha",
+            "email": "sahancodelygroup@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",  
+    "require": {
+        "everapi/freecurrencyapi-php": "dev-master"  
+    }
+}
