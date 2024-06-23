@@ -144,18 +144,17 @@
             function addInvoice(id) {
                 const request = new XMLHttpRequest();
                 const from = new FormData();
+                from.append("id", id);
 
                 request.onreadystatechange = function() {
                     if (request.readyState == "4" && request.status == "200") {
                         if (request.responseText === "ok") {
-                            // You can handle the successful invoice addition here
-                        } else {
-                            // Handle the case when adding the invoice failed
-                        }
+                            window.location.href = "order-success.php";
+                        } 
                     }
                 }
 
-                request.open('GET', 'add-invoice.php?id=' + id, true);
+                request.open('POST', 'add-invoice.php', true);
                 request.send();
             }
 
@@ -196,14 +195,12 @@
                         // Capture the funds from the transaction
                         return actions.order.capture().then(function(details) {
                             addInvoice('<?= $_SESSION["check"]["id"]; ?>');
-                            // Optionally, you can also notify the user of the successful payment
-                            alert('Payment completed successfully!');
                         });
                     },
                     onCancel: function(data) {
 
                         if (confirm("Cancel order?") === true) {
-                            window.location.replace('http://localhost/MyShop/cancelled.php');
+                            window.location.replace('http://localhost/MyShop/index.php');
                         }
 
                     }
