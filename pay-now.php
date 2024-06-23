@@ -118,7 +118,7 @@
 
                         if ($_SESSION["check"]["me"] == "1") {
                         ?>
-                            <button class="btn btn-dark w-100 p-2" onclick="addInvoice('<?= $_SESSION['check']['id']; ?>');">Place Order</button>
+                            <button class="btn btn-dark w-100 p-2" onclick="addInvoice('<?= $_SESSION['check']['id']; ?>','1');">Place Order</button>
                         <?php
                         } else {
                         ?>
@@ -141,16 +141,17 @@
         <script src="https://www.paypal.com/sdk/js?client-id=AacVFATBU3IRA0tP72nBWr0RrEyEbB4W86RfNcDcf3lkLxZQfClcW7u356jjZV8n4rss4iDSLtHZ2NOP&disable-funding=credit,card"></script>
 
         <script>
-            function addInvoice(id) {
+            function addInvoice(id,me) {
                 const request = new XMLHttpRequest();
                 const from = new FormData();
                 from.append("id", id);
+                from.append("me",me);
 
                 request.onreadystatechange = function() {
                     if (request.readyState == "4" && request.status == "200") {
                         if (request.responseText === "ok") {
                             window.location.href = "order-success.php";
-                        } 
+                        }
                     }
                 }
 
@@ -194,7 +195,7 @@
                     onApprove: function(data, actions) {
                         // Capture the funds from the transaction
                         return actions.order.capture().then(function(details) {
-                            addInvoice('<?= $_SESSION["check"]["id"]; ?>');
+                            addInvoice('<?= $_SESSION["check"]["id"]; ?>','2');
                         });
                     },
                     onCancel: function(data) {
