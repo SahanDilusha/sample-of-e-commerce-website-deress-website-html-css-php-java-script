@@ -24,13 +24,13 @@
 
                         <ul class="list-unstyled mb-0">
                             <li class="mb-2 ">
-                                <i class="bi bi-telephone fs-6 jost-bold "> (704) 555-0127</i>
+                                <i class="bi bi-telephone fs-6 jost-bold "> (+94)71 555-0127</i>
                             </li>
                             <li class="mb-2">
-                                <i class="bi bi-envelope fs-6 jost-bold"> krist@exampale.com</i>
+                                <i class="bi bi-envelope fs-6 jost-bold"> support@krist.com</i>
                             </li>
                             <li class="mb-2">
-                                <i class="bi bi-geo-alt fs-6 jost-bold"> 3891 Ranchview Dr. Richardson,<br /> California</i>
+                                <i class="bi bi-geo-alt fs-6 jost-bold"> 201 Shanti Villa,Silkhouse Street,Kandy.<br /> Sri Lanka</i>
                             </li>
                         </ul>
                     </div>
@@ -79,7 +79,10 @@
 
                         <ul class="list-unstyled">
                             <li class="mb-2">
-                                <a href="blog.php" class="text-white jost-bold text-decoration-none">About Us</a>
+                                <a href="about-us.php" class="text-white jost-bold text-decoration-none">About Us</a>
+                            </li>
+                            <li class="mb-2">
+                                <a href="blog.php" class="text-white jost-bold text-decoration-none">Blog</a>
                             </li>
                             <li class="mb-2">
                                 <a href="careers.php" class="text-white jost-bold text-decoration-none">Careers</a>

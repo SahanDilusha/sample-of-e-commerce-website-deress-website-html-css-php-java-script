@@ -1015,14 +1015,6 @@ function advancedSearchProduct() {
         }
     });
 
-    // alert(selectedSize);
-    // alert(selectedColor);
-    // alert(selectedCategory);
-    // alert(stayBy);
-    // alert(minPrice);
-    // alert(maxPrice);
-
-
     const request = new XMLHttpRequest();
 
     const param = `text=${text}&category=${selectedCategory}&brand=${selectedBrand}&color=${selectedColor}&size=${selectedSize}&stay=${stayBy}&minPrice=${minPrice}&maxPrice=${maxPrice}`;
@@ -1177,7 +1169,6 @@ document.getElementById('submitReview').addEventListener('click', function (even
     const maxLength = 100;
 
     if (ratingInput.value == "no") {
-        alert("Please Select Your Rating");
         document.getElementById("msg_l").innerHTML = request.responseText;
 
         const myToast = new bootstrap.Toast(document.getElementById('myToast'));
@@ -1210,7 +1201,6 @@ document.getElementById('submitReview').addEventListener('click', function (even
 
     request.onreadystatechange = function () {
         if (request.readyState == "4" && request.status == "200") {
-            alert(request.responseText);
 
             document.getElementById("msg_l").innerHTML = request.responseText;
 
@@ -1265,7 +1255,6 @@ function getInData() {
     const from = new FormData();
     body.innerHTML = "";
     request.onreadystatechange = function () {
-        alert(request.responseText);
         if (request.readyState == "4" && request.status == "200") {
             body.innerHTML = request.responseText;
         }

@@ -21,24 +21,7 @@
     <main class="main-content">
         <div class="container">
 
-            <div class="about-us-section">
-                <div class="about-us-content">
-                    <h2>About Us</h2>
-                    <p>Welcome to Krist! We are a passionate team dedicated to bringing you the latest and most stylish dresses for every occasion. Our journey began in [Year] with a simple mission: to make every woman feel beautiful and confident in what she wears.</p>
-                    <p>At Krist, we believe in quality, creativity, and customer satisfaction. We handpick each piece in our collection to ensure it meets our high standards. Whether you're looking for a casual day dress, a chic office outfit, or a stunning evening gown, we have something for everyone.</p>
-                    <p>Thank you for being a part of our story. We invite you to explore our blog for the latest fashion tips, trends, and inspirations. Stay connected with us on social media for updates and exclusive offers!</p>
-                    <div class="social-links">
-                        <a href="#"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fab fa-pinterest-p"></i></a>
-                    </div>
-                </div>
-                <div class="about-us-img">
-                    <img src="https://abeautifulmess.typepad.com/.a/6a00d8358081ff69e2016301db4217970d-800wi" alt="About Us Image">
-                </div>
-            </div>
-
+        
             <h1 class="page-title mt-3">Our Blog</h1>
             <div class="blog-grid">
                 <!-- Blog Post Item -->

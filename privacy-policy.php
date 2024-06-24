@@ -62,7 +62,7 @@
                 <p>If you have any questions about this Privacy Policy, please contact us:</p>
                 <ul>
                     <li>Email: <a href="mailto:support@krist.com">support@krist.com</a></li>
-                    <li>Address: 123 Fashion Street, Trend City, TC 45678</li>
+                    <li>Address: 201 Shanti Villa,Silkhouse Street,Kandy.</li>
                 </ul>
             </section>
         </div>

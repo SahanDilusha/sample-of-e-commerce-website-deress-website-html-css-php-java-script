@@ -29,7 +29,7 @@ session_start();
                         <a class=" nav-link jost-bold" aria-current="page" href="index.php">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class=" nav-link jost-bold" href="#">Our Story</a>
+                        <a class=" nav-link jost-bold" href="about-us.php">Our Story</a>
                     </li>
                     <li class="nav-item">
                         <a class=" nav-link jost-bold" href="blog.php">Blog</a>
