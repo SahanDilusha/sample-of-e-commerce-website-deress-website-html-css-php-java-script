@@ -484,6 +484,155 @@ backdrop-filter: blur(11.7px);
   padding-top: 10px;
 }
 
+
+/* General Styles */
+body, html {
+  margin: 0;
+  padding: 0;
+  font-family: 'Roboto', sans-serif;
+  background-color: #f5f5f5;
+  color: #333;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+
+/* Main Content Styles */
+.main-content {
+  padding: 40px 0;
+}
+
+.page-title {
+  text-align: center;
+  font-size: 2.5em;
+  color: #ff4081;
+  margin-bottom: 40px;
+}
+
+.blog-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.blog-post {
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  flex: 1;
+  min-width: 280px;
+  max-width: calc(33.333% - 20px);
+  display: flex;
+  flex-direction: column;
+}
+
+.blog-post-img img {
+  width: 100%;
+  height: auto;
+}
+
+.blog-post-content {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.blog-post-title {
+  font-size: 1.5em;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.blog-post-date {
+  font-size: 0.9em;
+  color: #999;
+  margin-bottom: 15px;
+}
+
+.blog-post-snippet {
+  flex-grow: 1;
+  margin-bottom: 20px;
+}
+
+.read-more {
+  align-self: flex-start;
+  background-color: #ff4081;
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+}
+
+.read-more:hover {
+  background-color: #e73370;
+}
+
+/* About Us Section Styles */
+.about-us-section {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  margin-top: 60px;
+  background-color: #fff;
+  padding: 40px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.about-us-content {
+  flex: 1;
+  min-width: 300px;
+  padding: 20px;
+}
+
+.about-us-content h2 {
+  font-size: 2em;
+  color: #ff4081;
+  margin-bottom: 20px;
+}
+
+.about-us-content p {
+  font-size: 1em;
+  margin-bottom: 20px;
+}
+
+.about-us-img {
+  flex: 1;
+  min-width: 300px;
+  padding: 20px;
+}
+
+.about-us-img img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+
+.social-links a {
+  color: #ff4081;
+  margin-right: 10px;
+  font-size: 1.5em;
+  transition: color 0.3s ease;
+}
+
+.social-links a:hover {
+  color: #e73370;
+}
+
+
+
+@media (max-width: 768px) {
+  .blog-post {
+      max-width: 100%;
+  }
+}
+
+
 @media only screen and (max-width:990px) {
   .product-grid {
     margin-bottom: 40px;

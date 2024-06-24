@@ -79,19 +79,19 @@
 
                         <ul class="list-unstyled">
                             <li class="mb-2">
-                                <a href="#!" class="text-white jost-bold text-decoration-none">About Us</a>
+                                <a href="blog.php" class="text-white jost-bold text-decoration-none">About Us</a>
                             </li>
                             <li class="mb-2">
-                                <a href="#!" class="text-white jost-bold text-decoration-none">Careers</a>
+                                <a href="careers.php" class="text-white jost-bold text-decoration-none">Careers</a>
                             </li>
                             <li class="mb-2">
-                                <a href="#!" class="text-white jost-bold text-decoration-none">Delivery Policy</a>
+                                <a href="delivery-policy.php" class="text-white jost-bold text-decoration-none">Delivery Policy</a>
                             </li>
                             <li class="mb-2">
-                                <a href="#!" class="text-white jost-bold text-decoration-none">Privacy Policy</a>
+                                <a href="privacy-policy.php" class="text-white jost-bold text-decoration-none">Privacy Policy</a>
                             </li>
                             <li class="mb-2">
-                                <a href="#!" class="text-white jost-bold text-decoration-none">Terms & Conditions</a>
+                                <a href="terms-conditions.php" class="text-white jost-bold text-decoration-none">Terms & Conditions</a>
                             </li>
                         </ul>
                     </div>
