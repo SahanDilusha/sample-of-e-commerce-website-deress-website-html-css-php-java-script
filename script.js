@@ -477,64 +477,6 @@ function AddNewAddress() {
 
 }
 
-function saveCard() {
-
-    const c_no = document.getElementById("c_no").value;
-    const c_name = document.getElementById("c_name").value;
-    const c_cvv = document.getElementById("c_cvv").value;
-    const c_ed_m = document.getElementById("c_ed_m").value;
-    const c_ed_y = document.getElementById("c_ed_y").value;
-
-    const request = new XMLHttpRequest();
-
-    const from = new FormData();
-    from.append("cardNumber", c_no);
-    from.append("holderName", c_name);
-    from.append("cvv", c_cvv);
-    from.append("month", c_ed_m);
-    from.append("year", c_ed_y);
-    showSpinners();
-    request.onreadystatechange = function () {
-        hideSpinners();
-        if (request.readyState == "4" && request.status == "200") {
-            if (request.responseText !== "ok") {
-                alert(request.responseText);
-            } else {
-                window.location.reload();
-                show(5);
-            }
-        }
-
-    }
-
-    request.open('POST', 'add-new-card.php', true);
-    request.send(from);
-
-}
-
-function deconsteCard(i) {
-
-    const request = new XMLHttpRequest();
-
-    const from = new FormData();
-    from.append("id", i);
-
-    request.onreadystatechange = function () {
-
-        if (request.readyState == "4" && request.status == "200") {
-            if (request.responseText == "ok") {
-                window.location.reload();
-                show(5);
-            }
-        }
-
-    }
-
-    request.open('POST', 'delete-card.php', true);
-    request.send(from);
-
-}
-
 function deconsteAddress(i) {
     const request = new XMLHttpRequest();
 
