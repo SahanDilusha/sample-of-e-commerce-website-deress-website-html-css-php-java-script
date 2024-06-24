@@ -904,6 +904,7 @@ function ViewOrder(id) {
 
 }
 
+
 function CancelOrderModle(id) {
     new bootstrap.Modal(document.getElementById("CancelOrderModel")).show();
     document.getElementById("order-id").innerHTML = id;
@@ -1249,7 +1250,6 @@ function payCheck() {
 
 function getInData() {
     const request = new XMLHttpRequest();
-
 
     const body = document.getElementById("or-body");
 

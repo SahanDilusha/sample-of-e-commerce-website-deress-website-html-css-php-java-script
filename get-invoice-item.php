@@ -6,12 +6,11 @@ if (isset($_POST["order"])) {
 
     if (!empty($_POST['order'])) {
 
-        $getItems = Database::search("SELECT * FROM `invoice_items` INNER JOIN `product` ON `invoice_items`.`product_id` = `product`.`id` WHERE `invoice_items`.`invoice_invoice_id` = '" . $_POST['order'] . "'");
+        $getItems = Database::search("SELECT * FROM `invoice_items`  INNER JOIN `product` ON `invoice_items`.`product_id` = `product`.`id` INNER JOIN `product_size` ON `invoice_items`.`size_id` = `product_size`.`size_id` WHERE `invoice_items`.`invoice_invoice_id` = '" . $_POST['order'] . "'");
 
         if ($getItems->num_rows != 0) {
 
 ?>
-
             <div class="ibox-content">
                 <div class="table-responsive">
                     <table class="table shoping-cart-table">
@@ -39,7 +38,7 @@ if (isset($_POST["order"])) {
                                             <?php echo ($row["product_description"]); ?>
                                         </p>
                                         <dl class="small m-b-none">
-                                            <dt>Size : XL</dt>
+                                            <dt>Size : <?=$row["size_name"]?></dt>
                                         </dl>
                                     </td>
                                     <td>
