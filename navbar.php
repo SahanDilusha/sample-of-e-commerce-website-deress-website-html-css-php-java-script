@@ -35,6 +35,9 @@ session_start();
                         <a class=" nav-link jost-bold" href="blog.php">Blog</a>
                     </li>
                     <li class="nav-item">
+                        <a class=" nav-link jost-bold" href="careers.php">Careers</a>
+                    </li>
+                    <li class="nav-item">
                         <a class=" nav-link jost-bold" href="contact_us.php">Contact Us</a>
                     </li>
                 </ul>
