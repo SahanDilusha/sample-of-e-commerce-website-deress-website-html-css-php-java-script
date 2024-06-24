@@ -72,43 +72,28 @@ function show(i) {
     const mo = document.getElementById("mo");
     const mw = document.getElementById("mw");
     const ma = document.getElementById("ma");
-    const sc = document.getElementById("sc");
-    const n = document.getElementById("n");
-    const se = document.getElementById("se");
 
     if (i == 1) {
         pi.className = "col py-3";
         mo.className = "d-none";
         mw.className = "d-none";
         ma.className = "d-none";
-        sc.className = "d-none";
-        n.className = "d-none";
-        se.className = "d-none";
     } else if (i == 2) {
         pi.className = "d-none";
         mo.className = "col py-3";
         mw.className = "d-none";
         ma.className = "d-none";
-        sc.className = "d-none";
-        n.className = "d-none";
-        se.className = "d-none";
     } else if (i == 3) {
         pi.className = "d-none";
         mo.className = "d-none";
         mw.className = "col py-3";
         ma.className = "d-none";
-        sc.className = "d-none";
-        n.className = "d-none";
-        se.className = "d-none";
     } else if (i == 4) {
         pi.className = "d-none";
         mo.className = "d-none";
         mw.className = "d-none";
         ma.className = "col py-3";
-        sc.className = "d-none";
-        n.className = "d-none";
-        se.className = "d-none";
-    } 
+    }
 
 }
 
@@ -1330,30 +1315,23 @@ function payCheck() {
 
 }
 
-function getInvoice() {
+function getInData() {
     const request = new XMLHttpRequest();
 
-    let me = "";
-    if (document.getElementById("c_on").checked) {
-        me = "1";
-    } else {
-        me = "2";
-    }
+    const body = document.getElementById("or-body");
 
+    const from = new FormData();
+    body.innerHTML = "";
     request.onreadystatechange = function () {
+        alert(request.responseText);
         if (request.readyState == "4" && request.status == "200") {
-            if (request.responseText === "ok") {
-                window.location.replace("http://localhost/MyShop/pay-now.php");
-            } else {
-                window.location.replace("http://localhost/MyShop/index.php");
-            }
+            body.innerHTML = request.responseText;
         }
 
     }
     request.open('POST', 'get-invoice.php', true);
-    request.send();
+    request.send(from);
 }
-
 
 
 

@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="style.css" />
 </head>
 
-<body onload="onclick=show(2); getInvoice();">
+<body onload="show(2); getInData();">
 
     <?php
 
@@ -43,6 +43,7 @@
                             <li>
                                 <div class="nav-link px-0 align-middle text-dark" onclick="show(2);">
                                     <i class="fs-4 bi-table"></i> <span class="ms-1 d-none d-sm-inline">My Orders</span>
+                                    
                                 </div>
                             </li>
                             <li onclick="show(3);">
@@ -199,9 +200,6 @@
 
                             }
                         }
-
-                        $getInvoice = Database::search("SELECT * FROM `invoice` INNER JOIN `stetus` ON `invoice`.`invoice_stetus`=`stetus`.`stetus_id` WHERE `invoice`.`users_username` = '" . $user["username"] . "' ORDER BY `invoice`.`date` ASC;");
-
                         ?>
                     </div>
                 </div>
@@ -211,73 +209,12 @@
                 <div class="col d-none" id="mo">
                     <div class="row">
                         <div class="col-12">
-                            <label class="text-dark fs-3 jost-bold">My Orders <?php
-                                                                                if ($getInvoice->num_rows != 0) {
-                                                                                    echo ("(" . $getInvoice->num_rows . ")");
-                                                                                }
-                                                                                ?></label>
+                            <label class="text-dark fs-3 jost-bold">My Orders</label>
                         </div>
 
-                        <?php
+                        <div class="w-100" id="or-body">
 
-                        if ($getInvoice->num_rows != 0) {
-
-                            for ($i = 0; $i < $getInvoice->num_rows; $i++) {
-
-                                $row = $getInvoice->fetch_assoc();
-
-                                $getItemCount = Database::search("SELECT COUNT(`invoice_items`.`invoice_items_id`) AS `count` FROM  `invoice_items` WHERE  `invoice_items`.`invoice_invoice_id` ='" . $row["invoice_id"] . "';");
-
-                        ?>
-
-
-
-                                <div class="col-12 mt-3 d-flex justify-content-between align-items-center">
-
-                                    <div class="d-flex gap-1 mt-2 justify-content-center align-items-center gap-2">
-                                        <div class="d-flex flex-column">
-                                            <label class="fs-6 fw-bold"><?= $row["invoice_id"]; ?></label>
-                                            <small>All Items: <?php
-
-                                                                if ($getItemCount->num_rows != 1) {
-                                                                    echo ("0");
-                                                                } else {
-                                                                    echo ($getItemCount->fetch_assoc()["count"]);
-                                                                }
-
-                                                                ?></small>
-                                            <small class="fw-bold">LKR <?= $row["grand_total"]; ?></small>
-                                        </div>
-                                    </div>
-
-                                    <div class="d-flex  justify-content-between  flex-column gap-3">
-                                        <button class="btn btn-outline-dark bi bi-eye" onclick="ViewOrder('<?= $row['invoice_id']; ?>');"> View Order</button>
-
-                                        <?php
-                                        if ($row["invoice_stetus"] == "11") {
-                                        ?>
-                                            <button class="btn btn-outline-danger bi bi-x-lg" onclick="CancelOrderModle('<?= $row['invoice_id']; ?>')"> Cancel</button>
-                                        <?php
-                                        }
-                                        ?>
-                                        <?php
-                                        if ($row["invoice_stetus"] == "14") {
-
-                                        ?>
-                                            <small class="bg-success text-center text-white rounded-3"><?= $row["stetus_name"] ?></small>
-                                        <?php
-                                        } else {
-                                        ?>
-                                            <small class="bg-secondary text-center text-white rounded-3"><?= $row["stetus_name"] ?></small>
-                                        <?php
-                                        }
-                                        ?>
-                                    </div>
-                                </div>
-
-                        <?php }
-                        }
-                        ?>
+                        </div>
 
                     </div>
                 </div>
@@ -363,58 +300,6 @@
         <!--  modal add new address-->
         <?php include "add-new-address-modle.php"; ?>
         <!--  modal add new address-->
-
-        <!-- Modal add new card -->
-        <div class="modal fade" id="addNewCard" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Add New Card</h1>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <div class="container-fluid">
-                            <div class="row">
-
-                                <div class="col-12 mt-2">
-                                    <label for="c_no" class="form-label">Card Number <small class="text-danger">*</small></label>
-                                    <input type="text" class="form-control" id="c_no" required />
-                                </div>
-
-                                <div class="col-12 mt-2">
-                                    <label for="c_name" class="form-label">Name on the Card <small class="text-danger">*</small></label>
-                                    <input type="text" class="form-control" id="c_name" required />
-                                </div>
-
-                                <div class="col-6 mt-2">
-                                    <label for="c_cvv" class="form-label">CVV <small class="text-danger">*</small></label>
-                                    <input type="text" class="form-control" id="c_cvv" required />
-                                </div>
-
-                                <div class="col-6 mt-2">
-                                    <label for="c_ed" class="form-label">Expiry Date <small class="text-danger">*</small></label>
-                                    <div class="d-flex justify-content-center align-items-center g-2">
-                                        <input type="text" class="form-control mx-1" id="c_ed_y" required placeholder="YY" />
-                                        -
-                                        <input type="text" class="form-control mx-1" id="c_ed_m" required placeholder="MM" />
-                                    </div>
-
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-dark" onclick="saveCard();">Save</button>
-                    </div>
-
-                </div>
-            </div>
-        </div>
-        <!-- Modal add new card -->
-
 
         <?php include  "footer.php"; ?>
 
