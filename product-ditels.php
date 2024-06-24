@@ -23,13 +23,14 @@ if (!isset($_GET["id"]) || !isset($_GET["name"])) {
         <link rel="stylesheet" href="style.css" />
     </head>
 
-    <body>
+    <body onload="getReview('<?= $getId ?>');">
 
         <?php
 
         include "connecton.php";
 
         include  'navbar.php';
+        include "spinners.php";
 
         $getProduct = Database::search("SELECT * FROM `product` INNER JOIN `product_colors` ON `product`.`product_colors_id` = `product_colors`.`colors_id` INNER JOIN `material` ON `product`.`material_material_id` = `material`.`material_id` WHERE  `product`.`id` = '" . $getId . "';");
 
@@ -250,7 +251,6 @@ if (!isset($_GET["id"]) || !isset($_GET["name"])) {
 
                             }
 
-
                             ?>
 
 
@@ -315,7 +315,7 @@ if (!isset($_GET["id"]) || !isset($_GET["name"])) {
 
                             <label class="form-label">Your Rating</label>
                             <div id="star-div">
-                                <input type="checkbox" value="no" id="rating-in" class="d-none" />
+                                <input type="checkbox" value="0" id="rating-in" class="d-none" />
                                 <i class="bi bi-star-fill fs-4 me-2" onclick="setRating(1)"></i>
                                 <i class="bi bi-star-fill fs-4 me-2" onclick="setRating(2)"></i>
                                 <i class="bi bi-star-fill fs-4 me-2" onclick="setRating(3)"></i>
@@ -324,11 +324,11 @@ if (!isset($_GET["id"]) || !isset($_GET["name"])) {
                             </div>
 
                             <div class="mb-3">
-                                <label for="exampleFormControlTextarea1" class="form-label">Your Review</label>
-                                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                                <label for="r-text" class="form-label">Your Review</label>
+                                <textarea class="form-control" id="r-text" rows="3" maxlength="100"></textarea>
                             </div>
                             <div class="mt-2 mb-2">
-                                <button class="btn btn-dark p-2" id="submitReview">Submit</button>
+                                <button class="btn btn-dark p-2" id="submitReview" onclick="submitReview('<?= $_GET['id'] ?>');">Submit</button>
                             </div>
                         </div>
                 </div>
@@ -342,172 +342,91 @@ if (!isset($_GET["id"]) || !isset($_GET["name"])) {
             <div class="col-12 p-3 d-flex flex-column justify-content-start align-items-start d-none" id="cr">
                 <h4 class="jost-bold mb-4">Customer Reviews</h4>
 
+                <div class="w-100" id="rv-body"></div>
+            </div>
+            <!-- Customer Reviews -->
+
+            <!-- Related Product -->
+
+            <div class="row w-100 mb-3">
+                <div class="col-12 w-100">
+                    <h3 class="jost-bold mt-5 mb-4 text-center">Related Product</h3>
+                </div>
+
                 <?php
 
-                $getResiew = Database::search("SELECT * FROM `reviews`  WHERE `reviews`.`product_id` = '" . $getId . "';");
+                $getProduct = Database::search("SELECT * FROM `product` WHERE `product`.`id` !='" . $getId . "' AND `main_category_id` = '" . $categoryId . "' LIMIT 5;");
 
-                if ($getResiew->num_rows != 0) {
+                include "product-card.php";
 
-                    for ($i = 0; $i < $getResiew->num_rows; $i++) {
-                        $row = $getResiew->fetch_assoc();
                 ?>
-                        <div class="d-flex flex-column">
-                            <div class="d-flex gap-3">
-                                <img src="profile_images/<?= $row["users_username"]; ?>.png" class="rounded-5" width="50px" />
-                                <div class="">
-                                    <small><?= $row["users_username"]; ?></small>
-                                    <div class="rating d-flex gap-2">
+            </div>
 
-                                        <?php
+            </div>
 
-                                        if ($row["re"] == 5) {
+            <!-- Related Product -->
+
+            <?php
+            if (isset($_SESSION["user"])) {
+            ?>
+                <!-- Modal -->
+                <div class="modal fade" id="request_modal" tabindex="-1" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h1 class="modal-title fs-5" id="exampleModalLabel">Get more details</h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="mb-3">
+                                    <label class="form-label">Request Type</label>
+                                    <select class="form-select" id="RequestType">
+                                        <option value="0" selected>Select</option>
+
+                                        <?php $getType = Database::search("SELECT `request_type`.`request_type_name`,`request_type`.`request_type_id` FROM `request_type` WHERE `request_type`.`types_types_id` = '1';");
+
+                                        if ($getType->num_rows !== 0) {
+
+                                            for ($i = 0; $i < $getType->num_rows; $i++) {
+
+                                                $type = $getType->fetch_assoc();
+
                                         ?>
-                                            <li class="star-item bi bi-star-fill text-dark"></li>
-                                            <li class="star-item bi bi-star-fill text-dark"></li>
-                                            <li class="star-item bi bi-star-fill text-dark"></li>
-                                            <li class="star-item bi bi-star-fill text-dark"></li>
-                                            <li class="star-item bi bi-star-fill text-dark"></li>
+                                                <option value="<?= $type["request_type_id"] ?>"><?= $type["request_type_name"] ?></option>
                                         <?php
-                                        } else if ($row["re"] == 4) {
+                                            }
+                                        }
+
                                         ?>
-                                            <li class="star-item bi bi-star-fill text-dark"></li>
-                                            <li class="star-item bi bi-star-fill text-dark"></li>
-                                            <li class="star-item bi bi-star-fill text-dark"></li>
-                                            <li class="star-item bi bi-star-fill text-dark"></li>
-                                            <li class="star-item bi bi-star text-dark"></li>
-                                        <?php } else if ($row["re"] == 3) { ?>
-
-                                            <li class="star-item bi bi-star-fill text-dark"></li>
-                                            <li class="star-item bi bi-star-fill text-dark"></li>
-                                            <li class="star-item bi bi-star-fill text-dark"></li>
-                                            <li class="star-item bi bi-star text-dark"></li>
-                                            <li class="star-item bi bi-star text-dark"></li>
-                                        <?php
-                                        } else if ($row["re"] == 2) { ?>
-
-                                            <li class="star-item bi bi-star-fill text-dark"></li>
-                                            <li class="star-item bi bi-star-fill text-dark"></li>
-                                            <li class="star-item bi bi-star text-dark"></li>
-                                            <li class="star-item bi bi-star text-dark"></li>
-                                            <li class="star-item bi bi-star text-dark"></li>
-                                        <?php
-                                        } else if ($row["re"] == 1) { ?>
-                                            <li class="star-item bi bi-star-fill text-dark"></li>
-                                            <li class="star-item bi bi-star text-dark"></li>
-                                            <li class="star-item bi bi-star text-dark"></li>
-                                            <li class="star-item bi bi-star text-dark"></li>
-                                            <li class="star-item bi bi-star text-dark"></li>
-                                        <?php
-                                        } else { ?>
-                                            <li class="star-item bi bi-star text-dark"></li>
-                                            <li class="star-item bi bi-star text-dark"></li>
-                                            <li class="star-item bi bi-star text-dark"></li>
-                                            <li class="star-item bi bi-star text-dark"></li>
-                                            <li class="star-item bi bi-star text-dark"></li>
-                                            <li class="star-item bi bi-star text-dark"></li>
-                                        <?php }  ?>
-
-                                    </div>
-
+                                    </select>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="exampleFormControlTextarea1" class="form-label">Messenge</label>
+                                    <textarea class="form-control" id="msg" rows="3"></textarea>
                                 </div>
                             </div>
-
-                            <small class="mt-2 mb-2 px-2 fw-bold"><?=$row["reviews_text"]?></small>
-
-                            <small class="text-secondary mt-2 mb-2 px-2">dcjkdhckdsjhcvdcvjknjdscvknkvnckncvdnjvdncvncvnnjvkjdnjvdnjvnjdfvndnvkdjnjvefhw
-                                b bbbcbcjvbnkcvbkfbvfbv</small>
-
-                            <small class="px-2">Review by <small class="fw-bold">Krist</small>Posted on <small class="fw-bold">june
-                                    05, 2023</small></small>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-dark" onclick="saveRequest(<?= $getId; ?>);">Send</button>
+                            </div>
                         </div>
-            
-    <?php
-                    }
-                } ?>
-    </div>
-    <!-- Customer Reviews -->
-
-    <!-- Related Product -->
-
-    <div class="row w-100 mb-3">
-        <div class="col-12 w-100">
-            <h3 class="jost-bold mt-5 mb-4 text-center">Related Product</h3>
-        </div>
-
-        <?php
-
-            $getProduct = Database::search("SELECT * FROM `product` WHERE `product`.`id` !='" . $getId . "' AND `main_category_id` = '" . $categoryId . "' LIMIT 5;");
-
-            include "product-card.php";
-
-        ?>
-    </div>
-
-    </div>
-
-    <!-- Related Product -->
-
-    <?php
-            if (isset($_SESSION["user"])) {
-    ?>
-        <!-- Modal -->
-        <div class="modal fade" id="request_modal" tabindex="-1" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="exampleModalLabel">Get more details</h1>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <div class="mb-3">
-                            <label class="form-label">Request Type</label>
-                            <select class="form-select" id="RequestType">
-                                <option value="0" selected>Select</option>
-
-                                <?php $getType = Database::search("SELECT `request_type`.`request_type_name`,`request_type`.`request_type_id` FROM `request_type` WHERE `request_type`.`types_types_id` = '1';");
-
-                                if ($getType->num_rows !== 0) {
-
-                                    for ($i = 0; $i < $getType->num_rows; $i++) {
-
-                                        $type = $getType->fetch_assoc();
-
-                                ?>
-                                        <option value="<?= $type["request_type_id"] ?>"><?= $type["request_type_name"] ?></option>
-                                <?php
-                                    }
-                                }
-
-                                ?>
-                            </select>
-                        </div>
-                        <div class="mb-3">
-                            <label for="exampleFormControlTextarea1" class="form-label">Messenge</label>
-                            <textarea class="form-control" id="msg" rows="3"></textarea>
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-dark" onclick="saveRequest(<?= $getId; ?>);">Send</button>
                     </div>
                 </div>
+
+            <?php } ?>
+
             </div>
-        </div>
 
-    <?php } ?>
-
-    </div>
-
-<?php
+    <?php
 
             include "footer.php";
         }
     }
-?>
+    ?>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script src="script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="script.js"></script>
     </body>
 
     </html>

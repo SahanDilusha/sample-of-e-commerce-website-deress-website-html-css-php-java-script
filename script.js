@@ -1159,68 +1159,7 @@ function setRating(rating) {
     ratingInput.value = rating;
 }
 
-document.getElementById('submitReview').addEventListener('click', function (event) {
-    event.preventDefault();
 
-    const ratingInput = document.querySelector('#ar #rating-in');
-    const reviewText = document.getElementById('exampleFormControlTextarea1').value;
-    const productId = document.getElementById('productId').value;
-
-    const minLength = 10;
-    const maxLength = 100;
-
-    if (ratingInput.value == "no") {
-        document.getElementById("msg_l").innerHTML = request.responseText;
-
-        const myToast = new bootstrap.Toast(document.getElementById('myToast'));
-        myToast.show();
-
-        setTimeout(function () {
-            myToast.hide();
-        }, 5000);
-        return;
-    }
-
-    if (reviewText.length < minLength || reviewText.length > maxLength) {
-        alert(`Review must be between ${minLength} and ${maxLength} characters`);
-        document.getElementById("msg_l").innerHTML = request.responseText;
-
-        const myToast = new bootstrap.Toast(document.getElementById('myToast'));
-        myToast.show();
-
-        setTimeout(function () {
-            myToast.hide();
-        }, 5000);
-        return;
-    }
-
-    const request = new XMLHttpRequest();
-    const formData = new FormData();
-    formData.append("text", reviewText);
-    formData.append("rating", ratingInput.value);
-    formData.append("productId", productId);  // Add product ID to formData
-
-    request.onreadystatechange = function () {
-        if (request.readyState == "4" && request.status == "200") {
-
-            document.getElementById("msg_l").innerHTML = request.responseText;
-
-            const myToast = new bootstrap.Toast(document.getElementById('myToast'));
-            myToast.show();
-
-            setTimeout(function () {
-                myToast.hide();
-            }, 5000);
-
-            if (request.responseText == "ok") {
-                window.location.reload();
-            }
-        }
-    }
-
-    request.open('POST', 'submit-rivew.php', true);
-    request.send(formData);
-});
 
 function payCheck() {
 
@@ -1265,6 +1204,61 @@ function getInData() {
     }
     request.open('POST', 'get-invoice.php', true);
     request.send(from);
+}
+
+function getReview(id) {
+
+    const request = new XMLHttpRequest();
+
+    const body = document.getElementById("rv-body");
+    body.innerHTML = "";
+
+    request.onreadystatechange = function () {
+        if (request.readyState == "4" && request.status == "200") {
+            body.innerHTML = request.responseText;
+        }
+
+    }
+    request.open('GET', 'get-review.php?id=' + id, true);
+    request.send();
+
+}
+
+function submitReview(id) {
+
+    const text = document.getElementById("r-text");
+    const ra = document.getElementById("rating-in");
+
+    const request = new XMLHttpRequest();
+
+    const from = new FormData();
+    from.append("text", text.value);
+    from.append("productId", id);
+    from.append("rating", ra.value);
+
+    showSpinners();
+
+    request.onreadystatechange = function () {
+        if (request.readyState == "4" && request.status == "200") {
+            hideSpinners();
+            if (request.responseText === "ok") {
+                getReview(id);
+            } else {
+                document.getElementById("msg_l").innerHTML = request.responseText;
+
+                const myToast = new bootstrap.Toast(document.getElementById('myToast'));
+                myToast.show();
+
+                setTimeout(function () {
+                    myToast.hide();
+                }, 5000);
+            }
+        }
+
+    }
+    request.open('POST', 'submit-rivew.php', true);
+    request.send(from);
+
 }
 
 

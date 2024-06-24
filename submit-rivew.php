@@ -3,11 +3,9 @@ session_start();
 
 if (isset($_SESSION["user"])) {
 
-    if (isset($_POST["text"]) && isset($_POST["rating"]) && isset($_POST["productId"])) {
+    if (isset($_POST["text"],$_POST["rating"],$_POST["productId"])) {
 
-        if (empty($_POST["rating"])) {
-            echo ("Error: Try Again!");
-        } else if (empty($_POST["text"])) {
+        if (empty($_POST["text"])) {
             echo ("Please enter your review");
         } else {
 
@@ -22,14 +20,9 @@ if (isset($_SESSION["user"])) {
                 exit();
             }
 
-            $re = "0";
-
-            if ($_POST["rating"] != "no") {
-                $re = $_POST["rating"];
-            }
-
+            
             Database::iud("INSERT INTO `reviews`(`reviews_text`,`date`,`users_username`,`product_id`,`re`,`stetus_stetus_id`) 
-            VALUES('" . $_POST["text"] . "','" . date('Y-m-d H:i:s') . "','" . $_SESSION["user"]["username"] . "','" . $_POST["productId"] . "','" . $re . "','7');");
+            VALUES('" . $_POST["text"] . "','" . date('Y-m-d H:i:s') . "','" . $_SESSION["user"]["username"] . "','" . $_POST["productId"] . "','" . $_POST["rating"] . "','7');");
             echo ("ok");
         }
     } else {
