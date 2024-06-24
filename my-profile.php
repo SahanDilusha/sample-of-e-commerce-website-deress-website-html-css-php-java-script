@@ -43,7 +43,7 @@
                             <li>
                                 <div class="nav-link px-0 align-middle text-dark" onclick="show(2);">
                                     <i class="fs-4 bi-table"></i> <span class="ms-1 d-none d-sm-inline">My Orders</span>
-                                    
+
                                 </div>
                             </li>
                             <li onclick="show(3);">
@@ -208,8 +208,17 @@
                 <!-- My Orders-->
                 <div class="col d-none" id="mo">
                     <div class="row">
-                        <div class="col-12">
+                        <div class="col-12 d-flex justify-content-between align-items-center">
                             <label class="text-dark fs-3 jost-bold">My Orders</label>
+                            <div class="d-flex gap-2">
+                                <input  type="text" id="or-in-id" class="form-control" onkeydown="getInData();" placeholder="Invoice Id"/>
+                                <select name="status" id="or-status" class="form-select" onchange="getInData();">
+                                    <option value="0">All</option>
+                                    <option value="11">Processing</option>
+                                    <option value="10">Diliverd</option>
+                                    <option value="9">Cancel</option>
+                                </select>
+                            </div>
                         </div>
 
                         <div class="w-100" id="or-body">

@@ -4,7 +4,19 @@ include "connecton.php";
 session_start();
 $user = $_SESSION["user"];
 
-$getInvoice = Database::search("SELECT * FROM `invoice` INNER JOIN `stetus` ON `invoice`.`invoice_stetus`=`stetus`.`stetus_id` WHERE `invoice`.`users_username` = '" . $user["username"] . "' ORDER BY `invoice`.`date` ASC;");
+$q = "SELECT * FROM `invoice` INNER JOIN `stetus` ON `invoice`.`invoice_stetus`=`stetus`.`stetus_id` WHERE `invoice`.`users_username` = '" . $user["username"] . "'";
+
+if (isset($_POST["id"]) && !empty($_POST["id"])) {
+    $q = $q . "AND `invoice_id` LIKE '" . $_POST["id"] . "%' ";
+}
+
+if (isset($_POST["st"]) && !empty($_POST["st"]) && $_POST["st"] !== "0") {
+    $q = $q . "AND `invoice_stetus` = '" . $_POST["st"] . "'";
+}
+
+$q = $q . "ORDER BY `invoice`.`date` ASC;";
+
+$getInvoice = Database::search($q);
 
 if ($getInvoice->num_rows != 0) {
 

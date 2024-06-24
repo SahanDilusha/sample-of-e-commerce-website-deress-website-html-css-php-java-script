@@ -1250,9 +1250,12 @@ function payCheck() {
 function getInData() {
     const request = new XMLHttpRequest();
 
+
     const body = document.getElementById("or-body");
 
     const from = new FormData();
+    from.append("st", document.getElementById("or-status").value);
+    from.append("id", document.getElementById("or-in-id").value);
     body.innerHTML = "";
     request.onreadystatechange = function () {
         if (request.readyState == "4" && request.status == "200") {
