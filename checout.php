@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="style.css" />
 </head>
 
-<body>
+<body onload="getChecoutAddress();">
 
     <?php
 
@@ -41,52 +41,9 @@
                         <h5 class="mt-2 mb-2">Select a delivery address</h5>
                         <small class="mb-2">Is the address you'd like to use displayed below? If so, click the corresponding "Deliver to this address" button. Or you can enter a new deliver address.</small>
 
-                        <div class="w-100 d-flex gap-2 mt-4 mb-4">
+                        <div class="w-100 d-flex gap-2 mt-4 mb-4" id="ad-body">
 
-                            <?php
-                            if ($getAddress->num_rows !== 0) {
-
-                                for ($i = 0; $i < $getAddress->num_rows; $i++) {
-
-                                    $row = $getAddress->fetch_assoc();
-
-                            ?>
-
-
-                                    <div class="col-md-3 px-2 py-1 <?php if (isset($_SESSION["address_id"]) && $_SESSION["address_id"] ==  $row["address_id"]) { ?> 
-    bg-danger-subtle 
-<?php } else { ?> 
-    bg-secondary-subtle 
-<?php } ?> " onclick="SelectShoppingAddress(<?= $row['address_id']; ?>);">
-
-                                        <div class="w-100 m-2 p-1 d-flex justify-content-between align-items-center">
-                                            <label class="fs-5 fw-bold"><?php echo ($row["address_name"]); ?></label>
-
-                                        </div>
-                                        <div class="w-100 px-1 d-flex gap-2 flex-column">
-                                            <label><?php echo ($row["line_1"] . ", " . $row["line_2"] . ", " . $row["city_name"]); ?></label>
-                                            <label><?php echo ($row["address_mobile"]) ?></label>
-                                        </div>
-                                        <div class="d-flex  mt-2 mb-2 justify-content-between align-items-center">
-                                            <?php
-
-                                            if ($row["stetus_stetus_id"] !== "2") {
-                                            ?>
-                                                <button class="btn btn-secondary bi bi-pencil-square" onclick="setDefaultAddress(<?php echo ($row['address_id']); ?>);"> Set Default</button>
-                                            <?php
-                                            }
-                                            if ($row["stetus_stetus_id"] == "2") {
-                                            ?>
-                                                <label class="p-1 text-success fw-bold">Default</label>
-                                            <?php
-                                            } ?>
-                                            <button class="btn bg-danger-subtle border-danger bi bi-trash3" onclick="deleteAddress(<?php echo ($row['address_id']); ?>)"> Delete</button>
-                                        </div>
-                                    </div>
-
-                            <?php }
-                            } ?>
-
+                            
                         </div>
 
                         <button class="fs-6 btn btn-dark mt-3  p-2" onclick="addNewAddressModel();"><i class="bi bi-plus"></i> Add New Address</button>

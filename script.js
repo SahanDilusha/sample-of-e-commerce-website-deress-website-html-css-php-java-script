@@ -1261,6 +1261,42 @@ function submitReview(id) {
 
 }
 
+function getChecoutAddress() {
+    const request = new XMLHttpRequest();
+
+    const body = document.getElementById("ad-body");
+    body.innerHTML = "";
+
+    request.onreadystatechange = function () {
+        if (request.readyState == "4" && request.status == "200") {
+            body.innerHTML = request.responseText;
+        }
+
+    }
+    request.open('POST', 'get-checout-address.php', true);
+    request.send();
+}
+
+function setDefaultAddress2(i) {
+    const request = new XMLHttpRequest();
+
+    const from = new FormData();
+    from.append("id", i);
+
+    request.onreadystatechange = function () {
+
+        if (request.readyState == "4" && request.status == "200") {
+            if (request.responseText == "ok") {
+                getChecoutAddress();
+            }
+        }
+
+    }
+
+    request.open('POST', 'set-default-address.php', true);
+    request.send(from);
+}
+
 
 
 
