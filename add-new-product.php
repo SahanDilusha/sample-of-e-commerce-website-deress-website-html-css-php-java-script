@@ -5,7 +5,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $errors = [];
 
     // Sanitize and validate product name
-    $productName = htmlspecialchars(trim($_POST['name']));
+    $productName = strtoupper(trim($_POST['name'])); // Convert to uppercase and trim spaces
     if (empty($productName)) {
         $errors[] = "Product name is required.";
     }
@@ -14,6 +14,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $productPrice = filter_input(INPUT_POST, 'price', FILTER_VALIDATE_FLOAT);
     if ($productPrice === false || $productPrice <= 0) {
         $errors[] = "Valid product price is required.";
+    }
+
+    $delivery = filter_input(INPUT_POST, 'delivery', FILTER_VALIDATE_FLOAT);
+    if ($delivery === false || $delivery <= 0) {
+        $errors[] = "Valid product delivery price is required.";
     }
 
     // Validate product discount
@@ -25,6 +30,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if ($productQty === false || $productQty <= 0) {
         $errors[] = "Valid product QTY is required.";
     }
+
+    $productDescription =  htmlspecialchars(trim($_POST['description']));
+    if ($productDescription === false || $productDescription <= 0) {
+        $errors[] = "Valid product description is required.";
+    }
+
     // Sanitize main category
     $mainCategory = htmlspecialchars(trim($_POST['mainCategory']));
     if (empty($mainCategory)) {
@@ -43,8 +54,27 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $errors[] = "Color is required.";
     }
 
+    $subMaterial = htmlspecialchars(trim($_POST['material']));
+    if (empty($subMaterial)) {
+        $errors[] = "Material is required.";
+    }
+
+
+    $barnd = htmlspecialchars(trim($_POST['barnd']));
+    if (empty($barnd)) {
+        $errors[] = "Material is required.";
+    }
+
+    function generateUniqueNumber() {
+        $uniqueId = uniqid();
+        $numericPart = substr(preg_replace("/[^0-9]/", "", $uniqueId), 0, 8);
+        $uniqueNumber = str_pad($numericPart, 8, "0", STR_PAD_LEFT);
+        return $uniqueNumber;
+    }
+
+
     // Generate a unique product ID
-    $productId = uniqid(true); // Example: prod_60d5f29a5f96e
+    $productId = generateUniqueNumber(); // Get the last 10 characters
 
     // Handle file uploads
     $allowedTypes = ['image/jpeg', 'image/png', 'image/gif'];
@@ -71,6 +101,41 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
 
     if (empty($errors)) {
+
+        include "connecton.php";
+
+        Database::iud("INSERT INTO `product`(
+            `id`,
+            `product_name`,
+            `product_description`,
+            `product_qty`,
+            `product_price`,
+            `product_discount`,
+            `stetus_stetus_id`,
+            `star`,
+            `brand_idbrand`,
+            `material_material_id`,
+            `delivery`,
+            `sub_category_id`,
+            `main_category_id`,
+            `product_colors_id`)
+            VALUES(
+                '" . $productId . "',
+                '" . $productName . "',
+                '" . $productDescription . "',
+                '" . $productQty . "',
+                '" . $productPrice . "',
+                '" . $productDiscount . "',
+                '1',
+                '0',
+                '" . $barnd . "',
+                '" . $subMaterial . "',
+                '" . $delivery . "',
+                '" . $subCategory . "',
+                '" . $mainCategory . "',
+                '" . $color . "'
+            );
+            ");
 
         echo "ok";
     } else {
